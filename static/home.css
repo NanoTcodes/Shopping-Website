@@ -1,0 +1,362 @@
+/* Font for "Kaushan Script" */
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+
+/* Font for "Inter" */
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+#loginbutton button a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: small;
+    
+}
+#loginbutton button{
+    background-color: #e44d26;
+    color: #fff;
+    border:blanchedalmond;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    
+    
+}
+
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+#shopaholic{
+
+
+    font-family: 'Kaushan Script';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 70px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+#navshit{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 30px;
+    font-stretch:expanded;
+
+}
+#loginbutton{
+    background-color: #e44d26;
+    color: #fff;
+    border:blanchedalmond;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    size: 40px;
+    /* width: 100px;
+    height: 40px; */
+    position: absolute;
+    top:40px;
+    right:100px;
+    padding: 0px;
+    
+}
+#navshit ul li a {
+    text-decoration: none; /* Remove default underline */
+}
+
+/* Style for the navbar links when hovered */
+#navshit ul li a:hover {
+    color: #e44d20; /* Text color on hover */
+    text-decoration: underline; /* Underline on hover */
+    
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #453232c2;
+    line-height: 1.6;
+}
+
+/* Header styles */
+header {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+.CAROUSAL{
+    width: 75%;
+margin: 30px auto;
+}
+
+.DEALS h1{
+    text-align: center;
+}
+.fashiondeal{
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+}
+
+.fashiondeals{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.fashiondealtext{
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Background color for the text */
+    color: white; /* Text color */
+    padding: 10px 20px;
+}
+
+
+
+.featured-products {
+    display: flex;
+    flex-direction: row;  
+    align-items: center; /* Center-align horizontally */
+    justify-content: center; /* Center-align vertically */
+    text-align: center; /* Center-align text within products */
+}
+
+/* Style for individual product elements */
+.product {
+    display: flex;
+    margin: 100px; /* Add spacing between products */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border for separation */
+    border-radius: 30px;
+    width: 300px; /* Limit the maximum width of each product */
+    background-color: #ebe8dd;
+}
+.prodshit{
+    text-align: center;
+}
+.addtocart{
+    text-align: center;
+}
+.product img {
+    max-width: 100%; /* Ensure images don't exceed the width of their container */
+    max-height: 150px;
+    border-radius: 30px;
+}
+.heading{
+    margin-top: 30px;
+    margin-left:0px;
+    text-align: center;
+    font-family: 'Kaushan Script';
+    font-style: normal;
+
+}
+.search-bar input[type="text"] {
+padding: 10px 100px;
+border-radius: 5px;
+position: absolute;
+top: 150px;
+right: 600px;
+}
+
+.search-bar button {
+background-color: #e44d20;
+color: #fff;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+position: absolute;
+top: 150px;
+right: 515px;
+}
+
+
+button {
+    background-color:#e44d20;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Inter';
+    font-style: normal;
+}
+.search-bar button:hover,.addtocart button:hover{
+    transform:scale(1.1);
+    z-index:2;
+}
+#loginbutton:hover{
+    transform:scale(1.15);
+    z-index:2;
+}
+
+*{margin: 0px;
+}
+body{
+    color: white;
+    background-color:#645858 ;
+
+}
+.ABOUT_US{
+    margin: 80px;
+    text-align: center;
+}
+
+.ABOUT_US .about_us_heading{
+    font-size: 26px;
+}
+
+.ABOUT_US .about_us_text{
+    padding-bottom: 20px;
+    font-size: 20px;
+    
+}
+
+.about_us_pics{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.about_us_pic{
+    background-color: bisque;
+    opacity: 0.3;
+    flex-direction: column;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    color: black;
+    margin: 10px;
+}
+
+.about_us_pic:hover{
+    opacity: 1;
+}
+
+.about_us_pic img{
+    margin: 20px 20px 10px 20px;
+    /* background-color: bisque; */
+}
+
+.CONTACT_US{
+    margin: 80px;
+    text-align: center;
+}
+
+.CONTACT_US .contact_us_heading{
+    font-size: 26px;
+}
+
+.contact_us_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.contact_us_form input,textarea{
+    background-color: white;
+    padding-left: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 50%;
+    margin: 5px;
+    border: none;
+    border: 2px solid #333; /* Add a 2px solid border with a dark color */
+           
+            border-radius: 20px;
+}
+.contact_us_form button{
+    margin-top: 15px;
+    width: 50%;
+    height: 43px;
+    background-color: #E54646;
+    border: none;
+color: white;
+border-radius: 30px;
+font-size: 18px;
+}
+
+.contact_us_form button:hover{
+    transform: scale(1.01);
+}
+
+.FOOTER{
+    background-color: #2E2D2D !important;
+    /* display: flex; */
+}
+.FOOTER ul{
+    display: flex;
+    align-items: center;
+    background-color: inherit;
+    justify-content: space-between;
+    margin: 0px 25%;
+    padding-top: 15px;
+    flex-wrap: wrap;
+}
+
+hr {
+    width: 50%;
+    border: none; /* Remove the default line */
+    border-top: 0.5px solid #0000003f; /* Add a custom line with a solid black color */
+    margin: 10px auto; /* Adjust the margin above and below the line (optional) */
+}
+.FOOTER li{
+list-style-type: none;
+margin:0px 10px;
+}
+.FOOTER li a{
+    color: white;
+    text-decoration: none;
+}
+.footer_rights{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
