@@ -13,211 +13,245 @@
         <link rel="stylesheet" href="../static/navbar.css">
 
     <style>
-        /* Main content styles */
-        main {
-            padding: 20px;
-            
-        }
+/* General styling */
+main {
+    padding: 20px;
+}
 
-        .add{
-            display: flex;
-            flex-direction: column; /* Stack children vertically */
-            align-items: center; /* Center-align horizontally */
-            justify-content: center; /* Center-align vertically */
-            text-align: center; /* Center-align text within products */
-        }
-        
-        /* Style for individual product elements */
-   
-       
-        .addtocart{
-            margin-top: 20px;
-        }
-        .product img {
-            
-            margin-left: 50%;
-            max-width: 100%; /* Ensure images don't exceed the width of their container */
-            max-height: 150px;
-            border-radius: 30px;
-        }
-        .heading{
-            margin-top: 20px;
-            margin-bottom: 10px;
-            margin-left:0px;
-            text-align: center;
-            font-family: 'Kaushan Script';
-            font-style: normal;
+/* Product container styles */
+.add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
-        }
-        .cartbuttons{
-            margin-top: 30px;
-            display: flex;
-            
-        }
-        .cartbuttons button{
-            width: 150px;
-        }
-        #removeall{
-            margin-left: 500px;
-            height: 30px;
-            
-            
-        }
-        #removeall button{
-            background-color: antiquewhite;
-            color: black;
-        }
-        #buyall{
-            margin-left: 200px;
-            
-            
-        }
+/* Product image styles */
+.product img {
+    margin-left: 50%;
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: 30px;
+}
 
-        
+/* Heading styles */
+.heading {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    text-align: center;
+    font-family: 'Kaushan Script';
+    font-style: normal;
+}
 
-        button {
-            background-color:#e44d20;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: 'Inter';
-            font-style: normal;
-        }
-        .address_container{
-            display:flex;
-            height: 400px;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-        .profile_details,
-        .your_address { 
-            background-color: #ebe8dd;
-            height:170px;
-            border:2px solid #333;
-            padding: 10px; /* Add padding to separate content from the border */
-            border-radius: 20px;
-            margin-bottom: 15px;
-            font-size: small;
-        }
-        .profileandaddress{
-            align-items: center;
-            text-align: center;
-            width:300px;
-            height:360px;
-          
-        }
-        .security{
-            align-items: center;
-            text-align: center;
-            width:300px;
-            height:340px;
-            border:2px solid #333;
-            padding: 10px; /* Add padding to separate content from the border */
-            border-radius: 20px;
-            background-color:#ebe8dd;
-        }
-        .product_display{
-            display:flex;
-            height:280px;
-            align-items: baseline;
-            justify-content: space-evenly;
-        }
-        .product1,.product2,.product3,.product4{
-            background-color:#ebe8dd;
-            width: 150px;
-            height: 200px;
-            text-align: center;
-            border: 2px solid #333; /* Add a 2px solid border with a dark color */
-           
-            border-radius: 20px;
-            padding: 10px; /* Add padding to separate content from the border */
-            transition:0.5s;
-        }
-        .product1:hover,.product2:hover,.product3:hover,.product4:hover{
-            transform:scale(1.15);
-            box-shadow: 2px 2px 2px #434242;
-            z-index:2;
-        }
-        .your_cart{
-            margin-top: 10px;
-            margin-bottom: 10px;
-            text-align: center;
-            font-family: 'Kaushan Script';
-            font-style: normal;
-        }
-        .img1{
-            width:100px;
-            height:100px;
-            border-radius:15px ;
-            border:2px solid #4d3d3d
-        }
-        .arrow{
-            font-size: 20px;
-            align-self: center;
-        }
-        .pincodeandcity{
-            display:flex;
+/* Cart button container */
+.cartbuttons {
+    margin-top: 30px;
+    display: flex;
+}
 
-        }
-        .pincode,.city{
-            width:150px;
-            text-align: left;
-            border-radius: 5px;;
-        }
-        .area{
-            text-align: left;
-            height:100px;
-        }
-        .description{
-            font-family: italic;
-        }
-        .product_name{
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-        .profile_body{
-            text-align:left;
-        }
-        .explore_more{
-            display:flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .explore{
-            align-items: center;
-        }
-        .security_heading{
-            margin-bottom: 10px;
-        }
-        .security_main{
-            display:flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .oldpass,.newpass,.confirmnew{
-            height: 90px;
-        }
-        .submit_button{
-            background-color:#e44d20;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: 'Inter';
-            font-style: normal;
-        }
-        .oldpassstyle,.newpassstyle,.confirmnewstyle{
-            border-radius: 5px;
-        }
-        .explore:hover,.submit_button:hover{
-            transform:scale(1.15);
-            z-index:2;
-        }
-        
+/* Cart button styles */
+.cartbuttons button {
+    width: 150px;
+}
+
+/* Remove all button styles */
+#removeall {
+    margin-left: 500px;
+    height: 30px;
+}
+
+#removeall button {
+    background-color: antiquewhite;
+    color: black;
+}
+
+/* Buy all button styles */
+#buyall {
+    margin-left: 200px;
+}
+
+/* Button styles */
+button {
+    background-color: #e44d20;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+/* Address container styles */
+.address_container {
+    display: flex;
+    height: 400px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* Profile and address container styles */
+.profile_details,
+.your_address {
+    background-color: #ebe8dd;
+    height: 170px;
+    border: 2px solid #333;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    font-size: small;
+}
+
+/* Profile and address container alignment */
+.profileandaddress,
+.security {
+    align-items: center;
+    text-align: center;
+    width: 300px;
+    height: 360px;
+}
+
+/* Security container styles */
+.security {
+    border: 2px solid #333;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #ebe8dd;
+}
+
+/* Product display container styles */
+.product_display {
+    display: flex;
+    height: 280px;
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+
+/* Product styles */
+.product1, .product2, .product3, .product4 {
+    background-color: #ebe8dd;
+    width: 150px;
+    height: 200px;
+    text-align: center;
+    border: 2px solid #333;
+    border-radius: 20px;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+/* Product hover effect */
+.product1:hover, .product2:hover, .product3:hover, .product4:hover {
+    transform: scale(1.15);
+    box-shadow: 2px 2px 2px #434242;
+    z-index: 2;
+}
+
+/* Your cart heading styles */
+.your_cart {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Kaushan Script';
+    font-style: normal;
+}
+
+/* Image styles */
+.img1 {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    border: 2px solid #4d3d3d;
+}
+
+/* Arrow icon styles */
+.arrow {
+    font-size: 20px;
+    align-self: center;
+}
+
+/* Pincode and city container styles */
+.pincodeandcity {
+    display: flex;
+}
+
+/* Pincode and city input styles */
+.pincode, .city {
+    width: 150px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+/* Area input styles */
+.area {
+    text-align: left;
+    height: 100px;
+}
+
+/* Description and product name styles */
+.description {
+    font-family: italic;
+}
+
+.product_name {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Profile body text alignment */
+.profile_body {
+    text-align: left;
+}
+
+/* Explore more button container styles */
+.explore_more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Explore button styles */
+.explore {
+    align-items: center;
+}
+
+/* Security heading styles */
+.security_heading {
+    margin-bottom: 10px;
+}
+
+/* Security main container styles */
+.security_main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Input fields for old password, new password, and confirm new password */
+.oldpass, .newpass, .confirmnew {
+    height: 90px;
+}
+
+/* Submit button styles */
+.submit_button {
+    background-color: #e44d20;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+/* Hover effect for explore and submit buttons */
+.explore:hover, .submit_button:hover {
+    transform: scale(1.15);
+    z-index: 2;
+}
+
         
         
     </style>

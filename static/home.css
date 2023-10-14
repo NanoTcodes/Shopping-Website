@@ -1,90 +1,18 @@
-/* Font for "Kaushan Script" */
+/* Font imports */
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
-
-/* Font for "Inter" */
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
-#loginbutton button a{
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: small;
-    
-}
-#loginbutton button{
-    background-color: #e44d26;
-    color: #fff;
-    border:blanchedalmond;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
-    
-    
-}
-
-body, h1, h2, h3, p {
+/* General styles */
+* {
     margin: 0;
     padding: 0;
 }
-#shopaholic{
-
-
-    font-family: 'Kaushan Script';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 70px;
-    text-align: center;
-
-    color: #FFFFFF;
-}
-#navshit{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 30px;
-    font-stretch:expanded;
-
-}
-#loginbutton{
-    background-color: #e44d26;
-    color: #fff;
-    border:blanchedalmond;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    size: 40px;
-    /* width: 100px;
-    height: 40px; */
-    position: absolute;
-    top:40px;
-    right:100px;
-    padding: 0px;
-    
-}
-#navshit ul li a {
-    text-decoration: none; /* Remove default underline */
-}
-
-/* Style for the navbar links when hovered */
-#navshit ul li a:hover {
-    color: #e44d20; /* Text color on hover */
-    text-decoration: underline; /* Underline on hover */
-    
-}
-
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #453232c2;
+    background-color: #ffffffc2;
     line-height: 1.6;
+    color: white;
 }
 
 /* Header styles */
@@ -116,11 +44,60 @@ nav a {
     font-weight: bold;
 }
 
+/* Login button */
+#loginbutton {
+    background-color: #e44d26;
+    color: #fff;
+    border: blanchedalmond;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    top: 40px;
+    right: 100px;
+    padding: 0;
+}
+
+#loginbutton button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: small;
+}
+
+/* Navigation links */
+#navshit {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+#navshit ul li a {
+    text-decoration: none;
+}
+
+#navshit ul li a:hover {
+    color: #e44d20;
+    text-decoration: underline;
+}
+
 /* Main content styles */
 main {
     padding: 20px;
 }
 
+/* Styles for featured products */
+.featured-products {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 .CAROUSAL{
     width: 75%;
 margin: 30px auto;
@@ -154,66 +131,45 @@ margin: 30px auto;
 }
 
 
-
-.featured-products {
-    display: flex;
-    flex-direction: row;  
-    align-items: center; /* Center-align horizontally */
-    justify-content: center; /* Center-align vertically */
-    text-align: center; /* Center-align text within products */
-}
-
-/* Style for individual product elements */
 .product {
     display: flex;
-    margin: 100px; /* Add spacing between products */
+    margin: 100px;
     padding: 20px;
-    border: 1px solid #ccc; /* Add a border for separation */
+    border: 1px solid #ccc;
     border-radius: 30px;
-    width: 300px; /* Limit the maximum width of each product */
+    width: 300px;
     background-color: #ebe8dd;
 }
-.prodshit{
-    text-align: center;
-}
-.addtocart{
-    text-align: center;
-}
+
 .product img {
-    max-width: 100%; /* Ensure images don't exceed the width of their container */
+    max-width: 100%;
     max-height: 150px;
     border-radius: 30px;
 }
-.heading{
-    margin-top: 30px;
-    margin-left:0px;
-    text-align: center;
-    font-family: 'Kaushan Script';
-    font-style: normal;
 
-}
+/* Search bar styles */
 .search-bar input[type="text"] {
-padding: 10px 100px;
-border-radius: 5px;
-position: absolute;
-top: 150px;
-right: 600px;
+    padding: 10px 100px;
+    border-radius: 5px;
+    position: absolute;
+    top: 150px;
+    right: 600px;
 }
 
 .search-bar button {
-background-color: #e44d20;
-color: #fff;
-padding: 10px 20px;
-border: none;
-cursor: pointer;
-position: absolute;
-top: 150px;
-right: 515px;
+    background-color: #e44d20;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    right: 515px;
 }
 
-
+/* Button styles */
 button {
-    background-color:#e44d20;
+    background-color: #e44d20;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -223,45 +179,37 @@ button {
     font-family: 'Inter';
     font-style: normal;
 }
-.search-bar button:hover,.addtocart button:hover{
-    transform:scale(1.1);
-    z-index:2;
-}
-#loginbutton:hover{
-    transform:scale(1.15);
-    z-index:2;
+
+/* Hover effects */
+.search-bar button:hover,
+.addtocart button:hover,
+#loginbutton:hover {
+    transform: scale(1.1);
+    z-index: 2;
 }
 
-*{margin: 0px;
-}
-body{
-    color: white;
-    background-color:#645858 ;
-
-}
-.ABOUT_US{
+/* About Us section styles */
+.ABOUT_US {
     margin: 80px;
     text-align: center;
 }
 
-.ABOUT_US .about_us_heading{
+.ABOUT_US .about_us_heading {
     font-size: 26px;
 }
 
-.ABOUT_US .about_us_text{
+.ABOUT_US .about_us_text {
     padding-bottom: 20px;
     font-size: 20px;
-    
 }
 
-.about_us_pics{
+.about_us_pics {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
 }
 
-.about_us_pic{
+.about_us_pic {
     background-color: bisque;
     opacity: 0.3;
     flex-direction: column;
@@ -274,67 +222,66 @@ body{
     margin: 10px;
 }
 
-.about_us_pic:hover{
+.about_us_pic:hover {
     opacity: 1;
 }
 
-.about_us_pic img{
+.about_us_pic img {
     margin: 20px 20px 10px 20px;
-    /* background-color: bisque; */
 }
 
-.CONTACT_US{
+/* Contact Us section styles */
+.CONTACT_US {
     margin: 80px;
     text-align: center;
 }
 
-.CONTACT_US .contact_us_heading{
+.CONTACT_US .contact_us_heading {
     font-size: 26px;
 }
 
-.contact_us_form{
+.contact_us_form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
 }
 
-.contact_us_form input,textarea{
+.contact_us_form input,
+contact_us_form textarea {
     background-color: white;
     padding-left: 20px;
     padding: 5px;
     border-radius: 5px;
     width: 50%;
     margin: 5px;
-    border: none;
-    border: 2px solid #333; /* Add a 2px solid border with a dark color */
-           
-            border-radius: 20px;
+    border: 2px solid #333;
+    border-radius: 20px;
 }
-.contact_us_form button{
+
+.contact_us_form button {
     margin-top: 15px;
     width: 50%;
     height: 43px;
-    background-color: #E54646;
+    background-color: #820000;
     border: none;
-color: white;
-border-radius: 30px;
-font-size: 18px;
+    color: white;
+    border-radius: 30px;
+    font-size: 18px;
 }
 
-.contact_us_form button:hover{
+.contact_us_form button:hover {
     transform: scale(1.01);
 }
 
-.FOOTER{
+/* Footer styles */
+.FOOTER {
     background-color: #2E2D2D !important;
-    /* display: flex; */
 }
-.FOOTER ul{
+
+.FOOTER ul {
     display: flex;
     align-items: center;
-    background-color: inherit;
     justify-content: space-between;
     margin: 0px 25%;
     padding-top: 15px;
@@ -343,20 +290,24 @@ font-size: 18px;
 
 hr {
     width: 50%;
-    border: none; /* Remove the default line */
-    border-top: 0.5px solid #0000003f; /* Add a custom line with a solid black color */
-    margin: 10px auto; /* Adjust the margin above and below the line (optional) */
+    border: none;
+    border-top: 0.5px solid #0000003f;
+    margin: 10px auto;
 }
-.FOOTER li{
-list-style-type: none;
-margin:0px 10px;
+
+.FOOTER li {
+    list-style-type: none;
+    margin: 0px 10px;
 }
-.FOOTER li a{
+
+.FOOTER li a {
     color: white;
     text-decoration: none;
 }
-.footer_rights{
+
+.footer_rights {
     text-align: center;
     padding-bottom: 10px;
 }
+
 
