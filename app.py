@@ -4,6 +4,8 @@ import os
 import MySQLdb.cursors
 import re
 import mysql.connector
+from PIL import Image
+from io import BytesIO
 
 app = Flask(__name__)
 app.secret_key=os.urandom(24)#to ensure session expiring
@@ -15,10 +17,19 @@ conn=mysql.connector.connect(
 )
 cursor=conn.cursor()
 @app.route('/')
+def login():
+    message = session.pop('message', None)
+    return render_template('loginpage.html',message=message)
+@app.route('/home')
 def home():
-    message=session.pop('message',None)
-    return render_template('home.html',message=message)
-
+    if 'user_id' in session:
+        username=session['username']
+        message=f"hello,{username}"
+        logged_in=True
+        return render_template('home.html',message=message,logged_in=logged_in)
+    else:
+        session['message']='please login!'
+        return redirect('/')
 @app.route('/products')
 def about():
     return render_template('products.html')
@@ -41,10 +52,7 @@ def sell():
     
     return render_template('sell.html')
 
-@app.route('/login')
-def login():
-    message = session.pop('message', None)
-    return render_template('loginpage.html',message=message)
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
@@ -52,7 +60,10 @@ def signup():
 @app.route('/checkout')
 def checkout():
     return render_template('checkout.html')
-
+@app.route('/add_product',methods=['POST'])
+def add_product():
+  
+    return redirect('/products')
 @app.route('/thankyou')
 def thankyou():
     return render_template('thankyou.html')
@@ -65,11 +76,13 @@ def login_validation():#add logic for logging into both seller and buyer account
     user=cursor.fetchall() #data retruned will be inside a tuple,empty tuple will be returned if user credentials dont match
     if len(user)>0:
         session['user_id']=user[0][0]
+        session['username']=user[0][5] #later replace it with[0][1] when firstname is also registered
+        print(user)
         session['message']='logged in succesfully'
-        return redirect('/')
+        return redirect('/home')
     else:
         session['message'] = 'invalid credentials'
-        return redirect('/login')
+        return redirect('/')
 @app.route('/add_user',methods=['POST'])
 def add_user():
     email=request.form.get('email_reg')
@@ -81,13 +94,13 @@ def add_user():
     account = cursor.fetchone()
     if account:
         session['message'] = 'Account already exists !'
-        return redirect('/login') #or go to login page if this is not working
+        return redirect('/') #or go to login page if this is not working
     elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
         session['message'] = 'Invalid email address !'
-        return redirect('/login')
+        return redirect('/')
     elif password!=confirmPassword:
         session['message']="password and confirm password do not match"
-        return redirect('/login')
+        return redirect('/')
     else:
             if role=="buyer":
                 cursor.execute("INSERT INTO Customer (FirstName, LastName, Age, Gender, EmailId, Contact, ShippingAddress, Pincode_Shipping, City_Shipping, BillingAddress, Pincode_Billing, City_Billing, CustPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}',NULL, NULL, NULL, NULL, NULL, NULL,'{}')".format(email,phone,password))
@@ -97,7 +110,7 @@ def add_user():
                 cursor.execute("INSERT INTO SellerRetailer (FirstName, LastName, Age, Gender, EmailId, Contact,PaymentInfo,BillingAddress,SellPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}', NULL, NULL,'{}')".format(email,phone,password))
                 conn.commit()
                 session['message']= 'You have successfully registered as a seller !'
-            return redirect('/login')
+            return redirect('/')
 
             
 if __name__ == '__main__':

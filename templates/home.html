@@ -20,7 +20,7 @@
         <div id="navshit">
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/home">Home</a></li>
                 <li><a href="/products">Products</a></li>
                 <li><a href="/cart">Cart</a></li>
                 <li><a href="/account">Account</a></li>
@@ -32,12 +32,17 @@
 
 
         </nav>
+        {%if logged_in %}
         <div id="loginbutton">
-            <button><a href="/login">LOGIN</a></button>
+            <button><a href="/">LOGOUT</a></button>
         </div>
-
+        {%else%}
+        <div id="loginbutton">
+            <button><a href="/">LOGIN</a></button>
+        </div>
+        {%endif%}
     </header>
-        {% if message is defined and message %}
+        {% if logged_in %}
         <div class="alert alert-success">{{ message }}</div>
         {% endif %}
 
