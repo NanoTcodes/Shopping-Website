@@ -216,7 +216,7 @@
     </header>
 
     <main>
-        <form id="form1">
+        <form action="/add_product" method="post"id="form1" enctype="multipart/form-data">
             <section class="info">
                 <div>
                     <div class="detailheading">
@@ -249,7 +249,7 @@
                     <div class="detailheading">Upload photos</div>
                     <div class="allimg">
                     <label for="img1" class="img"></label>
-                    <input id="img1" type="file" accept=".png, .jpg, .jpeg"/ required>
+                    <input id="img1" type="file" name="image" accept=".png, .jpg, .jpeg"/>
                     <label for="img2" class="img"></label>
                     <input id="img2" type="file" accept=".png, .jpg, .jpeg"/ >
                     <label for="img3" class="img"></label>
