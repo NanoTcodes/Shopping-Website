@@ -12,7 +12,7 @@ app.secret_key=os.urandom(24)#to ensure session expiring
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Shaurya3477',
+    password='shauryanoob',
     database="WEBSITE"
 )
 cursor=conn.cursor()
@@ -50,7 +50,18 @@ def account():
 def sell():
     #user=session.pop()
     
-    return render_template('sell.html')
+    if 'user_id' in session:
+        username=session['username']
+        message=f"hello,{username}"
+        logged_in=True
+        if session['user_id']=='seller':
+            return render_template('sell.html',message=message,logged_in=logged_in)
+        else:
+            message=f"you are a buyer, login as seller to sell products!"
+            return render_template('home.html',message=message,logged_in=logged_in)
+    else:
+        session['message']='please login!'
+        return redirect('/')
 
 
 @app.route('/signup')
@@ -60,28 +71,40 @@ def signup():
 @app.route('/checkout')
 def checkout():
     return render_template('checkout.html')
-@app.route('/add_product',methods=['POST'])
-def add_product():
-  
-    return redirect('/products')
+
 @app.route('/thankyou')
 def thankyou():
     return render_template('thankyou.html')
 @app.route('/login_validation',methods=['POST'])
-def login_validation():#add logic for logging into both seller and buyer accounts
-    message=''
-    email=request.form.get('EmailId')
-    password=request.form.get('CustPass')
-    cursor.execute("SELECT * FROM Customer where EmailId LIKE '{}' AND CustPass LIKE '{}' ".format(email,password))
-    user=cursor.fetchall() #data retruned will be inside a tuple,empty tuple will be returned if user credentials dont match
-    if len(user)>0:
-        session['user_id']=user[0][0]
-        session['username']=user[0][5] #later replace it with[0][1] when firstname is also registered
-        print(user)
-        session['message']='logged in succesfully'
+def login_validation():
+    message = ''
+    email = request.form.get('EmailId')
+    password = request.form.get('Pass')
+    
+    # Check in the Customer table
+    cursor.execute("SELECT * FROM Customer WHERE EmailId = %s AND CustPass = %s", (email, password))
+    customer = cursor.fetchall()
+    
+    # Check in the Seller table
+    cursor.execute("SELECT * FROM Sellerretailer WHERE EmailId = %s AND SellPass = %s", (email, password))
+    seller = cursor.fetchall()
+    
+    if customer:
+        # If the user is found in the Customer table
+        session['user_id'] = customer[0][0]
+        session['username'] = customer[0][5]  # You may adjust this index if needed
+        session['user_type'] = 'customer'  # Add a user type
+        session['message'] = 'Logged in successfully as a customer'
+        return redirect('/home')
+    elif seller:
+        # If the user is found in the Seller table
+        session['user_id'] = seller[0][0]
+        session['username'] = seller[0][5]  # Adjust this index accordingly
+        session['user_type'] = 'seller'  # Add a user type
+        session['message'] = 'Logged in successfully as a seller'
         return redirect('/home')
     else:
-        session['message'] = 'invalid credentials'
+        session['message'] = 'Invalid credentials'
         return redirect('/')
 @app.route('/add_user',methods=['POST'])
 def add_user():
@@ -111,6 +134,20 @@ def add_user():
                 conn.commit()
                 session['message']= 'You have successfully registered as a seller !'
             return redirect('/')
+@app.route('/add_product',methods=["POST"])        
+def add_product():
+    #if session['user_type']=='seller':
+        title=request.form.get('Title')
+        description=request.form.get('description')
+        price=request.form.get('price')
+        phone=request.form.get('phone_reg')
+        sellerid=session['user_id']
+        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name) VALUES (NULL,'{}',NULL,'{}',NULL,NULL,NULL,'{}','{}')".format(price,description,sellerid,title))
+        conn.commit()
+        session['message']= 'You have successfully added product !'
+        return redirect('/home')
+    # else:
+    #     return redirect('/home')       
 
             
 if __name__ == '__main__':
