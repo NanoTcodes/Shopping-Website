@@ -6,20 +6,30 @@ import re
 import mysql.connector
 from PIL import Image
 from io import BytesIO
+from flask import send_from_directory
 
 app = Flask(__name__)
 app.secret_key=os.urandom(24)#to ensure session expiring
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
     password='shauryanoob',
     database="WEBSITE"
 )
+
 cursor=conn.cursor()
 @app.route('/')
 def login():
     message = session.pop('message', None)
     return render_template('loginpage.html',message=message)
+
+
+@app.route('/uploads/<path:filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 @app.route('/home')
 def home():
     if 'user_id' in session:
@@ -30,17 +40,17 @@ def home():
     else:
         session['message']='please login!'
         return redirect('/')
-@app.route('/products')
-def about():
-    return render_template('products.html')
+# @app.route('/products')
+# def about():
+#     return render_template('products.html')
 
 @app.route('/cart')
 def cart():
     return render_template('cart.html')
 
-@app.route('/products')
-def products():
-    return render_template('products.html')
+# @app.route('/products')
+# def products():
+#     return render_template('products.html')
 
 @app.route('/account')
 def account():
@@ -153,18 +163,36 @@ def add_user():
     return redirect('/')
 @app.route('/add_product',methods=["POST"])        
 def add_product():
-    #if session['user_type']=='seller':
+    if 'user_id' in session and session['user_type']=='seller':
         title=request.form.get('Title')
         description=request.form.get('description')
         price=request.form.get('price')
-        phone=request.form.get('phone_reg')
+        image=request.files.get('image')
         sellerid=session['user_id']
-        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name) VALUES (NULL,'{}',NULL,'{}',NULL,NULL,NULL,'{}','{}')".format(price,description,sellerid,title))
+        if image.filename != '':
+            filepath=os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
+            filename="../uploads/"+image.filename
+            
+            image.save(filepath)
+            #print(filename)
+            
+        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name) VALUES (NULL,'{}',NULL,'{}','{}',NULL,NULL,'{}','{}')".format(price,description,filename,sellerid,title))
         conn.commit()
         session['message']= 'You have successfully added product !'
         return redirect('/home')
-    # else:
-    #     return redirect('/home')       
+    else:
+        return redirect('/home')  
+
+@app.route('/products')
+def products():
+    # Fetch product data from the database
+    cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name FROM Product")
+    products = cursor.fetchall()
+    print(products[0])
+
+    return render_template('products.html', products=products)
+
+
 
             
 if __name__ == '__main__':
