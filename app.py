@@ -54,7 +54,7 @@ def sell():
         username=session['username']
         message=f"hello,{username}"
         logged_in=True
-        if session['user_id']=='seller':
+        if session['user_type']=='seller':
             return render_template('sell.html',message=message,logged_in=logged_in)
         else:
             message=f"you are a buyer, login as seller to sell products!"
@@ -80,32 +80,36 @@ def login_validation():
     message = ''
     email = request.form.get('EmailId')
     password = request.form.get('Pass')
+    role=request.form.get("role")
     
     # Check in the Customer table
-    cursor.execute("SELECT * FROM Customer WHERE EmailId = %s AND CustPass = %s", (email, password))
-    customer = cursor.fetchall()
-    
+    if role=='buyer':
+        cursor.execute("SELECT * FROM Customer WHERE EmailId = %s AND CustPass = %s", (email, password))
+        customer = cursor.fetchall()
+        if customer : 
+            session['user_id'] = customer[0][0]
+            session['username'] = customer[0][5]  # You may adjust this index if needed
+            session['user_type'] = 'customer'  # Add a user type
+            session['message'] = 'Logged in successfully as a customer'
+            return redirect('/home')
+        else:
+            session['message'] = 'Invalid credentials'
+            return redirect('/')
+    else :
     # Check in the Seller table
-    cursor.execute("SELECT * FROM Sellerretailer WHERE EmailId = %s AND SellPass = %s", (email, password))
-    seller = cursor.fetchall()
-    
-    if customer:
-        # If the user is found in the Customer table
-        session['user_id'] = customer[0][0]
-        session['username'] = customer[0][5]  # You may adjust this index if needed
-        session['user_type'] = 'customer'  # Add a user type
-        session['message'] = 'Logged in successfully as a customer'
-        return redirect('/home')
-    elif seller:
+        cursor.execute("SELECT * FROM Sellerretailer WHERE EmailId = %s AND SellPass = %s", (email, password))
+        seller = cursor.fetchall()
+        if seller:
         # If the user is found in the Seller table
-        session['user_id'] = seller[0][0]
-        session['username'] = seller[0][5]  # Adjust this index accordingly
-        session['user_type'] = 'seller'  # Add a user type
-        session['message'] = 'Logged in successfully as a seller'
-        return redirect('/home')
-    else:
-        session['message'] = 'Invalid credentials'
-        return redirect('/')
+            session['user_id'] = seller[0][0]
+            session['username'] = seller[0][5]  # Adjust this index accordingly
+            session['user_type'] = 'seller'  # Add a user type
+            session['message'] = 'Logged in successfully as a seller'
+            return redirect('/home')
+        else:
+            session['message'] = 'Invalid credentials'
+            return redirect('/')
+    
 @app.route('/add_user',methods=['POST'])
 def add_user():
     email=request.form.get('email_reg')
@@ -113,27 +117,40 @@ def add_user():
     confirmPassword=request.form.get('confirmPassword')
     phone=request.form.get('phone_reg')
     role = request.form.get('role') #implement logic that a person can be both buyer and seller hence can use same email for both accounts,right now it searches only for an email in the customer table
-    cursor.execute("SELECT * FROM Customer WHERE EmailId LIKE '{}'".format(email))
-    account = cursor.fetchone()
-    if account:
-        session['message'] = 'Account already exists !'
-        return redirect('/') #or go to login page if this is not working
-    elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-        session['message'] = 'Invalid email address !'
-        return redirect('/')
-    elif password!=confirmPassword:
-        session['message']="password and confirm password do not match"
-        return redirect('/')
-    else:
-            if role=="buyer":
-                cursor.execute("INSERT INTO Customer (FirstName, LastName, Age, Gender, EmailId, Contact, ShippingAddress, Pincode_Shipping, City_Shipping, BillingAddress, Pincode_Billing, City_Billing, CustPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}',NULL, NULL, NULL, NULL, NULL, NULL,'{}')".format(email,phone,password))
-                conn.commit()
-                session['message']= 'You have successfully registered as a buyer !'
-            else:
-                cursor.execute("INSERT INTO SellerRetailer (FirstName, LastName, Age, Gender, EmailId, Contact,PaymentInfo,BillingAddress,SellPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}', NULL, NULL,'{}')".format(email,phone,password))
-                conn.commit()
-                session['message']= 'You have successfully registered as a seller !'
+    if role == "buyer":
+        print("haha")
+        cursor.execute("SELECT * FROM Customer WHERE EmailId LIKE '{}'".format(email))
+        account = cursor.fetchone()
+        if account:
+            session['message'] = 'Account already exists !'
+            return redirect('/') #or go to login page if this is not working
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            session['message'] = 'Invalid email address !'
             return redirect('/')
+        elif password!=confirmPassword:
+            session['message']="password and confirm password do not match"
+            return redirect('/')
+        else:
+            cursor.execute("INSERT INTO Customer (FirstName, LastName, Age, Gender, EmailId, Contact, ShippingAddress, Pincode_Shipping, City_Shipping, BillingAddress, Pincode_Billing, City_Billing, CustPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}',NULL, NULL, NULL, NULL, NULL, NULL,'{}')".format(email,phone,password))
+            conn.commit()
+            session['message']= 'You have successfully registered as a buyer !'
+    else:
+        cursor.execute("SELECT * FROM SellerRetailer WHERE EmailId LIKE '{}'".format(email))
+        account = cursor.fetchone()
+        if account:
+            session['message'] = 'Account already exists !'
+            return redirect('/') #or go to login page if this is not working
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            session['message'] = 'Invalid email address !'
+            return redirect('/')
+        elif password!=confirmPassword:
+            session['message']="password and confirm password do not match"
+            return redirect('/')
+        else:
+            cursor.execute("INSERT INTO SellerRetailer (FirstName, LastName, Age, Gender, EmailId, Contact,PaymentInfo,BillingAddress,SellPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}', NULL, NULL,'{}')".format(email,phone,password))
+            conn.commit()
+            session['message']= 'You have successfully registered as a seller !'
+    return redirect('/')
 @app.route('/add_product',methods=["POST"])        
 def add_product():
     #if session['user_type']=='seller':
