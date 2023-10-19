@@ -217,7 +217,7 @@
  
 
     <div class="all_products">
-        <div class="an_product">
+        <!--<div class="an_product">
             <div class="product_image"> <img src="https://assets.ajio.com/medias/sys_master/root/20210811/eucw/6112e1d7f997ddce899ac03e/-1117Wx1400H-4919022660-multi-MODEL.jpg" alt="Product 1" style="height: 250px;"> 
             </div>
             <div class="product_name"><h3>DIE</h3></div>
@@ -274,7 +274,28 @@
             <div class="product_description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil, fugit vitae. Iste voluptas eveniet molestias veritatis. Quis perspiciatis necessitatibus alias.</div>
             <div class="product_price">Rs. 500</div>
             <button class="addToCartButton">Add To Cart</button>
-        </div>
+        </div>-->
+                {% for product in products%}
+                    <div class="an_product">
+                        <div class="product_image">
+                            <img src="{{product[3]}}" alt="{{product[4]}}" style="height: 250px;">
+                        </div>
+                        <div class="product_name"><h3>{{product[4]}}</h3></div>
+                        <div class="product_description">{{product[2]}}</div>
+                        <div class="product_price">Rs. {{product[1]}}</div>
+                        <button class="addToCartButton">Add To Cart</button>
+                    </div>
+                {% endfor %}
+                <div class="an_product">
+                    <div class="product_image">
+                        <img src="../uploads/yo.png"  style="height: 250px;">
+                        
+                    </div>
+                    <div class="product_name"><h3>hulllla</h3></div>
+                    <div class="product_description">killer</div>
+                    <div class="product_price">Rs. 6</div>
+                    <button class="addToCartButton">Add To Cart</button>
+                </div>
     </div>
     </body>
     </html>
