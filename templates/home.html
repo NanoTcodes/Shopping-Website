@@ -5,40 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/home.css">
-    <link rel="stylesheet" href="../static/navbar.css">
+    <link rel="stylesheet" href="../static/style/home.css">
+    
 
 </head>
 
 <body>
     <header>
-        <div id="shopaholic">
-            <h1>SHOP-A-HOLIC</h1>
+        <div class="shopaholic">
+            <h2>SHOP-A-HOLIC</h2>
         </div>
-        <div id="navshit">
-            <nav>
-                <ul>
-                    <li><a href="/home">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/cart">Cart</a></li>
-                <li><a href="/account">Account</a></li>
-                <li><a href="/sell">Sell</a></li>
-
-                </ul>
-
-        </div>
-
-
+        <nav class="navigation">
+                <a href="/home" class="active">Home<span></span></a>
+                <a href="/products">Products<span></span></a>
+                <a href="/cart">Cart<span></span></a>
+                <a href="/account">Account<span></span></a>
+                <a href="/sell">Sell<span></span></a>
         </nav>
-        {%if logged_in %}
-        <div id="loginbutton">
-            <button><a href="/">LOGOUT</a></button>
-        </div>
-        {%else%}
-        <div id="loginbutton">
-            <button><a href="/">LOGIN</a></button>
+        <div>
+
+            {%if logged_in %}
+            <div id="loginbutton">
+                <button><a href="/">LOGOUT</a></button>
+            </div>
+            {%else%}
+            <div id="loginbutton">
+                <button><a href="/">LOGIN</a></button>
+            </div>
         </div>
         {%endif%}
     </header>
@@ -46,60 +39,11 @@
         <div class="alert alert-success">{{ message }}</div>
         {% endif %}
 
-    <!-- <div class="search-bar">
-        <input type="text" placeholder="What do you want to buy?">
-        <button>Search</button>
-    </div> -->
+        <section class="parallax">
+            <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br>
+            <h2 class="text" id="text2">Explore Our New and Latest Collection</h2>
+        </section>
 
-
-    <div class="CAROUSAL">
-        <div id="carouselExampleCaptions" class="carousel slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../static/images/home_footwear.jpg" style="height: 400px; " class="d-block w-100"
-                        alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Footwear</h5>
-                        <p>Step up your style with our trendy and comfortable footwear collection.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../static/images/valeriia-miller-qYBby-YHV4U-unsplash.jpg" style="height: 400px; " class="d-block w-100"
-                        alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../static/images/home_cosmetics.jpg" style="height: 400px; " class="d-block w-100"
-                        alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Cosmetics</h5>
-                        <p>Discover your beauty with our exquisite range of cosmetics.</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
 <div class="DEALS">
     <h1>Now Or Never Deals</h1>
     <div class="fashiondeals">
@@ -219,11 +163,7 @@
         <hr>
         <div class="footer_rights">@2023 | All rights reserved</div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="../static/navbar.js"></script>
+    <script src="../static/scripts/home.js"></script>
 </body>
 
 </html>
