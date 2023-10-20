@@ -86,6 +86,7 @@
         main {
             padding-top: 30px;
             padding-left: 430px;
+            padding-right:430px;
         }
 
         .info {
@@ -97,25 +98,24 @@
         }
         
         /* Style for individual input elements */
-        .detailinput {
-            display: flex;
-            padding: 10px;
-            border: 2px solid black; /* Add a 2px solid border with a dark color */
-           
-            border-radius: 20px;
-            width: 600px; /* Limit the maximum width of each product */
-            background-color: #ebe8dd;
-
-        }
+        .detailinput,
+        .detailinputdesc,
         .detailinputdesc {
-            margin-top: 20px;
             display: flex;
             padding: 10px;
-            border: 1px solid #ccc; /* Add a border for separation */
-            border-radius: 10px;
             width: 600px; /* Limit the maximum width of each product */
             background-color: #ebe8dd;
+            margin:0;
         }
+        .detailinput{
+            border-radius:20px;
+            border: 2px solid #ccc;
+        }
+        .detailinputdesc{
+            border-radius:5px;
+            border: 1px solid #ccc;
+        }
+
         .allimg {
             display: flex;
             flex-direction: column;
@@ -161,26 +161,20 @@
             font-style: normal;
         }
 
-        ::placeholder {
-            font-family: sans-serif;
-            color: rgb(185, 181, 181);
-            font-size: 18px;
-        }
-
         input[type = "text"],input[type = "number"],textarea {
-            font-family: sans-serif;
-            font-size: 18px;
-            border-color: #ebe8dd;
-            -webkit-transition: 0.4s;
-            transition: 0.4s;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
         }        
         
-        input[type = "text"]:focus, input[type = "number"]:focus, textarea:focus, input[type = "text"]:hover, input[type = "number"]:hover, textarea:hover {
-            border-color: #e44d20;
-            border-width: 2px;
-            padding: 15px;
-            width: 620px;
-            margin-left: -13px;
+        input[type = "text"]:focus, 
+        input[type = "number"]:focus, 
+        textarea:focus, 
+        input[type = "text"]:hover, 
+        input[type = "number"]:hover, 
+        textarea:hover {
+        	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         #postnow button:hover {
@@ -189,7 +183,6 @@
             padding: 11px 21px;
             background-color: #d1432d;
         }
-
 
     </style>
 </head>
@@ -226,15 +219,12 @@
                     </div>
 
                     <label for="Title"></label>
-                    <input class="detailinput" type="text" name="Title" placeholder="Title" required>  
+                    <input class="detailinput" type="text" name="Title" required>  
         
                     <label for="description"></label>
-                    <textarea class="detailinputdesc" rows="4" columns="50" name="description" placeholder="Description" required></textarea>
+                    <textarea class="detailinputdesc" rows="4" columns="50" name="description" required></textarea>
 
                 </div>
-
-
-
                 <div>
                     <div class="detailheading">
                         <a>Set a price</a>
@@ -244,9 +234,6 @@
                     <input class="detailinput" type="number" min="0" name="price" required>
 
                 </div>
-
-
-
                 <div>
                     <div class="detailheading">Upload photos</div>
                     <div class="allimg">
@@ -266,7 +253,6 @@
                     <div class="detailheading">Your location</div>
                     <label for="location"></label>
                     <input class="detailinput" type="text" name="location" required>
-
                 </div>
             -->
 
@@ -274,27 +260,12 @@
 
 
             </section>
-        
-
-
-
-        </form>
-        <div class="sellbuttons">
-            <div id="postnow">
-                <button type="submit" form="form1" value="Posted">Post now</button>
+            <div class="sellbuttons">
+                <div id="postnow">
+                    <button type="submit" form="form1" value="Posted">Post now</button>
+                </div>
             </div>
-
-
-        </div>
-
-
-
-
+        </form>
     </main>
-
-
-
-
-
 </body>
 </html>
