@@ -12,7 +12,7 @@ app.secret_key=os.urandom(24)#to ensure session expiring
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Shaurya3477',
+    password='shauryanoob',
     database="WEBSITE"
 )
 cursor=conn.cursor()
