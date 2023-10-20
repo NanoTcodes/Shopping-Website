@@ -1,0 +1,145 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+/* Reset default margin and padding */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* General styles for body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFEFCD;
+    line-height: 1.6;
+    color: rgb(0, 0, 0);
+}
+
+/* Header styles */
+header {
+    background: #424530;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+/* Login button styles */
+#loginbutton {
+    background-color: #FFB6B9;
+    color: #fff;
+    border: blanchedalmond;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    top: 40px;
+    right: 100px;
+    padding: 0;
+}
+
+#loginbutton button {
+    background-color: #E09132;
+    color: #fff;
+    border: blanchedalmond;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#loginbutton button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: small;
+}
+
+/* Font for "Kaushan Script" */
+#shopaholic {
+    font-family: 'Kaushan Script';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 70px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/* Font for "Inter" */
+#navshit {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 30px;
+    font-stretch: expanded;
+}
+
+/* Style for the navbar links when hovered */
+#navshit ul li a {
+    text-decoration: none; /* Remove default underline */
+}
+
+#navshit ul li a:hover {
+    color: #e44d20; /* Text color on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Button styles */
+button {
+    background-color: #e44d20;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Hover effect for login button */
+#loginbutton:hover {
+    transform: scale(1.15);
+    z-index: 2;
+}
