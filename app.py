@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='shauryanoob',
+    password='shauryanoob'
     database="WEBSITE"
 )
 
@@ -171,7 +171,9 @@ def add_product():
         sellerid=session['user_id']
         if image.filename != '':
             filepath=os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
+            print(filepath)
             filename="../uploads/"+image.filename
+            print(filename)
             
             image.save(filepath)
             #print(filename)
