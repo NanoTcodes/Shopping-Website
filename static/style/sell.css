@@ -47,8 +47,8 @@ select:hover {
 
 button {
     padding: 10px;
-    background-color: #ee4e34;
-    color: #fff;
+    background-color: #eee7e1 ;
+    color: black;
     border: none;
     border-radius: 3px;
     font-size: 18px;
@@ -56,7 +56,7 @@ button {
 }
 
 button:hover {
-    background-color: #d1432d;
+    background-color: #eee7e1 ;
 }
 
 p {
