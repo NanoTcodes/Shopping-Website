@@ -45,13 +45,11 @@ def home():
 def cart():
     if 'user_id' in session:
         if session['user_type']=='customer':
-            print("yes")
             userid = session['user_id']
             cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
             products = cursor.fetchall()
             return render_template('cart.html', products=products)
         else:
-            print("no")
             message=f"you are a buyer, login as seller to sell products!"
             return render_template('home.html',message=message)
     else:
