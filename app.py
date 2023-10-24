@@ -56,13 +56,14 @@ def cart():
         session['message']='please login!'
         return redirect('/')
     
-@app.route('/rem_from_cart')
+@app.route('/rem_from_cart', methods=['POST'])
 def rem_from_cart():
     userid = session['user_id']
-    prodid = request.form.get('product_id')
+    prodid = request.get_json().get('product_id')
+    print(prodid)
     cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
     conn.commit()
-    return render_template('cart.html')    
+    return redirect(url_for('cart'))   
 
 @app.route('/remall_from_cart')
 def remall_from_cart():
