@@ -23,7 +23,7 @@
         .container {
             max-width: 400px;
             margin: 0 auto;
-            background-color: #fcedda;
+            background: #d9cec5;
             padding: 50px;
         }
         h2 {
@@ -48,16 +48,18 @@
 			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 		}
         button {
-            padding: 10px;
-            background-color: #ee4e34;
-            color: #fff;
+            background: #d9cec5;
+            color: black;
+            padding: 10px 20px;
             border: none;
-            border-radius: 3px;
-            font-size: 18px;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
         }
         button:hover {
-            background-color: #d1432d;
+            background-color: #ded5cd ;
         }
         p {
             margin-top: 10px;
@@ -92,6 +94,8 @@
         </div>
         
     </header>
+    <br>
+    <br>
     <div class="container">
         <h2>Login</h2>
         <form method="post" action="/login_validation">
@@ -111,7 +115,7 @@
 
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="/signup" style="color: #ee4e34;">Sign up</a></p>
+        <p>Don't have an account? <a href="/signup" style="color: black; font-style:italic">Sign up</a></p>
         {% if message is defined and message %}
         <div class="alert alert-warning mt-2">{{ message }}</div>
         {% endif %}
