@@ -90,12 +90,12 @@
 
         #postnow button{
             width: 100px;
-            background: #e0d8d1;
+            background: #d9cec5;
             color: black;
         }
 
         button {
-            background-color: #ded5cd ;
+            background: #d9cec5;
             color: black;
             padding: 10px 20px;
             border: none;
@@ -111,6 +111,7 @@
             border: 1px solid #ccc;
             border-radius: 3px;
             font-size: 16px;
+            color:black;
         }        
         
         input[type = "text"]:focus, 
@@ -126,10 +127,16 @@
             width: 105px;
             margin-left: -2px;
             padding: 11px 21px;
+            background: #d9cec5;
             
         }
         input {
             background: #e0d8d1;
+        }
+        label{
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: bold;
         }
 
     </style>
@@ -167,10 +174,10 @@
                     </div>
 
                     <label for="Title"></label>
-                    <input class="detailinput" type="text" name="Title" required>  
+                    <input class="detailinput" type="text" name="Title" placeholder="product name" required>  
         
                     <label for="description"></label>
-                    <textarea class="detailinputdesc" rows="4" columns="50" name="description" required></textarea>
+                    <textarea class="detailinputdesc" rows="4" columns="50" name="description"placeholder="product description" required ></textarea>
 
                 </div>
                 <div>
@@ -179,7 +186,7 @@
                     </div>
 
                     <label for="price"></label>
-                    <input class="detailinput" type="number" min="0" name="price" required>
+                    <input class="detailinput" type="number" min="0" name="price" placeholder="product price" required>
 
                 </div>
                 <div>
