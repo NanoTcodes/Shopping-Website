@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='shauryanoob'
+    password='tesla@2005',
     database="WEBSITE"
 )
 
@@ -33,29 +33,62 @@ def uploaded_file(filename):
 @app.route('/home')
 def home():
     if 'user_id' in session:
-        username=session['username']
-        message=f"hello,{username}"
-        logged_in=True
-        return render_template('home.html',message=message,logged_in=logged_in)
+        status="YES"
     else:
-        session['message']='please login!'
-        return redirect('/')
+        status="NO"
+    return render_template('home.html',status=status)
 # @app.route('/products')
 # def about():
 #     return render_template('products.html')
 
 @app.route('/cart')
 def cart():
-    return render_template('cart.html')
+    if 'user_id' in session:
+        if session['user_type']=='customer':
+            print("yes")
+            userid = session['user_id']
+            cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
+            products = cursor.fetchall()
+            return render_template('cart.html', products=products)
+        else:
+            print("no")
+            message=f"you are a buyer, login as seller to sell products!"
+            return render_template('home.html',message=message)
+    else:
+        session['message']='please login!'
+        return redirect('/')
+    
+@app.route('/rem_from_cart')
+def rem_from_cart():
+    userid = session['user_id']
+    prodid = request.form.get('product_id')
+    cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
+    conn.commit()
+    return render_template('cart.html')    
 
-# @app.route('/products')
-# def products():
-#     return render_template('products.html')
+@app.route('/remall_from_cart')
+def remall_from_cart():
+    userid = session['user_id']
+    cursor.execute("DELETE FROM cart WHERE CustomerId = %s",(userid,))
+    conn.commit()
+    session['messege']="successfully removed all"
+    return render_template('cart.html')
 
 @app.route('/account')
 def account():
-    return render_template('account.html')
-
+    if 'user_id' in session:
+        return render_template('account.html')
+    else:
+        session['message']='please login!'
+        return redirect('/')
+    
+@app.route('/logout')
+def logout():
+    session.pop('user_id',None)
+    session.pop('username',None)
+    session.pop('username',None) # Add a user type
+    session['message'] = 'Logged out successfully'
+    return redirect('/')
 @app.route('/sell')
 def sell():
     #user=session.pop()
@@ -190,9 +223,11 @@ def products():
     # Fetch product data from the database
     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name FROM Product")
     products = cursor.fetchall()
-    print(products[0])
-
-    return render_template('products.html', products=products)
+    if 'user_id' in session:
+        status="YES"
+    else:
+        status="NO"
+    return render_template('products.html', products=products,status=status)
 
 
 

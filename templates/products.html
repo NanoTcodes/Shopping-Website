@@ -162,7 +162,11 @@
             
         </nav>
         <div id ="loginbutton">
-            <button><a href="/">LOGIN</a></button>
+            {%if status=="NO"%}
+                <button><a href="/">LOGIN</a></button>
+            {%else%}
+                <button><a href="/logout">LOGOUT</a></button>
+            {%endif%}
         </div>
         
     </header>
