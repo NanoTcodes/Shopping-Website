@@ -128,7 +128,7 @@
             transform:scale(1.15);
             z-index:2;
         }
-        .buy_all a{
+        .buy_all a, .remall a{
             text-decoration: none;
             color:black;
         }
@@ -157,7 +157,7 @@
             
         </nav>
         <div id ="loginbutton">
-            <button><a href="/">LOGIN</a></button>
+            <button><a href="/logout">LOGOUT</a></button>
         </div>
         
     </header>
@@ -168,36 +168,21 @@
             <div class ="heading">
                 <h2>Your cart</h2>
             </div>
-            <!-- Placeholder image URLs from Lorem Picsum -->
-            <div class="product">
+            {% for product in products%}
                 <div class="prodshit">
-                    <a>Product Name: <a><br>
-                    <a>Quantity of product: </a><br>
-                    <a>Price: </a>
+                    <a>Product Name: <a>{{product[3]}}<br>
+                    <a>Quantity of product: </a>{{product[1]}}<br>
+                    <a>Price: </a>{{product[2]}}
                     <br>
-                    <div class="addtocart"><button>Remove</button></div>
+                    <div class="addtocart"><button onclick="remFromCart('{{ product[0] }}')">Remove</button></div>
                 </div>
-                <img src="https://picsum.photos/200/200?random=1" alt="Product 1">
-                
-            </div>
-            <div class="product">
-                <div class="prodshit">
-                    <a>Product Name: <a><br>
-                    <a>Quantity of product: </a><br>
-                    <a>Price: </a>
-                    <br>
-                    <div class="addtocart"><button>Remove</button></div>
-                </div>
-                <img src="https://picsum.photos/200/200?random=2" alt="Product 2">
-                
-            </div>
-<!-- Add more featured products with placeholder image links here -->
-            
-            <!-- Add more featured products here -->
+                <img src="{{product[4]}}" alt="{{product[0]}}">
+            {% endfor %}
         </section>
+
         <div class="cartbuttons">
             <div id ="removeall">
-                <button class="remall">Remove all</button>
+                <button class="remall"><a href="/remall_from_cart">Remove all</a></button>
             </div>
             <div id ="buyall">
                 <button class="buy_all"><a href="/checkout">Proceed to buy</a></button>
