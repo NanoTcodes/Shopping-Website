@@ -290,10 +290,11 @@
                         <div class="product_name"><h3>{{product[4]}}</h3></div>
                         <div class="product_description">{{product[2]}}</div>
                         <div class="product_price">Rs. {{product[1]}}</div>
-                        <button class="addToCartButton">Add To Cart</button>
                          <form method="POST" action="/add_to_cart">
                         <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                         <button type="submit">Add to Cart</button>
+                        <br>
+                        <br>
                     </form>
 
                         {% if already_added[product[0]] %}
