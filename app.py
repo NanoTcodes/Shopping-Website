@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='riddhi@2108',
+    password='Bravia@2022',
     database="WEBSITE"
 )
 
@@ -55,6 +55,39 @@ def cart():
     else:
         session['message']='please login!'
         return redirect('/')
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    if 'user_id' in session:
+        if session['user_type'] == 'customer':
+            user_id = session['user_id']
+            
+            # Get the product_id and other necessary details from the POST request data.
+            product_id = request.form['product_id']
+            
+            # Retrieve product details from the database
+            cursor.execute("SELECT Price FROM product WHERE ProductId = %s", (product_id,))
+            product_info = cursor.fetchone()
+            
+            if product_info:
+                price = product_info[0]
+                
+                # Add the product to the cart with a quantity of 1
+                cursor.execute("INSERT INTO cart (CustomerId, ProductId, Quantity, Amount) VALUES (%s, %s, %s, %s)",
+                               (user_id, product_id, 1, price))
+                
+                conn.commit()
+                session['message'] = 'Product added to the cart.'
+            
+            return redirect('/products')
+        else:
+            session['message'] = 'You need to be a customer to add products to the cart.'
+            return redirect('/products')
+    else:
+        session['message'] = 'Please log in to add products to the cart.'
+        return redirect('/')
+
+
     
 @app.route('/rem_from_cart', methods=['POST'])
 def rem_from_cart():
@@ -303,4 +336,3 @@ def remove_from_wishlist(ProductId):
             
 if __name__ == '__main__':
     app.run(debug=True)
-
