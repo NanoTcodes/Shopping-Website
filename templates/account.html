@@ -275,7 +275,7 @@ button {
             
         </nav>
         <div id ="loginbutton">
-            <button><a href="/">LOGIN</a></button>
+            <button><a href="/logout">LOGOUT</a></button>
         </div>
         
     </header>
@@ -421,6 +421,19 @@ button {
                         price:$100
                     </div>
                     </div>
+
+                    <h1>My Wishlist</h1>
+                    <ul>
+                    {% for product in wishlist_items %}
+                        <li>"{{product[0]}}"</li>
+                        <form action="/remove_from_wishlist/{{ product[0]}}" method="POST">
+                            <button type="submit">Remove</button>
+                        </form>
+                    {% endfor %}
+                    </ul>
+                    
+
+                    
         </div>
         </div>
         <div class="explore_more">

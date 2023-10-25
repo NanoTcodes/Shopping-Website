@@ -162,7 +162,11 @@
             
         </nav>
         <div id ="loginbutton">
-            <button><a href="/">LOGIN</a></button>
+            {%if status=="NO"%}
+                <button><a href="/">LOGIN</a></button>
+            {%else%}
+                <button><a href="/logout">LOGOUT</a></button>
+            {%endif%}
         </div>
         
     </header>
@@ -285,7 +289,18 @@
                         <div class="product_description">{{product[2]}}</div>
                         <div class="product_price">Rs. {{product[1]}}</div>
                         <button class="addToCartButton">Add To Cart</button>
+
+                        {% if already_added[product[0]] %}
+                            <p>Product added to your wishlist!</p>
+                        {% else %}
+                            <form action="{{ url_for('add_to_wishlist', ProductId=product[0]) }}" method="POST">
+                                <button type="submit">Add to Wishlist</button>
+                            </form>
+                        {% endif %}
                     </div>
+                    <!-- {% if already_added %}
+                        <p>Product added to your wishlist!</p>
+                    {% endif %} -->
                 {% endfor %}
                 <div class="an_product">
                     <div class="product_image">
