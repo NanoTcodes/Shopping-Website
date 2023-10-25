@@ -66,15 +66,16 @@
         }
         
 
+        
         button {
-            background-color:#e44d20;
-            color: #fff;
+            background-color: #ded5cd;
+            color: black;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            font-family: 'Inter';
+            font-family: 'Montserrat', sans-serif;
             font-style: normal;
         }
         .addtocart1 button:hover, .addtocart2 button:hover, .addtocart3 button:hover,.addtocart4 button:hover, .addtocart5 button:hover, .addtocart6 button:hover, .addtocart7 button:hover, .addtocart8 button:hover, .addtocart9 button:hover {
@@ -116,7 +117,7 @@
         }
         .an_product .product_price{
             font-size: 30px;
-            color: #e44d20;
+            color: black;
         }
         .CATEGORIES{
             margin: 20px;
@@ -281,18 +282,31 @@
             <button class="addToCartButton">Add To Cart</button>
         </div>-->
                 {% for product in products%}
-                <div class="an_product">
-                    <div class="product_image">
-                        <img src="{{ product[3] }}" alt="{{ product[4] }}" style="height: 250px;">
-                    </div>
-                    <div class="product_name"><h3>{{ product[4] }}</h3></div>
-                    <div class="product_description">{{ product[2] }}</div>
-                    <div class="product_price">Rs. {{ product[1] }}</div>
-                    <form method="POST" action="/add_to_cart">
+
+         <div class="an_product">
+                        <div class="product_image">
+                            <img src="{{product[3]}}" alt="{{product[4]}}" style="height: 250px;">
+                        </div>
+                        <div class="product_name"><h3>{{product[4]}}</h3></div>
+                        <div class="product_description">{{product[2]}}</div>
+                        <div class="product_price">Rs. {{product[1]}}</div>
+                        <button class="addToCartButton">Add To Cart</button>
+                         <form method="POST" action="/add_to_cart">
                         <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                         <button type="submit">Add to Cart</button>
                     </form>
-                </div>
+
+                        {% if already_added[product[0]] %}
+                            <p>Product added to your wishlist!</p>
+                        {% else %}
+                            <form action="{{ url_for('add_to_wishlist', ProductId=product[0]) }}" method="POST">
+                                <button type="submit">Add to Wishlist</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                    <!-- {% if already_added %}
+                        <p>Product added to your wishlist!</p>
+                    {% endif %} -->
                 {% endfor %}
                 <div class="an_product">
                     <div class="product_image">
