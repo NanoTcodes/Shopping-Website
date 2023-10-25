@@ -45,26 +45,25 @@ def home():
 def cart():
     if 'user_id' in session:
         if session['user_type']=='customer':
-            print("yes")
             userid = session['user_id']
             cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
             products = cursor.fetchall()
             return render_template('cart.html', products=products)
         else:
-            print("no")
             message=f"you are a buyer, login as seller to sell products!"
             return render_template('home.html',message=message)
     else:
         session['message']='please login!'
         return redirect('/')
     
-@app.route('/rem_from_cart')
+@app.route('/rem_from_cart', methods=['POST'])
 def rem_from_cart():
     userid = session['user_id']
-    prodid = request.form.get('product_id')
+    prodid = request.get_json().get('product_id')
+    print(prodid)
     cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
     conn.commit()
-    return render_template('cart.html')    
+    return redirect(url_for('cart'))   
 
 @app.route('/remall_from_cart')
 def remall_from_cart():
