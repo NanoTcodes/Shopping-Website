@@ -9,10 +9,10 @@ from io import BytesIO
 from flask import send_from_directory
 
 app = Flask(__name__)
-app.secret_key=os.urandom(24)#to ensure session expiring
+app.secret_key=os.urandom(24)   #to ensure session expiring
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-conn=mysql.connector.connect(
+conn=mysql.connector.connect (
     host='localhost',
     user='root',
     password='Bravia@2022',
@@ -33,95 +33,29 @@ def uploaded_file(filename):
 @app.route('/home')
 def home():
     if 'user_id' in session:
-        status="YES"
+        username=session['username']
+        message=f"hello,{username}"
+        logged_in=True
+        return render_template('home.html',message=message,logged_in=logged_in)
     else:
-        status="NO"
-    return render_template('home.html',status=status)
+        session['message']='please login!'
+        return redirect('/')
 # @app.route('/products')
 # def about():
 #     return render_template('products.html')
 
 @app.route('/cart')
 def cart():
-    if 'user_id' in session:
-        if session['user_type']=='customer':
-            print("yes")
-            userid = session['user_id']
-            cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
-            products = cursor.fetchall()
-            return render_template('cart.html', products=products)
-        else:
-            print("no")
-            message=f"you are a buyer, login as seller to sell products!"
-            return render_template('home.html',message=message)
-    else:
-        session['message']='please login!'
-        return redirect('/')
-
-@app.route('/add_to_cart', methods=['POST'])
-def add_to_cart():
-    if 'user_id' in session:
-        if session['user_type'] == 'customer':
-            user_id = session['user_id']
-            
-            # Get the product_id and other necessary details from the POST request data.
-            product_id = request.form['product_id']
-            
-            # Retrieve product details from the database
-            cursor.execute("SELECT Price FROM product WHERE ProductId = %s", (product_id,))
-            product_info = cursor.fetchone()
-            
-            if product_info:
-                price = product_info[0]
-                
-                # Add the product to the cart with a quantity of 1
-                cursor.execute("INSERT INTO cart (CustomerId, ProductId, Quantity, Amount) VALUES (%s, %s, %s, %s)",
-                               (user_id, product_id, 1, price))
-                
-                conn.commit()
-                session['message'] = 'Product added to the cart.'
-            
-            return redirect('/products')
-        else:
-            session['message'] = 'You need to be a customer to add products to the cart.'
-            return redirect('/products')
-    else:
-        session['message'] = 'Please log in to add products to the cart.'
-        return redirect('/')
-
-
-    
-@app.route('/rem_from_cart')
-def rem_from_cart():
-    userid = session['user_id']
-    prodid = request.form.get('product_id')
-    cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
-    conn.commit()
-    return render_template('cart.html')    
-
-@app.route('/remall_from_cart')
-def remall_from_cart():
-    userid = session['user_id']
-    cursor.execute("DELETE FROM cart WHERE CustomerId = %s",(userid,))
-    conn.commit()
-    session['messege']="successfully removed all"
     return render_template('cart.html')
+
+# @app.route('/products')
+# def products():
+#     return render_template('products.html')
 
 @app.route('/account')
 def account():
-    if 'user_id' in session:
-        return render_template('account.html')
-    else:
-        session['message']='please login!'
-        return redirect('/')
-    
-@app.route('/logout')
-def logout():
-    session.pop('user_id',None)
-    session.pop('username',None)
-    session.pop('username',None) # Add a user type
-    session['message'] = 'Logged out successfully'
-    return redirect('/')
+    return render_template('account.html')
+
 @app.route('/sell')
 def sell():
     #user=session.pop()
@@ -256,12 +190,84 @@ def products():
     # Fetch product data from the database
     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name FROM Product")
     products = cursor.fetchall()
-    if 'user_id' in session:
-        status="YES"
-    else:
-        status="NO"
-    return render_template('products.html', products=products,status=status)
+    print(products[0])
 
+    return render_template('products.html', products=products)
+
+from flask import request, redirect, session
+
+# Function to add a product to the cart
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    if 'user_id' in session:
+        if session['user_type'] == 'customer':
+            userid = session['user_id']
+            product_id = request.form.get('product_id')
+            quantity = int(request.form.get('quantity'))
+            
+            # You should validate the product_id and quantity to ensure they are valid values.
+
+            # Check if the product is already in the cart
+            cursor.execute("SELECT * FROM website.cart WHERE CustomerId = %s AND ProductId = %s", (userid, product_id))
+            existing_product = cursor.fetchone()
+
+            if existing_product:
+                # Product already in the cart, update the quantity and amount
+                new_quantity = existing_product['Quantity'] + quantity
+                new_amount = new_quantity * product_price  # You need to get the actual product price here.
+
+                cursor.execute("UPDATE website.cart SET Quantity = %s, Amount = %s WHERE CustomerId = %s AND ProductId = %s",
+                               (new_quantity, new_amount, userid, product_id))
+            else:
+                # Product not in the cart, insert a new record
+                cursor.execute("INSERT INTO website.cart (CustomerId, ProductId, Quantity, Amount) VALUES (%s, %s, %s, %s)",
+                               (userid, product_id, quantity, product_price))
+
+            db.commit()
+
+            return redirect('/products')  # Redirect to the products page after adding to the cart
+        else:
+            message = "You are a buyer, login as a seller to sell products!"
+            return render_template('home.html', message=message)
+    else:
+        session['message'] = 'Please login!'
+        return redirect('/')
+
+# Function to remove all products from the cart
+@app.route('/clear_cart')
+def clear_cart():
+    if 'user_id' in session:
+        if session['user_type'] == 'customer':
+            userid = session['user_id']
+            
+            cursor.execute("DELETE FROM website.cart WHERE CustomerId = %s", (userid,))
+            db.commit()
+
+            return redirect('/cart')  # Redirect to the cart page after clearing the cart
+        else:
+            message = "You are a buyer, login as a seller to sell products!"
+            return render_template('home.html', message=message)
+    else:
+        session['message'] = 'Please login!'
+        return redirect('/')
+
+# Function to remove an individual product from the cart
+@app.route('/remove_from_cart/<int:product_id>')
+def remove_from_cart(product_id):
+    if 'user_id' in session:
+        if session['user_type'] == 'customer':
+            userid = session['user_id']
+
+            cursor.execute("DELETE FROM website.cart WHERE CustomerId = %s AND ProductId = %s", (userid, product_id))
+            db.commit()
+
+            return redirect('/cart')  # Redirect to the cart page after removing the product
+        else:
+            message = "You are a buyer, login as a seller to sell products!"
+            return render_template('home.html', message=message)
+    else:
+        session['message'] = 'Please login!'
+        return redirect('/')
 
 
             
