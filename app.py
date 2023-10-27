@@ -15,9 +15,13 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Bravia@2022',
+    password='riddhi@2108',
     database="WEBSITE"
 )
+
+@app.route('/testing')
+def test():
+    return render_template('home2.html')
 
 cursor=conn.cursor()
 @app.route('/')
