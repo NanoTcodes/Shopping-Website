@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Shaurya3477',
+    password='Bravia@2022',
     database="WEBSITE"
 )
 
@@ -33,29 +33,98 @@ def uploaded_file(filename):
 @app.route('/home')
 def home():
     if 'user_id' in session:
-        username=session['username']
-        message=f"hello,{username}"
-        logged_in=True
-        return render_template('home.html',message=message,logged_in=logged_in)
+        status="YES"
     else:
-        session['message']='please login!'
-        return redirect('/')
+        status="NO"
+    return render_template('home.html',status=status)
 # @app.route('/products')
 # def about():
 #     return render_template('products.html')
 
 @app.route('/cart')
 def cart():
-    return render_template('cart.html')
+    if 'user_id' in session:
+        if session['user_type']=='customer':
+            userid = session['user_id']
+            cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
+            products = cursor.fetchall()
+            return render_template('cart.html', products=products)
+        else:
+            message=f"you are a buyer, login as seller to sell products!"
+            return render_template('home.html',message=message)
+    else:
+        session['message']='please login!'
+        return redirect('/')
 
-# @app.route('/products')
-# def products():
-#     return render_template('products.html')
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    if 'user_id' in session:
+        if session['user_type'] == 'customer':
+            user_id = session['user_id']
+            
+            # Get the product_id and other necessary details from the POST request data.
+            product_id = request.form['product_id']
+            
+            # Retrieve product details from the database
+            cursor.execute("SELECT Price FROM product WHERE ProductId = %s", (product_id,))
+            product_info = cursor.fetchone()
+            
+            if product_info:
+                price = product_info[0]
+                
+                # Add the product to the cart with a quantity of 1
+                cursor.execute("INSERT INTO cart (CustomerId, ProductId, Quantity, Amount) VALUES (%s, %s, %s, %s)",
+                               (user_id, product_id, 1, price))
+                
+                conn.commit()
+                session['message'] = 'Product added to the cart.'
+            
+            return redirect('/products')
+        else:
+            session['message'] = 'You need to be a customer to add products to the cart.'
+            return redirect('/products')
+    else:
+        session['message'] = 'Please log in to add products to the cart.'
+        return redirect('/')
+
+
+    
+@app.route('/rem_from_cart', methods=['POST'])
+def rem_from_cart():
+    userid = session['user_id']
+    prodid = request.get_json().get('product_id')
+    print(prodid)
+    cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
+    conn.commit()
+    return redirect(url_for('cart'))   
+
+@app.route('/remall_from_cart')
+def remall_from_cart():
+    userid = session['user_id']
+    cursor.execute("DELETE FROM cart WHERE CustomerId = %s",(userid,))
+    conn.commit()
+    session['messege']="successfully removed all"
+    return render_template('cart.html')
 
 @app.route('/account')
 def account():
-    return render_template('account.html')
+    if 'user_id' in session:
+        CustomerId = session['user_id']
 
+        cursor.execute("SELECT ProductId FROM Wishlist WHERE CustomerId = %s", (CustomerId,))
+        wishlist_items = cursor.fetchall()
+        return render_template('account.html',wishlist_items=wishlist_items)
+    else:
+        session['message']='please login!'
+        return redirect('/')
+    
+@app.route('/logout')
+def logout():
+    session.pop('user_id',None)
+    session.pop('username',None)
+    session.pop('username',None) # Add a user type
+    session['message'] = 'Logged out successfully'
+    return redirect('/')
 @app.route('/sell')
 def sell():
     #user=session.pop()
@@ -185,18 +254,85 @@ def add_product():
     else:
         return redirect('/home')  
 
+# @app.route('/products')
+# def products():
+#     # Fetch product data from the database
+#     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name FROM Product")
+#     products = cursor.fetchall()
+#     CustomerId = session['user_id']
+#     if 'user_id' in session:
+#         status="YES"
+#     else:
+#         status="NO"
+    
+#     cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId,))
+#     already_added = cursor.fetchone()[0] > 0
+#     return render_template('products.html', products=products,status=status,already_added=already_added)
+
 @app.route('/products')
 def products():
     # Fetch product data from the database
     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name FROM Product")
     products = cursor.fetchall()
-    print(products[0])
+    
+    status = "NO"  # Default status is "NO" if the user is not logged in
+    already_added = {}  # Dictionary to store already added status for each product
 
-    return render_template('products.html', products=products)
+    if 'user_id' in session:
+        status = "YES"
+        CustomerId = session['user_id']
+
+        for product in products:
+            # Check if the product is already in the user's wishlist
+            cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
+            already_added[product[0]] = cursor.fetchone()[0] > 0
+
+    return render_template('products.html', products=products, status=status, already_added=already_added)
+
+
+@app.route('/add_to_wishlist/<int:ProductId>', methods=['POST'])
+def add_to_wishlist(ProductId):
+    if not session.get('user_id'):
+        return redirect(url_for('login'))
+    CustomerId = session['user_id']
+    cursor = conn.cursor()
+
+    # cur = mysql.get_db().cursor()
+    cursor.execute("INSERT INTO Wishlist (CustomerId, ProductId) VALUES (%s, %s)", (CustomerId, ProductId))
+    # mysql.get_db().commit()
+    conn.commit()
+    cursor.close()
+
+    return redirect(url_for('products'))
+
+@app.route('/remove_from_wishlist/<int:ProductId>', methods=['POST'])
+def remove_from_wishlist(ProductId):
+    if not session.get('user_id'):
+        return redirect(url_for('login'))
+    
+    CustomerId = session['user_id']
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM Wishlist WHERE CustomerId = %s AND ProductId = %s", (CustomerId, ProductId))
+    conn.commit()
+    cursor.close()
+
+    return redirect(url_for('account'))
+
+
+
+# @app.route('/wishlist')
+# def wishlist():
+    
+
+#     # Fetch product details for wishlist_items if needed
+
+#     return render_template('account.html', wishlist_items=wishlist_items)
+
+
 
 
 
             
 if __name__ == '__main__':
     app.run(debug=True)
-

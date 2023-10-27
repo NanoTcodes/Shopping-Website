@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="../static/style/home.css">
     
 
@@ -24,20 +24,24 @@
         </nav>
         <div>
 
-            {%if logged_in %}
+            <!-- {%if logged_in %} -->
             <div id="loginbutton">
-                <button><a href="/">LOGOUT</a></button>
+                {%if status=="NO"%}
+                    <button><a href="/">LOGIN</a></button>
+                {%else%}
+                    <button><a href="/logout">LOGOUT</a></button>
+            {%endif%}
             </div>
-            {%else%}
+            <!-- {%else%}
             <div id="loginbutton">
                 <button><a href="/">LOGIN</a></button>
-            </div>
+            </div> -->
         </div>
-        {%endif%}
+        <!-- {%endif%} -->
     </header>
-        {% if logged_in %}
+        <!-- {% if logged_in %}
         <div class="alert alert-success">{{ message }}</div>
-        {% endif %}
+        {% endif %} -->
 
         <section class="parallax">
             <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br>
