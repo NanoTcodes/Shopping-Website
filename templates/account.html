@@ -303,14 +303,14 @@ button {
                        <i>your address</i>
                     </div>
                     <div class="area">
-                        <b>Area:</b>255 Vijay Shankar Nagar,opposite VBA hall
+                        <b>Area:</b>{{address[0][0]}}
                     </div>
                     <div class="pincodeandcity">
                         <div class="pincode">
-                            <b>pincode:</b>440010
+                            <b>pincode:</b>{{address[0][1]}}
                         </div>
                         <div class="city">
-                            <b>City:</b>Nagpur
+                            <b>City:</b>{{address[0][2]}}
                         </div>
                     </div>
                 </div>
@@ -320,19 +320,19 @@ button {
                         </div>
                         <div class="profile_body">
                             <div class="name">
-                                Name:Shaurya Khetarpal
+                                Name:{{profile_details[0][0]}}
                             </div>
                             <div class="age">
-                                Age:19
+                                Age:{{profile_details[0][2]}}
                             </div>
                             <div class="gender">
-                                Gender:Male
+                                Gender:{{profile_details[0][3]}}
                             </div>
                             <div class="email">
-                                email id:<a href="shauryak3477@gmail.com">shauryak3477@gmail.com</a>
+                                email id:<a href="{{profile_details[0][4]}}">{{profile_details[0][4]}}</a>
                             </div>
                             <div class="contact">
-                                Contact Number:
+                                Contact Number:{{profile_details[0][5]}}
                             </div>
                         </div>
                        
