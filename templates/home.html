@@ -1,170 +1,180 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block head%}
+<link rel="stylesheet" href="../static/style/home.css">{% endblock %}
+{% block title %}Home{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="../static/style/home.css">
-    
+{% block content %}
 
-</head>
+<div class="hero">
+    <div class="centered-text">
+        <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br>
+        <h2 class="text" id="text2">Explore Our New and Latest Collection</h2>
+        <!-- HTML !-->
+        <button class="button-57" role="button"><span class="text">EXPLORE</span><span>SHOP NOW</span></button>
 
-<body>
-    <header>
-        <div class="shopaholic">
-            <h2>SHOP-A-HOLIC</h2>
-        </div>
-        <nav class="navigation">
-                <a href="/home" class="active">Home<span></span></a>
-                <a href="/products">Products<span></span></a>
-                <a href="/cart">Cart<span></span></a>
-                <a href="/account">Account<span></span></a>
-                <a href="/sell">Sell<span></span></a>
-        </nav>
-        <div>
 
-            <!-- {%if logged_in %} -->
-            <div id="loginbutton">
-                {%if status=="NO"%}
-                    <button><a href="/">LOGIN</a></button>
-                {%else%}
-                    <button><a href="/logout">LOGOUT</a></button>
-            {%endif%}
-            </div>
-            <!-- {%else%}
-            <div id="loginbutton">
-                <button><a href="/">LOGIN</a></button>
-            </div> -->
-        </div>
-        <!-- {%endif%} -->
-    </header>
-        <!-- {% if logged_in %}
-        <div class="alert alert-success">{{ message }}</div>
-        {% endif %} -->
+    </div>
+</div>
+<!-- <div class="DEALS">
+    <div class="text">
 
-        <section class="parallax">
-            <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br>
-            <h2 class="text" id="text2">Explore Our New and Latest Collection</h2>
-        </section>
-
-<div class="DEALS">
-    <h1>Now Or Never Deals</h1>
+        Now Or Never Deals
+    </div>
     <div class="fashiondeals">
         <div class="fashiondeal">
             <img src="../static/images/watch.jpg" style="height: 300px; " alt="">
             <div class="fashiondealtext">
-                <div class="fashiondealname"><h2>Watches</h2></div>
+                <div class="fashiondealname">
+                    <h2>Watches</h2>
+                </div>
                 <div class="fashionper">50% OFF</div>
             </div>
-        </div>        
+        </div>
         <div class="fashiondeal">
             <img src="../static/images/cosmetics.jpg" style="height: 300px; " alt="">
             <div class="fashiondealtext">
-                <div class="fashiondealname"><h2>Cosmetics</h2></div>
+                <div class="fashiondealname">
+                    <h2>Cosmetics</h2>
+                </div>
                 <div class="fashionper">50% OFF</div>
             </div>
-        </div>  
-              
+        </div>
+
         <div class="fashiondeal">
             <img src="../static/images/footwear.webp" style="height: 300px; " alt="">
             <div class="fashiondealtext">
-                <div class="fashiondealname"><h2>Footwear</h2></div>
+                <div class="fashiondealname">
+                    <h2>Footwear</h2>
+                </div>
                 <div class="fashionper">50% OFF</div>
             </div>
 
-        </div>        
+        </div>
         <div class="fashiondeal">
             <img src="../static/images/watch.jpg" style="height: 300px; " alt="">
             <div class="fashiondealtext">
-                <div class="fashiondealname"><h2>Watches</h2></div>
+                <div class="fashiondealname">
+                    <h2>Watches</h2>
+                </div>
                 <div class="fashionper">50% OFF</div>
             </div>
 
-        </div>        
+        </div>
         <div class="fashiondeal">
             <img src="../static/images/watch.jpg" style="height: 300px; " alt="">
             <div class="fashiondealtext">
-                <div class="fashiondealname"><h2>Watches</h2></div>
+                <div class="fashiondealname">
+                    <h2>Watches</h2>
+                </div>
                 <div class="fashionper">50% OFF</div>
             </div>
 
-        </div>       
-         <div class="fashiondeal">
+        </div>
+        <div class="fashiondeal">
             <img src="../static/images/watch.jpg" style="height: 300px; " alt="">
             <div class="fashiondealtext">
-                <div class="fashiondealname"><h2>Watches</h2></div>
+                <div class="fashiondealname">
+                    <h2>Watches</h2>
+                </div>
                 <div class="fashionper">50% OFF</div>
             </div>
 
         </div>
 
+    </div>
+</div> -->
+
+<div class="ABOUT_US">
+    <div class="about_us_heading">
+        <h2>Introducing the Shop-A-Holic Team</h2>
+    </div>
+    <div class="about_us_pics">
+        <div class="about_us_pic">
+            <img src="../static/images/riddhi.jpg" alt=""> <br> <br>
+            Riddhi Chandekar
+        </div>
+        <div class="about_us_pic">
+            <img src="../static/images/nano.jpg" alt=""> <br> <br>
+            Atharva Nanoti
+        </div>
+        <div class="about_us_pic">
+            <img src="../static/images/shaurya.jpg" alt=""> <br> <br>
+            Shaurya Khetarpal
+        </div>
+        <div class="about_us_pic">
+            <img src="../static/images/suhana.jpg" alt=""> <br> <br>
+            Suhana Shaik
+        </div>
+        <div class="about_us_pic">
+            <img src="../static/images/saki.jpg" alt=""> <br> <br>
+            Saket Meshram
+        </div>
     </div>
 </div>
 
-    <div class="ABOUT_US">
-        <div class="about_us_heading">
-            <h2>Introducing the Shop-A-Holic Team</h2>
-        </div>
-        <div class="about_us_pics">
-            <div class="about_us_pic">
-                <img src="../static/images/riddhi.jpg" alt=""> <br> <br>
-                Riddhi Chandekar
-            </div>
-            <div class="about_us_pic">
-                <img src="../static/images/nano.jpg" alt=""> <br> <br>
-                Atharva Nanoti
-            </div>
-            <div class="about_us_pic">
-                <img src="../static/images/shaurya.jpg" alt=""> <br> <br>
-                Shaurya Khetarpal
-            </div>
-            <div class="about_us_pic">
-                <img src="../static/images/suhana.jpg" alt=""> <br> <br>
-                Suhana Shaik
-            </div>
-            <div class="about_us_pic">
-                <img src="../static/images/saki.jpg" alt=""> <br> <br>
-                Saket Meshram
-            </div>
-        </div>
-    </div>
 
 
+<div class="CONTACT_US">
+    <div class="column_cu">
+        <form action="">
+            <div class="cu_name cu">
+                <div class="firstname_cu cu name_cu">
 
-    <div class="CONTACT_US">
-        <div class="contact_us_heading">
-            <h2>CONTACT US</h2>
-        </div>
-        <form action="" class="contact_us_form">
-            <input type="text" placeholder="Name">
-            <input type="text" placeholder="Gmail">
-            <textarea type="text" placeholder="Message" rows="4" cols="40"></textarea>
-            <button>Send Message</button>
+                    <label for="firstname">First Name*</label><br>
+                    <input type="text" id="firstname" class="trans" required>
+                </div>
+                <div class="lastname_cu cu name_cu">
 
+                    <label for="lastname">Last Name*</label><br>
+                    <input type="text" id="lastname" class="trans" required>
+                </div>
+            </div>
+            <div class="email_cu cu">
 
+                <label for="email">Enter Your Email*</label><br>
+                <input type="email" id="email" class="trans" required>
+            </div>
+            <div class="subject_cu cu">
+
+                <label for="subject">Enter Your Subject*</label><br>
+                <input type="text" id="subject" class="trans" required>
+            </div>
+            <div class="message_cu cu">
+
+                <label for="message">Enter Your Message*</label>
+                <input type="text" id="message" class="trans" required>
+            </div>
+            <div class="cu_send">'
+
+                <button>Send</button>
+                <span>Thanks for submitting!</span>
+            </div>
         </form>
     </div>
-
-
-    <div class="FOOTER">
-        <div class="footer_links">
-
-            <ul>
-                <li><a href="">Sell</a></li>
-                <li class="line">|</li>
-                <li><a href="">Privacy</a></li>
-                <li class="line">|</li>
-                <li><a href="">Account</a></li>
-                <li class="line">|</li>
-                <li><a href="">Terms & Conditions</a></li>
-
-            </ul>
-        </div>
-        <hr>
-        <div class="footer_rights">@2023 | All rights reserved</div>
+    <div class="column_cu column2">
+        <div class="heading">CONTACT</div>
+        <p>We are always here to help with any questions or concerns you may have about your shopping experience with
+            Shop-A-Holic. Feel free to reach out to us and one of our friendly customer service representatives will
+            assist you.</p>
     </div>
-    <script src="../static/scripts/home.js"></script>
-</body>
 
-</html>
+</div>
+<div class="FOOTER">
+    <div class="footer_links">
+
+        <ul>
+            <li><a href="">Sell</a></li>
+            <li class="line">|</li>
+            <li><a href="">Privacy</a></li>
+            <li class="line">|</li>
+            <li><a href="">Account</a></li>
+            <li class="line">|</li>
+            <li><a href="">Terms & Conditions</a></li>
+
+        </ul>
+    </div>
+    <hr>
+    <div class="footer_rights">@2023 | All rights reserved</div>
+</div>
+
+{% endblock %}
