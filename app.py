@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='riddhi@2108',
+    password='Shaurya3477',
     database="WEBSITE"
 )
 
@@ -116,16 +116,22 @@ def account():
         #if this id is of seller then dont let it add to wishlist
         CustomerId = session['user_id']
         #print(CustomerId)
-        #user_type=session['user_type']  #customer and selle#abhi seller ka handle karna baki hai
-        cursor.execute("select ShippingAddress,Pincode_Shipping,City_Shipping from customer where CustomerId={}".format(CustomerId))
-        address=cursor.fetchall()
-        cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from customer where CustomerId ={}".format(CustomerId))
-        profile_details=cursor.fetchall()
+        user_type=session['user_type']  #customer and selle#abhi seller ka handle karna baki hai
+        if user_type=="customer":
+            cursor.execute("select ShippingAddress,Pincode_Shipping,City_Shipping from customer where CustomerId={}".format(CustomerId))
+            address=cursor.fetchall()
+            cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from customer where CustomerId ={}".format(CustomerId))
+            profile_details=cursor.fetchall()
 
-        cursor.execute("SELECT ProductId FROM Wishlist WHERE CustomerId = %s", (CustomerId,))
-        wishlist_items = cursor.fetchall()
-
-        return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details)
+            cursor.execute("SELECT ProductId FROM Wishlist WHERE CustomerId = %s", (CustomerId,))
+            wishlist_items = cursor.fetchall()
+            return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details)
+        else:
+            cursor.execute("select BillingAddress from sellerretailer where SellerId={}".format(CustomerId))
+            address=cursor.fetchall()
+            cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from sellerretailer where SellerId ={}".format(CustomerId))
+            profile_details=cursor.fetchall()
+            return render_template('account.html',address=address,profile_details=profile_details)
     else:
         session['message']='please login!'
         return redirect('/')
@@ -245,7 +251,7 @@ def add_user():
             session['message']="password and confirm password do not match"
             return redirect('/')
         else:
-            cursor.execute("INSERT INTO SellerRetailer (FirstName, LastName, Age, Gender, EmailId, Contact,PaymentInfo,BillingAddress,SellPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}', NULL, NULL,'{}')".format(email,phone,password))
+            cursor.execute("INSERT INTO SellerRetailer (FirstName, LastName, Age, Gender, EmailId, Contact,PaymentInfo,BillingAddress,SellPass) VALUES ('{}','{}','{}','{}','{}','{}', NULL, NULL,'{}')".format(first_name,last_name,age,gender,email,phone,password))
             conn.commit()
             session["address_type"]="seller"
             #redirect to addres.html of both 
