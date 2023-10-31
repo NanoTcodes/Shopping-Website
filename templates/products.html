@@ -53,10 +53,28 @@
             <div class="category_name">Women's Fashion</div>
         </div>                  
     </div>
+    <form action="/categories", method="post">
+        <div>
+        <label for="Category"> Product Category:</label>
+            <select id="options" name="category">
+                <option value="All">All</option>
+                <option value="Women's Fashion">Women's Fashion</option>
+                <option value="Men's Fashion">Men's Fashion</option>
+                <option value="Sports">Sports</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Books">Books</option>
+                <option value="Miscelleneous">Miscelleneous</option>
+            </select>
+            <input type="submit" value="Submit">
+        </div> 
+    </form>  
     <div class="all_products">
+          
+
         
         
-        {% for product in products%}
+        {% if category=="All"%}
+        {% for product in products %}
         <div class="an_product">
             <div class="product_image">
                    <img src="{{product[3]}}" alt="{{product[4]}}" style="height: 250px;">
@@ -78,11 +96,43 @@
                     <button type="submit">Add to Wishlist</button>
                 </form>
                 {% endif %}
+                   
+        </div> 
+        {% endfor %}           
+        {%else%}
+        {% for product in products %}
+        {%if product[5]==category%}
+        <div class="an_product">
+            <div class="product_image">
+                   <img src="{{product[3]}}" alt="{{product[4]}}" style="height: 250px;">
+               </div>
+               <div class="product_name"><h3>{{product[4]}}</h3></div>
+               <div class="product_description">{{product[2]}}</div>
+               <div class="product_price">Rs. {{product[1]}}</div>
+               <form method="POST" action="/add_to_cart">
+                   <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
+                   <button type="submit">Add to Cart</button>
+                   <br>
+                   <br>
+                </form>
+                
+                {% if already_added[product[0]] %}
+                <p>Product added to your wishlist!</p>
+                {% else %}
+                <form action="{{ url_for('add_to_wishlist', ProductId=product[0]) }}" method="POST">
+                    <button type="submit">Add to Wishlist</button>
+                </form>
+                {% endif %}
+                {%endif%}
             </div>
+                {% endfor %}
+        
+        {%endif%}        
+            
             <!-- {% if already_added %}
                 <p>Product added to your wishlist!</p>
                 {% endif %} -->
-       {% endfor %}
+       
     </div>
 {% endblock %}
 

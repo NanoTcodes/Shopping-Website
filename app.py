@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Shaurya3477',
+    password='shauryanoob',
     database="WEBSITE"
 )
 
@@ -36,6 +36,7 @@ def uploaded_file(filename):
 
 @app.route('/home')
 def home():
+
     if 'user_id' in session:
         status="YES"
     else:
@@ -47,6 +48,7 @@ def home():
 
 @app.route('/cart')
 def cart():
+    session['category']="All"
     if 'user_id' in session:
         if session['user_type']=='customer':
             userid = session['user_id']
@@ -62,6 +64,7 @@ def cart():
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
+    
     if 'user_id' in session:
         if session['user_type'] == 'customer':
             user_id = session['user_id']
@@ -95,6 +98,7 @@ def add_to_cart():
     
 @app.route('/rem_from_cart', methods=['POST'])
 def rem_from_cart():
+    session['category']="All"
     userid = session['user_id']
     prodid = request.get_json().get('product_id')
     print(prodid)
@@ -104,6 +108,7 @@ def rem_from_cart():
 
 @app.route('/remall_from_cart')
 def remall_from_cart():
+    session['category']="All"
     userid = session['user_id']
     cursor.execute("DELETE FROM cart WHERE CustomerId = %s",(userid,))
     conn.commit()
@@ -112,6 +117,7 @@ def remall_from_cart():
 
 @app.route('/account')
 def account():
+    session['category']="All"
     if 'user_id' in session:
         #if this id is of seller then dont let it add to wishlist
         CustomerId = session['user_id']
@@ -141,12 +147,13 @@ def logout():
     session.pop('user_id',None)
     session.pop('username',None)
     session.pop('username',None) # Add a user type
+    session.pop('category',None)
     session['message'] = 'Logged out successfully'
     return redirect('/')
 @app.route('/sell')
 def sell():
     #user=session.pop()
-    
+    session['category']="All"
     if 'user_id' in session:
         username=session['username']
         message=f"hello,{username}"
@@ -188,6 +195,7 @@ def login_validation():
             session['username'] = customer[0][1]  # You may adjust this index if needed
             session['user_type'] = 'customer'  # Add a user type
             session['message'] = 'Logged in successfully as a customer'
+            session['category']="All"
             return redirect('/home')
         else:
             session['message'] = 'Invalid credentials'
@@ -202,6 +210,7 @@ def login_validation():
             session['username'] = seller[0][1]  # Adjust this index accordingly
             session['user_type'] = 'seller'  # Add a user type
             session['message'] = 'Logged in successfully as a seller'
+            session['category']="All"
             return redirect('/home')
         else:
             session['message'] = 'Invalid credentials'
@@ -310,18 +319,19 @@ def add_product():
         title=request.form.get('Title')
         description=request.form.get('description')
         price=request.form.get('price')
+        category=request.form.get('category')
         image=request.files.get('image')
         sellerid=session['user_id']
         if image.filename != '':
             filepath=os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
-            print(filepath)
+            #print(filepath)
             filename="../uploads/"+image.filename
-            print(filename)
+            #print(filename)
             
             image.save(filepath)
             #print(filename)
-            
-        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name) VALUES (NULL,'{}',NULL,'{}','{}',NULL,NULL,'{}','{}')".format(price,description,filename,sellerid,title))
+        #print(category)
+        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name) VALUES (NULL,'{}','{}','{}','{}',NULL,NULL,'{}','{}')".format(price,category,description,filename,sellerid,title))
         conn.commit()
         session['message']= 'You have successfully added product !'
         return redirect('/home')
@@ -343,11 +353,42 @@ def add_product():
 #     already_added = cursor.fetchone()[0] > 0
 #     return render_template('products.html', products=products,status=status,already_added=already_added)
 
+
+
 @app.route('/products')
+# def products():
+#     # Fetch product data from the database
+#     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product")
+#     products = cursor.fetchall()
+
+    
+    
+    
+    
+#     status = "NO"  # Default status is "NO" if the user is not logged in
+#     already_added = {}  # Dictionary to store already added status for each product
+
+#     if 'user_id' in session:
+#         status = "YES"
+#         CustomerId = session['user_id']
+
+#         for product in products:
+#             # Check if the product is already in the user's wishlist
+#             cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
+#             already_added[product[0]] = cursor.fetchone()[0] > 0
+
+#     return render_template('products.html', products=products, status=status, already_added=already_added,category="All")
+
 def products():
     # Fetch product data from the database
-    cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name FROM Product")
+    cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product")
     products = cursor.fetchall()
+    if session:
+        category=session['category']
+    else:
+        category="All"    
+
+    
     
     status = "NO"  # Default status is "NO" if the user is not logged in
     already_added = {}  # Dictionary to store already added status for each product
@@ -361,23 +402,38 @@ def products():
             cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
             already_added[product[0]] = cursor.fetchone()[0] > 0
 
-    return render_template('products.html', products=products, status=status, already_added=already_added)
+    return render_template('products.html', products=products, status=status, already_added=already_added,category=category)
+
+@app.route('/categories' ,methods=["POST"])
+def categories():
+    category=request.form.get('category')
+    if category:
+        session['category']=category    
+    print("checkmate")
+    return redirect('/products')
 
 
 @app.route('/add_to_wishlist/<int:ProductId>', methods=['POST'])
 def add_to_wishlist(ProductId):
     if not session.get('user_id'):
-        return redirect(url_for('login'))
-    CustomerId = session['user_id']
-    cursor = conn.cursor()
+            return redirect(url_for('login'))
+    if session['user_type']=="customer":
+        
+        CustomerId = session['user_id']
+        cursor = conn.cursor()
 
-    # cur = mysql.get_db().cursor()
-    cursor.execute("INSERT INTO Wishlist (CustomerId, ProductId) VALUES (%s, %s)", (CustomerId, ProductId))
-    # mysql.get_db().commit()
-    conn.commit()
-    cursor.close()
+        # cur = mysql.get_db().cursor()
+        cursor.execute("INSERT INTO Wishlist (CustomerId, ProductId) VALUES (%s, %s)", (CustomerId, ProductId))
+        # mysql.get_db().commit()
+        conn.commit()
+        cursor.close()
 
-    return redirect(url_for('products'))
+        return redirect(url_for('products'))
+    else:
+        session['message']="You need to be a buyer"
+        return redirect(url_for('products'))
+        
+        
 
 @app.route('/remove_from_wishlist/<int:ProductId>', methods=['POST'])
 def remove_from_wishlist(ProductId):
