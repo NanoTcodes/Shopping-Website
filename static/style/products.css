@@ -1,0 +1,122 @@
+body{
+    background-color: rgba(250, 235, 215,0.5);
+}
+
+.featured-products {
+    display: flex;
+    flex-direction: row;  
+    align-items: center; /* Center-align horizontally */
+    text-align: center; /* Center-align text within products */
+}
+
+/* Style for individual product elements */
+.product {
+    display: flex;
+    margin: 10px; /* Add spacing between products */
+    padding: 10px;
+    border: 2px solid #333; /* Add a 2px solid border with a dark color */
+   
+    border-radius: 20px;
+    width: 150px; /* Limit the maximum width of each product */
+    background-color: #ebe8dd;
+}
+.prodshit{
+    text-align: center;
+}
+
+
+
+.heading{
+    margin-top: 30px;
+    margin-left:0px;
+    text-align: center;
+    font-family: 'Kaushan Script';
+    font-style: normal;
+
+}
+
+
+.category button {
+background-color: #e44d20;
+color: #fff;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+position: absolute;
+top: 150px;
+right: 1000px;
+}
+
+
+
+button {
+    background-color: #ded5cd;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+}
+.addtocart1 button:hover, .addtocart2 button:hover, .addtocart3 button:hover,.addtocart4 button:hover, .addtocart5 button:hover, .addtocart6 button:hover, .addtocart7 button:hover, .addtocart8 button:hover, .addtocart9 button:hover {
+    transform:scale(1.15);
+    z-index:2;
+}
+#loginbutton:hover{
+    transform:scale(1.15);
+    z-index:2;
+}
+.an_product{
+    background-color: #ebe8dd;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    border: 2px solid #333; /* Add a 2px solid border with a dark color */
+   
+    border-radius: 20px;
+}
+.all_products{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.an_product img{
+    border: 2px solid #333; /* Add a 2px solid border with a dark color */
+    
+    border-radius: 20px;
+}
+.an_product .product_price{
+    font-size: 30px;
+    color: black;
+}
+.CATEGORIES{
+    margin:100px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+.category{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: 2px solid #333; /* Add a 2px solid border with a dark color */
+   
+    
+}
