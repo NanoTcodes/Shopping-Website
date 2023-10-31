@@ -175,11 +175,26 @@
 
                     <label for="Title"></label>
                     <input class="detailinput" type="text" name="Title" placeholder="product name" required>  
+
+                    
         
                     <label for="description"></label>
                     <textarea class="detailinputdesc" rows="4" columns="50" name="description"placeholder="product description" required ></textarea>
 
                 </div>
+                <br>
+                <br>
+                <div>
+                    <label for="Category"> Product Category:</label>
+                        <select id="options" name="category">
+                            <option value="Women's Fashion">Women's Fashion</option>
+                            <option value="Men's Fashion">Men's Fashion</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Books">Books</option>
+                            <option value="Miscelleneous">Miscelleneous</option>
+                        </select>
+                </div>        
                 <div>
                     <div class="detailheading" >
                         <a>Set a price </a>
@@ -189,6 +204,7 @@
                     <input class="detailinput" type="number" min="0" name="price" placeholder="product price" required>
 
                 </div>
+                
                 <div>
                     <div class="detailheading" required>Upload photos</div>
                     <div class="allimg">
