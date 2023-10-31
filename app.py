@@ -15,9 +15,13 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Bravia@2022',
+    password='Shaurya3477',
     database="WEBSITE"
 )
+
+@app.route('/testing')
+def test():
+    return render_template('home2.html')
 
 cursor=conn.cursor()
 @app.route('/')
@@ -109,11 +113,25 @@ def remall_from_cart():
 @app.route('/account')
 def account():
     if 'user_id' in session:
+        #if this id is of seller then dont let it add to wishlist
         CustomerId = session['user_id']
+        #print(CustomerId)
+        user_type=session['user_type']  #customer and selle#abhi seller ka handle karna baki hai
+        if user_type=="customer":
+            cursor.execute("select ShippingAddress,Pincode_Shipping,City_Shipping from customer where CustomerId={}".format(CustomerId))
+            address=cursor.fetchall()
+            cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from customer where CustomerId ={}".format(CustomerId))
+            profile_details=cursor.fetchall()
 
-        cursor.execute("SELECT ProductId FROM Wishlist WHERE CustomerId = %s", (CustomerId,))
-        wishlist_items = cursor.fetchall()
-        return render_template('account.html',wishlist_items=wishlist_items)
+            cursor.execute("SELECT ProductId FROM Wishlist WHERE CustomerId = %s", (CustomerId,))
+            wishlist_items = cursor.fetchall()
+            return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details)
+        else:
+            cursor.execute("select BillingAddress from sellerretailer where SellerId={}".format(CustomerId))
+            address=cursor.fetchall()
+            cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from sellerretailer where SellerId ={}".format(CustomerId))
+            profile_details=cursor.fetchall()
+            return render_template('account.html',address=address,profile_details=profile_details)
     else:
         session['message']='please login!'
         return redirect('/')
@@ -167,7 +185,7 @@ def login_validation():
         customer = cursor.fetchall()
         if customer : 
             session['user_id'] = customer[0][0]
-            session['username'] = customer[0][5]  # You may adjust this index if needed
+            session['username'] = customer[0][1]  # You may adjust this index if needed
             session['user_type'] = 'customer'  # Add a user type
             session['message'] = 'Logged in successfully as a customer'
             return redirect('/home')
@@ -181,7 +199,7 @@ def login_validation():
         if seller:
         # If the user is found in the Seller table
             session['user_id'] = seller[0][0]
-            session['username'] = seller[0][5]  # Adjust this index accordingly
+            session['username'] = seller[0][1]  # Adjust this index accordingly
             session['user_type'] = 'seller'  # Add a user type
             session['message'] = 'Logged in successfully as a seller'
             return redirect('/home')
@@ -195,6 +213,10 @@ def add_user():
     password=request.form.get('password_reg')
     confirmPassword=request.form.get('confirmPassword')
     phone=request.form.get('phone_reg')
+    first_name=request.form.get('firstName')
+    last_name=request.form.get('lastName')
+    age=request.form.get('age')
+    gender=request.form.get('gender')
     role = request.form.get('role') #implement logic that a person can be both buyer and seller hence can use same email for both accounts,right now it searches only for an email in the customer table
     if role == "buyer":
         print("haha")
@@ -210,9 +232,12 @@ def add_user():
             session['message']="password and confirm password do not match"
             return redirect('/')
         else:
-            cursor.execute("INSERT INTO Customer (FirstName, LastName, Age, Gender, EmailId, Contact, ShippingAddress, Pincode_Shipping, City_Shipping, BillingAddress, Pincode_Billing, City_Billing, CustPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}',NULL, NULL, NULL, NULL, NULL, NULL,'{}')".format(email,phone,password))
+            cursor.execute("INSERT INTO Customer (FirstName, LastName, Age, Gender, EmailId, Contact, ShippingAddress, Pincode_Shipping, City_Shipping, BillingAddress, Pincode_Billing, City_Billing, CustPass) VALUES ('{}', '{}','{}', '{}','{}','{}',NULL, NULL, NULL, NULL, NULL, NULL,'{}')".format(first_name,last_name,age,gender,email,phone,password))
             conn.commit()
+            session['address_type']="buyer"
+            session['email']=email
             session['message']= 'You have successfully registered as a buyer !'
+            return render_template('buyer.html')
     else:
         cursor.execute("SELECT * FROM SellerRetailer WHERE EmailId LIKE '{}'".format(email))
         account = cursor.fetchone()
@@ -226,10 +251,59 @@ def add_user():
             session['message']="password and confirm password do not match"
             return redirect('/')
         else:
-            cursor.execute("INSERT INTO SellerRetailer (FirstName, LastName, Age, Gender, EmailId, Contact,PaymentInfo,BillingAddress,SellPass) VALUES (NULL, NULL, NULL, NULL,'{}','{}', NULL, NULL,'{}')".format(email,phone,password))
+            cursor.execute("INSERT INTO SellerRetailer (FirstName, LastName, Age, Gender, EmailId, Contact,PaymentInfo,BillingAddress,SellPass) VALUES ('{}','{}','{}','{}','{}','{}', NULL, NULL,'{}')".format(first_name,last_name,age,gender,email,phone,password))
             conn.commit()
+            session["address_type"]="seller"
+            #redirect to addres.html of both 
+            session['email']=email
             session['message']= 'You have successfully registered as a seller !'
-    return redirect('/')
+            return render_template('seller.html')
+        
+@app.route('/add_address',methods=["POST"])
+def add_address():
+    if session["address_type"]=="buyer":
+        shipping_address=request.form.get('shipping_address')
+        shipping_pincode=request.form.get('shipping_pincode')
+        shipping_city=request.form.get('shipping_city')
+        billing_address=request.form.get('billing_address')
+        billing_pincode=request.form.get('billing_pincode')
+        billing_city=request.form.get('billing_city')
+        email=session['email']#find using this
+        cursor.execute("SELECT CustomerId FROM Customer WHERE EmailId LIKE '{}'".format(email))
+        Id= cursor.fetchone()[0] #returns a tuple with just  element
+        #print(Id)
+        query = f"""
+            UPDATE Customer
+            SET
+                ShippingAddress = '{shipping_address}',
+                Pincode_Shipping = {shipping_pincode},
+                City_Shipping = '{shipping_city}',
+                BillingAddress = '{billing_address}',
+                Pincode_Billing = {billing_pincode},
+                City_Billing = '{billing_city}'
+            WHERE CustomerId = {Id};
+        """
+        cursor.execute(query)
+        conn.commit()
+        return redirect('/')
+    else:
+        PaymentInfo=request.form.get('paymentMethod')
+        BillingAddress=request.form.get('billingAddress')
+        email=session['email']#find using this
+        cursor.execute("SELECT SellerId FROM sellerretailer WHERE EmailId LIKE '{}'".format(email))
+        Id= cursor.fetchone()[0] #returns a tuple with just  element
+        print(Id)
+        query = f"""
+            UPDATE sellerretailer
+            SET
+              PaymentInfo='{PaymentInfo}',
+              BillingAddress='{BillingAddress}'
+            WHERE SellerId = {Id};
+        """
+        cursor.execute(query)
+        conn.commit()
+        return redirect('/')
+
 @app.route('/add_product',methods=["POST"])        
 def add_product():
     if 'user_id' in session and session['user_type']=='seller':
