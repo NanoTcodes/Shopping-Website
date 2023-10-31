@@ -1,0 +1,77 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    /* background-color: rgba(250, 235, 215,0.3); */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat+Alternates:wght@300&display=swap');
+
+
+.navigation{
+    /* width: 100vh; */
+    /* overflow: auto; */
+    background: rgba(254, 230, 196, 0.95);    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:30px;
+    line-height: 1.6;
+    color: rgb(0, 0, 0);
+    z-index: 2;
+    /* opacity: 0.3; */
+    /* position: fixed;
+    width: 100vw; */
+}
+
+  
+
+
+#shopaholic{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 26px;
+    
+}
+
+#shopaholic .span1{
+    color: #808080; 
+}
+
+#navshit a{
+text-decoration: none;
+margin: 10px;
+color: #808080;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+  .sticky + .content {
+    padding-top: 60px;
+  }
+
+
+#loginbutton button{
+    background: rgba(48, 87, 78, 0.7);
+	color: inherit;
+	border: 1px;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    text-decoration: none;
+    color: white;
+    border-radius: 3px;
+    padding:5px 10px;
+    margin-right: 50px;
+}
+#loginbutton button a{
+    text-decoration: none;
+margin: 10px;
+color: white;
+}
+
