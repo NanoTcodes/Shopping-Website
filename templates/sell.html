@@ -1,177 +1,27 @@
-<!DOCTYPE html>
-<html lang="en"><head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sell</title>
-    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan Script">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cambo">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="aboutus.css">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/style/sell.css">
-    <link rel="stylesheet" href="../static/style/navbar.css">
+{% extends "base.html" %} 
+{% block head%}
+<link rel="stylesheet" href="../static/style/sell.css">{% endblock %}
+{% block title %}Mail{% endblock %} 
 
-    <style>
-
-       a{
-        font-family: 'Montserrat', sans-serif;
-
-       }
-        /* Main content styles */
-        main {
-            padding-top: 30px;
-            padding-left: 430px;
-            padding-right:430px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .info {
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            flex-direction: column; /* Stack children vertically */
-            align-items: left; /* Center-align horizontally */
-            justify-content: center; /* Center-align vertically */
-            text-align: center; /* Center-align text within products */
-        }
-        
-        /* Style for individual input elements */
-        .detailinput,
-        .detailinputdesc,
-        .detailinputdesc {
-            display: flex;
-            padding: 10px;
-            width: 600px; /* Limit the maximum width of each product */
-            background: #d9cec5;
-            margin:0;
-        }
-        .detailinput{
-            border-radius:20px;
-            border: 2px solid #ccc;
-        }
-        .detailinputdesc{
-            border-radius:5px;
-            border: 1px solid #ccc;
-        }
-
-        .allimg {
-            display: flex;
-            flex-direction: column;
-        }
-        .img {
-            padding: 5px;
-        }
-        #loginbutton:hover{
-            transform:scale(1.15);
-            z-index:2;
-        }
+{% block content %}
+<div class="hero">
+    <div class="centered-text">
+        <!-- <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br> -->
+        <h2 class="text" id="text2">My Account</h2>
+        <!-- HTML !-->
+        <!-- <button class="button-57" role="button"><span class="text">EXPLORE</span><span>SHOP NOW</span></button> -->
 
 
-        .detailheading {
-            text-align: left;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 30px;
-            color: black;
-            margin-top: 20px;
-        }
-        .sellbuttons{
-            margin-top: 30px;
-            display: flex;
-            margin-bottom: 30px;
-            
-        }
+    </div>
+</div>
 
-        #postnow button{
-            width: 100px;
-            background: #d9cec5;
-            color: black;
-        }
-
-        button {
-            background: #d9cec5;
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: 'Montserrat', sans-serif;
-            font-style: normal;
-        }
-
-        input[type = "text"],input[type = "number"],textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            font-size: 16px;
-            color:black;
-        }        
-        
-        input[type = "text"]:focus, 
-        input[type = "number"]:focus, 
-        textarea:focus, 
-        input[type = "text"]:hover, 
-        input[type = "number"]:hover, 
-        textarea:hover {
-        	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        #postnow button:hover {
-            width: 105px;
-            margin-left: -2px;
-            padding: 11px 21px;
-            background: #d9cec5;
-            
-        }
-        input {
-            background: #e0d8d1;
-        }
-        label{
-            font-family: 'Montserrat', sans-serif;
-            font-style: normal;
-            font-weight: bold;
-        }
-
-    </style>
-</head>
-<body>
-    <header>
-        <div id="shopaholic"><h1>SHOP-A-HOLIC</h1></div>
-        <div id="navshit"><nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/cart">Cart</a></li>
-                <li><a href="/account">Account</a></li>
-                <li><a href="/sell">Sell</a></li>
-
-
-            </ul>
-            
-            </nav></div>
-            
-            
-        
-        <div id="loginbutton">
-            <button><a href="/logout">LOGOUT</a></button>
-        </div>
-        
-    </header>
-
-    <main>
-        <form action="/add_product" method="post"id="form1" enctype="multipart/form-data">
-            <section class="info">
-                <div>
-                    <div class="detailheading">
-                        <a>Add details</a>
-                    </div>
+    <form action="/add_product" method="post"id="form1" enctype="multipart/form-data">
+        <section class="info">
+            <div>
+                <div class="detailheading">
+                    <a>Add details</a>
+                </div>
 
                     <label for="Title"></label>
                     <input class="detailinput" type="text" name="Title" placeholder="product name" required>  
@@ -200,8 +50,8 @@
                         <a>Set a price </a>
                     </div>
 
-                    <label for="price"></label>
-                    <input class="detailinput" type="number" min="0" name="price" placeholder="product price" required>
+                <label for="price"></label>
+                <input class="detailinput" type="number" min="0" name="price" placeholder="product price" required>
 
                 </div>
                 
@@ -220,23 +70,22 @@
 
 
 
-                <!--<div>
-                    <div class="detailheading">Your location</div>
-                    <label for="location"></label>
-                    <input class="detailinput" type="text" name="location" required>
-                </div>
-            -->
-
-
-
-
-            </section>
-            <div class="sellbuttons">
-                <div id="postnow">
-                    <button type="submit" form="form1" value="Posted">Post now</button>
-                </div>
+            <!--<div>
+                <div class="detailheading">Your location</div>
+                <label for="location"></label>
+                <input class="detailinput" type="text" name="location" required>
             </div>
-        </form>
-    </main>
-</body>
-</html>
+        -->
+
+
+
+
+        </section>
+        <div class="sellbuttons">
+            <div id="postnow">
+                <button type="submit" form="form1" value="Posted">Post now</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

@@ -1,138 +1,105 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block head%}
 <link rel="stylesheet" href="../static/style/account.css">{% endblock %}
-{% block title %}Account{% endblock %} 
+{% block title %}Account{% endblock %}
 
 {% block content %}
 
+<div class="hero">
+    <div class="centered-text">
+        <!-- <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br> -->
+        <h2 class="text" id="text2">My Account</h2>
+        <!-- HTML !-->
+        <!-- <button class="button-57" role="button"><span class="text">EXPLORE</span><span>SHOP NOW</span></button> -->
+
+
+    </div>
+</div>
+
 <div class="ACCOUNT">
 
-    
-    
 
-    <div class="account_details">
-        <h2 class="heading">
-            MY ACCOUNT
-        </h2>
-    </div>
-    <div class="details">
-        <div class="profileandaddress">
-            <div class="profile_details">
-                <div class="profile_heading">
-                    <i>Profile Details</i>
-                </div>
-                <div class="profile_body">
-                    <div class="name">
-                        Name:{{profile_details[0][0]}}
+    <div class="container">
+
+<div class="myaccount">
+
+
+
+        <div class="profile-card">
+            <div class="profile-header"><!-- profile header section -->
+                <div class="main-profile">
+                    <div class="profile-image"><img src="../static/images/riddhi.jpg" alt="" height="100px"></div>
+                    <div class="main_profile_parent">
+
+
+                        <div class="profile-compo">
+                            <h1 class="username">Riddhi Chandekar</h1>
+
+                            <div class="buyer_seller">
+
+                                <small class="buyer_seller_text">Buyer</small><img src="../static/images/shopping-cart.png" height="25px" alt="">
+                            </div>
+                            <br>
+                            <small class="page-title">{{profile_details[0][2]}}</small>
+                            <small class="page-title">{{profile_details[0][3]}}</small>
+                        </div>
+                        <div class="addncon">
+
+                        
+                        <div class="profile-compo">
+                            <div><img src="../static/images/contact-mail.png" height="25px" alt=""></div>
+
+                            <small class="page-title"><a
+                                    href="{{profile_details[0][4]}}">{{profile_details[0][4]}}</a></small><br>
+                            <small class="page-title">{{profile_details[0][5]}}</small>
+                        </div>
+                        <div class="profile-compo">
+                            <div class="profile_address">
+                                <div><img src="../static/images/address.png" height="25px" alt=""></div>
+                                <div class="area">
+                                    {{address[0][0]}}
+                                </div>
+                                <div class="pincodeandcity">
+                                    <div class="pincode">
+                                        {{address[0][1]}}
+                                    </div>
+                                    <div class="city">
+                                        {{address[0][2]}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="age">
-                        Age:{{profile_details[0][2]}}
-                    </div>
-                    <div class="gender">
-                        Gender:{{profile_details[0][3]}}
-                    </div>
-                    <div class="email">
-                        email id:<a href="{{profile_details[0][4]}}">{{profile_details[0][4]}}</a>
-                    </div>
-                    <div class="contact">
-                        Contact Number:{{profile_details[0][5]}}
-                    </div>
-                </div>
-                
-                
-            </div>
-            <div class="your_address">
-                <div class="myaddress">
-                    <i>your address</i>
-                </div>
-                <div class="area">
-                    <b>Area:</b>{{address[0][0]}}
-                </div>
-                <div class="pincodeandcity">
-                    <div class="pincode">
-                        <b>pincode:</b>{{address[0][1]}}
-                    </div>
-                    <div class="city">
-                        <b>City:</b>{{address[0][2]}}
                     </div>
                 </div>
             </div>
 
-                </div>
-                
-            </div>
-            <div class="wishlist">
-                <div class ="your_cart">
-                    <h2>Your Wishlist</h2>
-                </div>
-                <div class="product_display">
-                    <div class="product1">
-                        <div class="product_name">
-                            product name
-                    </div>
-                    <img class="img1" src="https://www.marketing91.com/wp-content/uploads/2018/05/Cosmetic-Brands.jpg" alt="Product 1">
-                    <div class="description">
-                        product description
-                    </div>
-                    <div class="price">
-                        price:$100
-                    </div>
-                </div>
-                <div class="product2">
-                    <div class="product_name">
-                        product name
-                    </div>
-                    <img class="img1" src="https://www.marketing91.com/wp-content/uploads/2018/05/Cosmetic-Brands.jpg" alt="Product 1">
-                    <div class="description">
-                        product description
-                    </div>
-                    <div class="price">
-                        price:$100
-                    </div>
-                </div>
-                <div class="product3">
-                    <div class="product_name">
-                        product name
-                    </div>
-                    <img class="img1" src="https://www.marketing91.com/wp-content/uploads/2018/05/Cosmetic-Brands.jpg" alt="Product 1">
-                    <div class="description">
-                        product description
-                    </div>
-                    <div class="price">
-                        price:$100
-                    </div>
-                </div>
-                <div class="product4">
-                    <div class="product_name">
-                        product name
-                    </div>
-                    <img class="img1" src="https://www.marketing91.com/wp-content/uploads/2018/05/Cosmetic-Brands.jpg" alt="Product 1">
-                    <div class="description">
-                        product description
-                    </div>
-                    <div class="price">
-                        price:$100
-                    </div>
-                    </div>
-
-                    <h1>My Wishlist</h1>
-                    <ul>
-                        {% for product in wishlist_items %}
-                        <li>"{{product[0]}}"</li>
-                        <form action="/remove_from_wishlist/{{ product[0]}}" method="POST">
-                            <button type="submit">Remove</button>
-                        </form>
-                        {% endfor %}
-                    </ul>
-                    
-                    
-                    
-                </div>
-            </div>
+            
+            
         </div>
-            {% endblock %}
-            
-            
-            
-            
-            
+        <div class="myacc">
+            <h1 class="rotate-90">MY ACCOUNT</h1>
+        </div>
+    </div>
+    <div class="wishList">
+
+
+    <!-- <div class="mywish"><h1 class="rotate--90">MY WISHLIST</h1></div> -->
+        <div class="wishlist-container">
+            <div class="wishlist">
+            <ul>
+                {% for product in wishlist_items %}
+                <li>"{{product[0]}}"</li>
+                <form action="/remove_from_wishlist/{{ product[0]}}" method="POST">
+                    <button type="submit">Remove</button>
+                </form>
+                {% endfor %}
+            </ul>
+        </div>
+        </div>
+
+
+    </div>
+    </div>
+</div>
+{% endblock %}
