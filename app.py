@@ -19,9 +19,6 @@ conn=mysql.connector.connect(
     database="WEBSITE"
 )
 
-@app.route('/testing')
-def test():
-    return render_template('home2.html')
 
 cursor=conn.cursor()
 @app.route('/')
