@@ -1,196 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="../static/scripts/cart.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan Script">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="../static/style/navbar.css">
+{% extends "base.html" %} 
+{% block head%}
+<link rel="stylesheet" href="../static/style/cart.css">{% endblock %}
+{% block title %}Mail{% endblock %} 
 
-    <style>
-        
-        /* Main content styles */
-        main {
-            padding: 20px;
-        }
+{% block content %}
+<div class="hero">
+    <div class="centered-text">
+        <!-- <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br> -->
+        <h2 class="text" id="text2">My Account</h2>
+        <!-- HTML !-->
+        <!-- <button class="button-57" role="button"><span class="text">EXPLORE</span><span>SHOP NOW</span></button> -->
 
-        .featured-products {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .cartbuttons {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px; /* Adjust the margin as needed */
-        }
-        
-        #removeall {
-            flex: 1;
-            text-align: right;
-            margin-right: 10px;
-        }
 
-        #buyall {
-            flex: 1;
-            text-align: left;
-            margin-left: 10px;
-        }
+    </div>
+</div>
 
-        #removeall button,
-        #buyall button {
-            background: #d9cec5;
-            color: black;
-            width: 20%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-        }
-        #removeall button{
-            margin-right: 12%;
-        }
-        #buyall button{
-            margin-left: 12%;
-        }
-        /* Style for individual product elements */
-        .product {
-            display: flex;
-            margin: 20px; /* Add spacing between products */
-            padding: 20px;
-            border: 2px solid #333; /* Add a 2px solid border with a dark color */
-           
-            border-radius: 20px;
-            width: 600px; /* Limit the maximum width of each product */
-            background: #d9cec5;
-
-        }
-        .prodshit{
-            text-align: left;
-        }
-        .addtocart{
-            margin-top: 20px;
-            text-decoration: none;
-        }
-        .product img {
-            
-            margin-left: 50%;
-            max-width: 45%; /* Ensure images don't exceed the width of their container */
-            max-height: 150px;
-            border: 2px solid #333; /* Add a 2px solid border with a dark color */
-           
-            border-radius: 20px;
-        }
-        .heading{
-            margin-top: 30px;
-            margin-left:0px;
-            text-align: center;
-            font-family: 'Montserrat', sans-serif;
-            font-style: normal;
-
-        }
-        
-        
-
-        
-
-        button {
-            background-color: #ded5cd;
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: 'Montserrat', sans-serif;
-            font-style: normal;
-        }
-        
-        .remall:hover,.buy_all:hover{
-            transform:scale(1.15);
-            box-shadow: 2px 2px 2px #434242;
-            z-index:2;
-        }
-        .addtocart button:hover,#loginbutton:hover{
-            transform:scale(1.15);
-            z-index:2;
-        }
-        .buy_all a, .remall a{
-            text-decoration: none;
-            color:black;
-        }
-        
-
-        
-        
-        
-    </style>
-</head>
-<body>
-    <header>
-        <div id="shopaholic"><h1>SHOP-A-HOLIC</h1></div>
-        <div id="navshit"><nav>
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/cart">Cart</a></li>
-                <li><a href="/account">Account</a></li>
-                <li><a href="/sell">Sell</a></li>
-
-            </ul>
-            
-            </div>
-            
-            
-        </nav>
-        <div id ="loginbutton">
-            <button><a href="/logout">LOGOUT</a></button>
+<section class="featured-products">
+    <div class ="heading">
+        <h2>Your cart</h2>
+    </div>
+    {% for product in products%}
+        <div class="prodshit">
+            <a>Product Name: <a>{{product[3]}}<br>
+            <a>Quantity of product: </a>{{product[1]}}<br>
+            <a>Price: </a>{{product[2]}}
+            <br>
+            <div class="addtocart"><button onclick="remFromCart('{{ product[0] }}')">Remove</button></div>
         </div>
-        
-    </header>
+        <img src="{{product[4]}}" alt="{{product[0]}}">
+    {% endfor %}
+</section>
 
-    <main>
-        
-        <section class="featured-products">
-            <div class ="heading">
-                <h2>Your cart</h2>
-            </div>
-            {% for product in products%}
-                <div class="prodshit">
-                    <a>Product Name: <a>{{product[3]}}<br>
-                    <a>Quantity of product: </a>{{product[1]}}<br>
-                    <a>Price: </a>{{product[2]}}
-                    <br>
-                    <div class="addtocart"><button onclick="remFromCart('{{ product[0] }}')">Remove</button></div>
-                </div>
-                <img src="{{product[4]}}" alt="{{product[0]}}">
-            {% endfor %}
-        </section>
+<div class="cartbuttons">
+    <div id ="removeall">
+        <button class="remall"><a href="/remall_from_cart">Remove all</a></button>
+    </div>
+    <div id ="buyall">
+        <button class="buy_all"><a href="/checkout">Proceed to buy</a></button>
+    </div>
+</div>
+{% endblock %}
 
-        <div class="cartbuttons">
-            <div id ="removeall">
-                <button class="remall"><a href="/remall_from_cart">Remove all</a></button>
-            </div>
-            <div id ="buyall">
-                <button class="buy_all"><a href="/checkout">Proceed to buy</a></button>
-            </div>
-        </div>
-        
-    </main>
 
-</body>
-</html>
