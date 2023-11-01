@@ -23,34 +23,50 @@
                     <a>Add details</a>
                 </div>
 
-                <label for="Title"></label>
-                <input class="detailinput" type="text" name="Title" placeholder="product name" required>  
-    
-                <label for="description"></label>
-                <textarea class="detailinputdesc" rows="4" columns="50" name="description"placeholder="product description" required ></textarea>
+                    <label for="Title"></label>
+                    <input class="detailinput" type="text" name="Title" placeholder="product name" required>  
 
-            </div>
-            <div>
-                <div class="detailheading" >
-                    <a>Set a price </a>
+                    
+        
+                    <label for="description"></label>
+                    <textarea class="detailinputdesc" rows="4" columns="50" name="description"placeholder="product description" required ></textarea>
+
                 </div>
+                <br>
+                <br>
+                <div>
+                    <label for="Category"> Product Category:</label>
+                        <select id="options" name="category">
+                            <option value="Women's Fashion">Women's Fashion</option>
+                            <option value="Men's Fashion">Men's Fashion</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Books">Books</option>
+                            <option value="Miscelleneous">Miscelleneous</option>
+                        </select>
+                </div>        
+                <div>
+                    <div class="detailheading" >
+                        <a>Set a price </a>
+                    </div>
 
                 <label for="price"></label>
                 <input class="detailinput" type="number" min="0" name="price" placeholder="product price" required>
 
-            </div>
-            <div>
-                <div class="detailheading" required>Upload photos</div>
-                <div class="allimg">
-                <label for="img1" class="img"></label>
-                <input id="img1" type="file" name="image" required accept=".png, .jpg, .jpeg"/>
-                <!-- for simplicity only one img 
-                <label for="img2" class="img"></label>
-                <input id="img2" type="file" accept=".png, .jpg, .jpeg"/ >
-                <label for="img3" class="img"></label>
-                <input id="img3" type="file" accept=".png, .jpg, .jpeg"/ >
-                </div>-->
-            </div>
+                </div>
+                
+                <div>
+                    <div class="detailheading" required>Upload photos</div>
+                    <div class="allimg">
+                    <label for="img1" class="img"></label>
+                    <input id="img1" type="file" name="image" required accept=".png, .jpg, .jpeg"/>
+                    <!-- for simplicity only one img 
+                    <label for="img2" class="img"></label>
+                    <input id="img2" type="file" accept=".png, .jpg, .jpeg"/ >
+                    <label for="img3" class="img"></label>
+                    <input id="img3" type="file" accept=".png, .jpg, .jpeg"/ >
+                    </div>-->
+                </div>
 
 
 
