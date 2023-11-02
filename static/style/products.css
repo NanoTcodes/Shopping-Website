@@ -1,6 +1,55 @@
-body{
+/* body{
     background-color: rgba(250, 235, 215,0.5);
+    background-image: url('../images/bg3.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    
+} */
+body{
+    background-color: black;
 }
+
+.all_contenthero{
+   
+    background-image: url('../images/bg3.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.hero{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/bg3.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.hero::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff; /* Set the text color to your preference */
+}
+
 
 .featured-products {
     display: flex;
@@ -68,7 +117,16 @@ button {
     transform:scale(1.15);
     z-index:2;
 }
-.an_product{
+.cat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ded5cd;
+    width: 20%;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+/* .an_product{
     background-color: #ebe8dd;
     
     display: flex;
@@ -79,10 +137,11 @@ button {
     padding: 20px;
     text-align: center;
     margin: 10px;
-    border: 2px solid #333; /* Add a 2px solid border with a dark color */
+    border: 2px solid #333; 
    
     border-radius: 20px;
 }
+
 .all_products{
     display: flex;
     align-items: center;
@@ -92,15 +151,60 @@ button {
     flex-wrap: wrap;
     
 }
+
 .an_product img{
-    border: 2px solid #333; /* Add a 2px solid border with a dark color */
+    border: 2px solid #333; 
     
     border-radius: 20px;
 }
 .an_product .product_price{
     font-size: 30px;
     color: black;
+} */
+
+/* Style for product cards */
+.an_product {
+    background-color: #ebe8dd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Center vertically, space between elements */
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    border: 2px solid #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    transition: transform 0.2s ease; /* Add a smooth hover effect */
 }
+
+.an_product:hover {
+    transform: scale(1.05); /* Enlarge the card on hover */
+}
+
+/* Style for product images */
+.an_product img {
+    border: 2px solid #333;
+    border-radius: 20px;
+    max-width: 100%; /* Ensure images do not exceed the card width */
+}
+
+/* Style for product prices */
+.an_product .product_price {
+    font-size: 30px;
+    font-weight: bold; /* Make the price text bold */
+    color: #333; /* Darken the price text color */
+}
+
+/* Style for the container of all products */
+.all_products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Add space between product cards */
+    margin: 20px;
+}
+
 .CATEGORIES{
     margin:100px 20px;
     display: flex;
@@ -119,4 +223,185 @@ button {
     border: 2px solid #333; /* Add a 2px solid border with a dark color */
    
     
+}
+.herosports{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/sportsbg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.herosports::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.all_contentsports{
+   
+    background-image: url('../images/sportsbg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.herobooks{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/books.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.herobooks::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.all_contentbooks{
+   
+    background-image: url('../images/books.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+
+/* .herobooks::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} */
+.heroelec{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/electronicsbg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.heroelec::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.all_contentelec{
+   
+    background-image: url('../images/electronicsbg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.heromen{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/mens.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.heromen::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.all_contentmen{
+   
+    background-image: url('../images/mens.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+
+.herowomen{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/freestocks-_3Q3tsJ01nc-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.herowomen::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.all_contentwomen{
+   
+    background-image: url('../images/freestocks-_3Q3tsJ01nc-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+
+.heromisc{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/misc.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.heromisc::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.all_contentmisc{
+   
+    background-image: url('../images/misc.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
 }

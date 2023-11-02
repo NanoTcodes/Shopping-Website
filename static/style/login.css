@@ -1,0 +1,84 @@
+.container {
+	max-width: 400px;
+	margin: 0 auto;
+	margin-top: 150px;
+	background: #d9cec5;
+	padding: 50px;
+}
+.conatiner h2 {
+	text-align: center;
+}
+.conatiner form {
+	display: flex;
+	flex-direction: column;
+}
+.container label {
+	margin-bottom: 5px;
+}
+.conatiner input[type="email"],
+.container input[type="password"] {
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 16px;
+}
+.container input[type="password"]:hover, .container input[type="email"]:hover {
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.container button {
+	background: #d9cec5;
+	color: black;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+	font-family: 'Montserrat', sans-serif;
+	font-style: normal;
+}
+.container button:hover {
+	background-color: #ded5cd ;
+}
+.container p {
+	margin-top: 10px;
+}
+.container a {
+	color: #ee4e34;
+	text-decoration: none;
+}
+.container a:hover {
+	text-decoration: underline;
+}
+
+.FOOTER{
+  color: #fff;
+  background-color: #333;
+}
+
+.FOOTER ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0px 15%;
+  padding: 10px 0px;
+
+}
+
+.FOOTER ul li{
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.FOOTER ul a{
+  text-decoration: none;
+  color: #ffffff;
+}
+.FOOTER .footer_rights{
+  /* margin: 10px 0px; */
+  padding: 10px 0px;
+  text-align: center;
+}
+.FOOTER hr{
+  background-color: #000000;
+}
