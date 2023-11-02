@@ -16,12 +16,11 @@
 	margin-left: 250px;
 	margin-right: 0;
 	background: #fff;
-	padding-top: 20px;
-	padding-right: 90px;
+	padding: 90px;
 }
 
 .container2 {
-	max-width: 550px;
+	max-width: 500px;
 	max-height: 1000px;
 	margin: 0 auto;
 	margin-top: 200px;
@@ -77,7 +76,7 @@ button {
 	font-style: normal;
 }
 button:hover {
-	background-color: #f58300 ;
+	background-color: #f1972f ;
 }
 p {
 	margin-top: 10px;
