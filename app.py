@@ -137,6 +137,10 @@ def account():
 
             cursor.execute("SELECT ProductId FROM Wishlist WHERE CustomerId = %s", (CustomerId,))
             wishlist_items = cursor.fetchall()
+            # print(wishlist_items)
+            
+
+
             return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details)
         else:
             cursor.execute("select BillingAddress from sellerretailer where SellerId={}".format(CustomerId))
@@ -481,38 +485,38 @@ def remove_from_wishlist(ProductId):
 
 # mail = Mail(app)
 
-from email.message import EmailMessage
-import ssl
-import smtplib
+# from email.message import EmailMessage
+# import ssl
+# import smtplib
 
 
-@app.route('/send_email', methods=['POST'])
-def send_email():
-    email_sender='shopaholic032@gmail.com'
-    email_password='zartrjuvygrqtqt'  
-    # email_password='shopaholic#123' 
-    if request.method=='POST':
-        email_receiver=request.form['email']
-        subject=request.form['subject']
-        body=request.form['message']
-        # today=date.today()
-        # today_string = today.strftime("%Y-%m-%d")
+# @app.route('/send_email', methods=['POST'])
+# def send_email():
+#     email_sender='shopaholic032@gmail.com'
+#     email_password='zartrjuvygrqtqt'  
+#     # email_password='shopaholic#123' 
+#     if request.method=='POST':
+#         email_receiver=request.form['email']
+#         subject=request.form['subject']
+#         body=request.form['message']
+#         # today=date.today()
+#         # today_string = today.strftime("%Y-%m-%d")
 
 
-        # MAILS.insert_one({'to': email_receiver, 'subject': subject, 'body':body,'date':today_string})
+#         # MAILS.insert_one({'to': email_receiver, 'subject': subject, 'body':body,'date':today_string})
 
-        em=EmailMessage()
-        em['From']=email_sender
-        em['To']=email_receiver
-        em['Subject']=subject
-        em.set_content(body)
+#         em=EmailMessage()
+#         em['From']=email_sender
+#         em['To']=email_receiver
+#         em['Subject']=subject
+#         em.set_content(body)
 
-        context=ssl.create_default_context()
+#         context=ssl.create_default_context()
 
-        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
-            smtp.login(email_sender,email_password)
-            smtp.sendmail(email_sender,email_receiver,em.as_string())
-        return redirect(url_for('home'))
+#         with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+#             smtp.login(email_sender,email_password)
+#             smtp.sendmail(email_sender,email_receiver,em.as_string())
+#         return redirect(url_for('home'))
 
 
 

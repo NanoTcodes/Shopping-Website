@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -86,46 +86,36 @@
         }
     </style>
 </head>
-<body>
-    <header>
-        <div id="shopaholic"><h1>SHOP-A-HOLIC</h1></div>
-        <div id="navshit">
-            <nav>
-                <ul>
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/products">Products</a></li>
-                    <li><a href="/cart">Cart</a></li>
-                    <li><a href="/account">Account</a></li>
-                    <li><a href="/sell">Sell</a></li>
-                </ul>
-            </nav>
-        </div>
-        
-        <div id="loginbutton">
-            <button><a href="/">LOGIN</a></button>
-        </div>
-    </header>
+<body> -->
 
-    <div class="container">
-        <h2>Seller Sign Up</h2>
-        <form action="/add_address" method="post">
 
-            <label for="paymentMethod">Payment Method:</label>
-            <select id="paymentMethod" name="paymentMethod" required>
-                <option value="" disabled selected>Select Payment Method</option>
-                <option value="cash">Cash</option>
-                <option value="debit_card">Debit Card</option>
-                <option value="credit_card">Credit Card</option>
-                <option value="paypal">UPI</option>
-                <option value="net_banking">Net Banking</option>
-            </select>
+    
+{% extends "base.html" %} 
+{% block head%}
+<link rel="stylesheet" href="../static/style/seller.css">{% endblock %}
+{% block title %}Mail{% endblock %} 
 
-            <label for="billingAddress">Billing Address:</label>
-            <input type="text" id="billingAddress" name="billingAddress" required>
+{% block content %}
 
-            <button type="submit">Submit</button>
-        </form>
-        <p>Already have an account? <a href="#" style="color: #ee4e34;">Login</a></p>
-    </div>
-</body>
-</html>
+<div class="container">
+    <h2>Seller Sign Up</h2>
+    <form action="/add_address" method="post">
+
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+            <option value="" disabled selected>Select Payment Method</option>
+            <option value="cash">Cash</option>
+            <option value="debit_card">Debit Card</option>
+            <option value="credit_card">Credit Card</option>
+            <option value="paypal">UPI</option>
+            <option value="net_banking">Net Banking</option>
+        </select>
+
+        <label for="billingAddress">Billing Address:</label>
+        <input type="text" id="billingAddress" name="billingAddress" required>
+
+        <button type="submit">Submit</button>
+    </form>
+    <p>Already have an account? <a href="#" style="color: #ee4e34;">Login</a></p>
+</div>
+{% endblock %}

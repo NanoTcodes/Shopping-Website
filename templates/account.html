@@ -87,7 +87,7 @@
                         <div class="wishlist">
                             <ul>
                                 {% for product in wishlist_items %}
-                                <li>"{{product[1]}}"</li>
+                                <li>"{{product[0]}}"</li>
 
                                 <form action="/remove_from_wishlist/{{ product[0]}}" method="POST">
                                     <button type="submit">Remove</button>
