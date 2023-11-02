@@ -1,53 +1,69 @@
+.maincontent {
+	background-color: #ded5cd;
+	margin-top: -50px;
+}
 .container {
-	max-width: 400px;
+	max-width: 375px;
 	margin: 0 auto;
 	margin-top: 150px;
-	background: #d9cec5;
-	padding: 50px;
+	margin-left: 250px;
+	background: #fff;
+	padding: 90px;
 }
-.conatiner h2 {
-	text-align: center;
+h1 {
+	margin-top: -10px;
+	font-family: 'Museo', sans-serif;
 }
-.conatiner form {
+form {
+	margin-top: 25px;
 	display: flex;
 	flex-direction: column;
+    border: 1pt solid #e8e8e8;
+	border-radius: 10px;
+	padding: 50px;
 }
-.container label {
+label,select {
 	margin-bottom: 5px;
+    font-family: 'Nunito', sans-serif;
 }
-.conatiner input[type="email"],
-.container input[type="password"] {
+label {
+	font-weight:bold;
+} 
+input[type="email"],
+input[type="password"],select {
 	padding: 10px;
 	margin-bottom: 15px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
+	border: 1px solid #e8e8e8;
+	border-radius: 5px;
 	font-size: 16px;
 }
-.container input[type="password"]:hover, .container input[type="email"]:hover {
+input[type="password"]:hover, input[type="email"]:hover {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.container button {
-	background: #d9cec5;
+button {
+	background: #f1972f;
 	color: black;
-	padding: 10px 20px;
+	padding: 15px 20px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	font-weight: bold;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Museo', sans-serif;
 	font-style: normal;
 }
-.container button:hover {
-	background-color: #ded5cd ;
+button:hover {
+	background-color: #f1972f ;
 }
-.container p {
+p {
 	margin-top: 10px;
+	font-family: 'Nunito', sans-serif;
 }
-.container a {
-	color: #ee4e34;
+a {
 	text-decoration: none;
+	font-style: italic;
+	font-family: 'Nunito', sans-serif;
 }
-.container a:hover {
+a:hover {
 	text-decoration: underline;
 }
 
