@@ -16,7 +16,7 @@ conn=mysql.connector.connect(
     host='localhost',
     user='root',
 
-    password='shauryanoob',
+    password='tesla@2005',
     database="WEBSITE"
 )
 
@@ -62,7 +62,7 @@ def cart():
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    
+    message=''
     if 'user_id' in session:
         if session['user_type'] == 'customer':
             user_id = session['user_id']
@@ -70,21 +70,29 @@ def add_to_cart():
             # Get the product_id and other necessary details from the POST request data.
             product_id = request.form['product_id']
             
-            # Retrieve product details from the database
-            cursor.execute("SELECT Price FROM product WHERE ProductId = %s", (product_id,))
-            product_info = cursor.fetchone()
+            cursor.execute("SELECT * FROM cart WHERE ProductId = %s AND CustomerId = %s", (product_id,user_id,))
+            present = cursor.fetchone()
+            if present is None:
             
-            if product_info:
-                price = product_info[0]
+                # Retrieve product details from the database
+                cursor.execute("SELECT Price FROM product WHERE ProductId = %s", (product_id,))
+                product_info = cursor.fetchone()
                 
-                # Add the product to the cart with a quantity of 1
-                cursor.execute("INSERT INTO cart (CustomerId, ProductId, Quantity, Amount) VALUES (%s, %s, %s, %s)",
-                               (user_id, product_id, 1, price))
+                if product_info:
+                    price = product_info[0]
+                    
+                    # Add the product to the cart with a quantity of 1
+                    cursor.execute("INSERT INTO cart (CustomerId, ProductId, Quantity, Amount) VALUES (%s, %s, %s, %s)",
+                                (user_id, product_id, 1, price))
+                    
+                    conn.commit()
+                    session['message'] = 'Product added to the cart.'
                 
-                conn.commit()
-                session['message'] = 'Product added to the cart.'
-            
-            return redirect('/products')
+                return redirect('/products')
+            else:
+                session['message'] = 'This product is already in your cart'
+                return redirect('/products') 
+                
         else:
             session['message'] = 'You need to be a customer to add products to the cart.'
             return redirect('/products')
