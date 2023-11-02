@@ -16,7 +16,7 @@ conn=mysql.connector.connect(
     host='localhost',
     user='root',
 
-    password='shauryanoob',
+    password='riddhi@2108',
     database="WEBSITE"
 )
 
@@ -457,6 +457,54 @@ def remove_from_wishlist(ProductId):
 
 #     return render_template('account.html', wishlist_items=wishlist_items)
 
+
+
+# ---------------------mails------------------
+# from flask import Flask, render_template, request, redirect, url_for, flash
+# from flask_mail import Mail, Message
+
+# Configure Flask-Mail to use Gmail's SMTP server
+# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+# app.config['MAIL_PORT'] = 587
+# app.config['MAIL_USE_TLS'] = True
+# app.config['MAIL_USE_SSL'] = False
+# app.config['MAIL_USERNAME'] = 'shopaholic032@gmail.com'
+# app.config['MAIL_PASSWORD'] = 'zart rjuv ygrq tqt'
+
+# mail = Mail(app)
+
+from email.message import EmailMessage
+import ssl
+import smtplib
+
+
+@app.route('/send_email', methods=['POST'])
+def send_email():
+    email_sender='shopaholic032@gmail.com'
+    email_password='zartrjuvygrqtqt'  
+    # email_password='shopaholic#123' 
+    if request.method=='POST':
+        email_receiver=request.form['email']
+        subject=request.form['subject']
+        body=request.form['message']
+        # today=date.today()
+        # today_string = today.strftime("%Y-%m-%d")
+
+
+        # MAILS.insert_one({'to': email_receiver, 'subject': subject, 'body':body,'date':today_string})
+
+        em=EmailMessage()
+        em['From']=email_sender
+        em['To']=email_receiver
+        em['Subject']=subject
+        em.set_content(body)
+
+        context=ssl.create_default_context()
+
+        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+            smtp.login(email_sender,email_password)
+            smtp.sendmail(email_sender,email_receiver,em.as_string())
+        return redirect(url_for('home'))
 
 
 
