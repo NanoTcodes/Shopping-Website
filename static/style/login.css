@@ -2,14 +2,39 @@
 	background-color: #ded5cd;
 	margin-top: -50px;
 }
+
+.clearfix {
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+}
+
 .container {
 	max-width: 375px;
 	margin: 0 auto;
-	margin-top: 150px;
+	margin-top: 175px;
 	margin-left: 250px;
+	margin-right: 0;
 	background: #fff;
-	padding: 90px;
+	padding-top: 20px;
+	padding-right: 90px;
 }
+
+.container2 {
+	max-width: 550px;
+	max-height: 1000px;
+	margin: 0 auto;
+	margin-top: 200px;
+	margin-left: 0px;
+	background: #ded5cd;
+}
+
+.container2 img {
+  max-width: 100%; 
+  max-height: 660px; 
+  height: auto;
+}
+
 h1 {
 	margin-top: -10px;
 	font-family: 'Museo', sans-serif;
@@ -37,7 +62,7 @@ input[type="password"],select {
 	border-radius: 5px;
 	font-size: 16px;
 }
-input[type="password"]:hover, input[type="email"]:hover {
+input[type="password"]:hover, input[type="email"]:hover, select:hover {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 button {
@@ -52,7 +77,7 @@ button {
 	font-style: normal;
 }
 button:hover {
-	background-color: #f1972f ;
+	background-color: #f58300 ;
 }
 p {
 	margin-top: 10px;
