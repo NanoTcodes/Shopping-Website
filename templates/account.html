@@ -6,6 +6,8 @@
 {% block content %}
 
 <div class="hero">
+    <br>
+    <br>
     <div class="centered-text">
         <!-- <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br> -->
         <h2 class="text" id="text2">My Account</h2>
@@ -19,7 +21,7 @@
                 <div class="myaccount">
 
 
-
+                    
                     <div class="profile-card">
                         <div class="profile-header"><!-- profile header section -->
                             <div class="main-profile">
@@ -79,31 +81,44 @@
                         <h1 class="rotate-90">MY ACCOUNT</h1>
                     </div>
                 </div>
-                <div class="wishList">
-
-
-                    <!-- <div class="mywish"><h1 class="rotate--90">MY WISHLIST</h1></div> -->
-                    <div class="wishlist-container">
-                        <div class="wishlist">
-                            <ul>
-                                {% for product in wishlist_items %}
-                                <li>"{{product[0]}}"</li>
-
-                                <form action="/remove_from_wishlist/{{ product[0]}}" method="POST">
-                                    <button type="submit">Remove</button>
-                                </form>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-
-
-                </div>
+                
             </div>
+            
         </div>
+        
 
 
     </div>
+    
+</div>
+<div class="wishList">
+
+    <h1>MY WISHLIST</h1><br>
+    <!-- <div class="mywish"><h1 class="rotate--90">MY WISHLIST</h1></div> -->
+    <div class="wishlist-container">
+        <div class="wishlist">
+            
+                {% for product in wishlist_items %}
+            <div class="wishprod">
+                <img src="{{product[2]}}" alt="{{product[1]}}">
+                <div class="wishcont">
+                    <a>Product Name: <a>{{product[1]}}<br>
+                    <a>Price: </a>{{product[3]}}<br>
+                        
+
+                    <form action="/remove_from_wishlist/{{ product[0]}}" method="POST">
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+                
+            </div>
+            <br>
+                {% endfor %}
+            
+        </div>
+    </div>
+
+
 </div>
 
 {% endblock %}

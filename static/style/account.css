@@ -74,6 +74,7 @@
     border-radius:  50%; ;
 }
 
+
 .buyer_seller{
     display: flex;
     justify-content: center;
@@ -107,6 +108,25 @@ small{
     /* margin: 30px; */
     /* width: 100%; */
     flex: 4;
+}
+.wishprod{
+    border-radius: 5px;
+    border: black;
+    border-style:double;
+    display: flex;
+    flex-direction: row;
+
+}
+.wishprod img{
+    max-width: 50%;
+}
+.wishcont{
+    align-self: center;
+    
+}
+.wishcont a{
+    margin-left: 25%;
+    margin-right: 0;
 }
 .mywish{
     flex: 1;
