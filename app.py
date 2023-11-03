@@ -134,6 +134,7 @@ def account():
             address=cursor.fetchall()
             cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from customer where CustomerId ={}".format(CustomerId))
             profile_details=cursor.fetchall()
+            print(profile_details)
 
             cursor.execute("SELECT Wishlist.ProductId,product.product_name, product.ProductImages,product.Price FROM website.Wishlist INNER JOIN website.product ON Wishlist.ProductId = product.ProductId WHERE Wishlist.CustomerId = %s order by Wishlist.ProductId",(CustomerId,))
             wishlist_items = cursor.fetchall()
