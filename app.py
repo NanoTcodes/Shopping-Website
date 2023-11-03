@@ -15,7 +15,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-
     password='shauryanoob',
     database="WEBSITE"
 )
@@ -24,8 +23,9 @@ conn=mysql.connector.connect(
 cursor=conn.cursor()
 @app.route('/')
 def login():
+    status="NO"
     message = session.pop('message', None)
-    return render_template('loginpage.html',message=message)
+    return render_template('loginpage.html',status=status,message=message)
 
 
 @app.route('/uploads/<path:filename>')
@@ -64,6 +64,7 @@ def cart():
 def add_to_cart():
     message=''
     if 'user_id' in session:
+        status="YES"
         if session['user_type'] == 'customer':
             user_id = session['user_id']
             
@@ -88,17 +89,18 @@ def add_to_cart():
                     conn.commit()
                     session['message'] = 'Product added to the cart.'
                 
-                return redirect('/products')
+                return redirect('/products',status=status)
             else:
                 session['message'] = 'This product is already in your cart'
-                return redirect('/products') 
+                return redirect('/products',status=status) 
                 
         else:
             session['message'] = 'You need to be a customer to add products to the cart.'
-            return redirect('/products')
+            return redirect('/products',status=status)
     else:
+        status="NO"
         session['message'] = 'Please log in to add products to the cart.'
-        return redirect('/')
+        return redirect('/',status=status)
 
 
     
@@ -181,11 +183,13 @@ def sell():
 
 @app.route('/signup')
 def signup():
-    return render_template('signup.html')
+    status="NO"
+    return render_template('signup.html',status=status)
 
 @app.route('/checkout')
 def checkout():
-    return render_template('checkout.html')
+    status="YES"
+    return render_template('checkout.html',status=status)
 
 @app.route('/thankyou')
 def thankyou():
