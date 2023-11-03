@@ -80,7 +80,7 @@
 }
 
 .remall, .buy_all {
-    background-color: rgba(48, 87, 78, 0.7);
+    background-color: #f1972f;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -93,9 +93,9 @@
     text-decoration: none;
 }
 
-/* .remall:hover, .buy_all:hover {
+.remall:hover, .buy_all:hover {
     background-color: #ff4500;
-} */
+}
 
 /* Style the images */
 img {
