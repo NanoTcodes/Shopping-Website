@@ -15,8 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-
-    password='tesla@2005',
+    password='shauryanoob',
     database="WEBSITE"
 )
 
@@ -138,9 +137,9 @@ def account():
             cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from customer where CustomerId ={}".format(CustomerId))
             profile_details=cursor.fetchall()
 
-            cursor.execute("SELECT ProductId FROM Wishlist WHERE CustomerId = %s", (CustomerId,))
+            cursor.execute("SELECT Wishlist.ProductId,product.product_name, product.ProductImages,product.Price FROM website.Wishlist INNER JOIN website.product ON Wishlist.ProductId = product.ProductId WHERE Wishlist.CustomerId = %s order by Wishlist.ProductId",(CustomerId,))
             wishlist_items = cursor.fetchall()
-            # print(wishlist_items)
+            print(wishlist_items)
             
 
 
