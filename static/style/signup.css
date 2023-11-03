@@ -7,7 +7,9 @@
 	margin: 0 auto;
 	margin-top: 100px;
 	padding: 90px;
-	background-color: #fff;           
+	padding-bottom: 50px;
+	background-color: #fff;  
+	margin-bottom: 20px;         
 }
 h1 {
 	margin-top: -50px;
@@ -56,7 +58,9 @@ select:hover {
 button {
 	padding: 10px;
 	background: #f1972f;
-	color: #fff;
+	font-weight: normal;
+	font-family: 'Nunito', sans-serif;
+	font-style: normal;
 	border: none;
 	border-radius: 3px;
 	font-size: 18px;
@@ -67,6 +71,7 @@ button:hover {
 }
 p {
 	margin-top: 10px;
+	font-family: 'Nunito', sans-serif;
 }
 a {
 	text-decoration: none;
@@ -75,4 +80,36 @@ a {
 }
 a:hover {
 	text-decoration: underline;
+}
+
+.FOOTER{
+  color: #fff;
+  background-color: #333;
+}
+
+.FOOTER ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0px 15%;
+  padding: 10px 0px;
+
+}
+
+.FOOTER ul li{
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.FOOTER ul a{
+  text-decoration: none;
+  color: #ffffff;
+}
+.FOOTER .footer_rights{
+  /* margin: 10px 0px; */
+  padding: 10px 0px;
+  text-align: center;
+}
+.FOOTER hr{
+  background-color: #000000;
 }
