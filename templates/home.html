@@ -152,33 +152,33 @@
 
 <div class="CONTACT_US">
     <div class="column_cu">
-        <form action="">
+        <form method="POST" action="/send_email">
             <div class="cu_name cu">
                 <div class="firstname_cu cu name_cu">
 
                     <label for="firstname">First Name*</label><br>
-                    <input type="text" id="firstname" class="trans" required>
+                    <input type="text" id="firstname" class="trans" name="firstname" required>
                 </div>
                 <div class="lastname_cu cu name_cu">
 
                     <label for="lastname">Last Name*</label><br>
-                    <input type="text" id="lastname" class="trans" required>
+                    <input type="text" id="lastname" class="trans" name="lastname" required>
                 </div>
             </div>
             <div class="email_cu cu">
 
                 <label for="email">Enter Your Email*</label><br>
-                <input type="email" id="email" class="trans" required>
+                <input type="email" id="email" class="trans" name="email" required>
             </div>
             <div class="subject_cu cu">
 
                 <label for="subject">Enter Your Subject*</label><br>
-                <input type="text" id="subject" class="trans" required>
+                <input type="text" id="subject" class="trans" name="subject" required>
             </div>
             <div class="message_cu cu">
 
                 <label for="message">Enter Your Message*</label>
-                <input type="text" id="message" class="trans" required>
+                <input type="text" id="message" class="trans" name="message" required>
             </div>
             <div class="cu_send">'
 
@@ -186,6 +186,7 @@
                 <span>Thanks for submitting!</span>
             </div>
         </form>
+        <p>{{ get_flashed_messages() }}</p>
     </div>
     <div class="column_cu column2">
         <div class="heading">CONTACT</div>

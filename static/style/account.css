@@ -24,7 +24,8 @@
     font-size: 30px;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #fff; /* Set the text color to your preference */
+    color: rgba(47, 86, 77, 0.9);
+    /* color: #fff; Set the text color to your preference */
 }
 
 /* Style the container to use flex layout */
@@ -35,12 +36,14 @@
     padding-bottom: 50px;
     /* display: flex; */
     /* padding: 30px; */
-
+    
     /* display: flex; */
 }
 
 /* Style the left column (first half) */
 .profile-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
     flex: 1; 
     /* background:rgba(48, 87, 78,0.5); */
     border: 1px solid #ddd;
