@@ -9,6 +9,12 @@
   align-items: center;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 .container {
 	max-width: 375px;
 	margin: 0 auto;
