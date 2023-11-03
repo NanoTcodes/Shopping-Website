@@ -34,6 +34,7 @@
     font-size: 24px;
     font-weight: bold;
     margin: 0;
+    font-family: 'Museo';
 }
 
 /* Style the featured-products section */
@@ -56,6 +57,7 @@
 
 /* Style the product information */
 .prodshit a {
+    font-family: 'Nunito';
     font-weight: bold;
 }
 
@@ -67,6 +69,7 @@
     padding: 8px 16px;
     cursor: pointer;
     border-radius: 5px;
+    font-family: 'Museo';
 }
 
 .addtocart button:hover {
@@ -86,6 +89,7 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    font-family: 'Museo';
 }
 
 .remall a, .buy_all a {
