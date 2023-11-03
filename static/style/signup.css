@@ -1,0 +1,115 @@
+.maincontent {
+	background-color: #ded5cd;
+}
+
+.container {
+	max-width: 500px;
+	margin: 0 auto;
+	margin-top: 100px;
+	padding: 90px;
+	padding-bottom: 50px;
+	background-color: #fff;  
+	margin-bottom: 20px;         
+}
+h1 {
+	margin-top: -50px;
+	text-align: center;
+	font-family: 'Museo', sans-serif;
+}
+form {
+	margin-top: 25px;
+	display: flex;
+	flex-direction: column;
+	border: 1pt solid #e8e8e8;
+	border-radius: 10px;
+	padding: 50px;
+}
+label {
+	margin-bottom: 5px;
+	font-family: 'Nunito', sans-serif;
+	font-weight: bold;
+}
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="text"] {
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 16px;
+}
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="number"]:hover,
+input[type="text"]:hover {
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+select {
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 16px;
+}
+select:hover {
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+button {
+	padding: 10px;
+	background: #f1972f;
+	font-weight: normal;
+	font-family: 'Nunito', sans-serif;
+	font-style: normal;
+	border: none;
+	border-radius: 3px;
+	font-size: 18px;
+	cursor: pointer;
+}
+button:hover {
+	background-color: #f58300 ;
+}
+p {
+	margin-top: 10px;
+	font-family: 'Nunito', sans-serif;
+}
+.container a{
+	text-decoration: none;
+	font-style: italic;
+	font-family: 'Nunito', sans-serif;
+}
+.container a:hover {
+	text-decoration: underline;
+}
+
+.FOOTER{
+  color: #fff;
+  background-color: #333;
+}
+
+.FOOTER ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0px 15%;
+  padding: 10px 0px;
+
+}
+
+.FOOTER ul li{
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.FOOTER ul a{
+  text-decoration: none;
+  color: #ffffff;
+}
+.FOOTER .footer_rights{
+  /* margin: 10px 0px; */
+  padding: 10px 0px;
+  text-align: center;
+}
+.FOOTER hr{
+  background-color: #000000;
+}

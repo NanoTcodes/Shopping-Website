@@ -1,36 +1,39 @@
 {% extends "base.html" %}
 {% block head%}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan Script">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cambo">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Museo">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,700">
 <link rel="stylesheet" href="../static/style/login.css">
 {% endblock %}
 {% block title %}Login{% endblock %}
 
 {% block content %}
+<div class="clearfix">
+    <div class="container">
+        <h1 id="login">Login</h1>
+        <form method="post" action="/login_validation">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="EmailId" required>
 
-<div class="container">
-    <h2>Login</h2>
-    <form method="post" action="/login_validation">
-        <label for="email">Email ID:</label>
-        <input type="email" id="email" name="EmailId" required>
 
+            <label for="password">Password</label>
+            <input type="password" id="password" name="Pass" required>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="Pass" required>
+            <label for="role">Select Role</label>
+            <select id="role" name="role">
+                <option value="seller">Seller</option>
+                <option value="buyer">Buyer</option>
+            </select>
 
-        <label for="role">Select Role:</label>
-        <select id="role" name="role">
-            <option value="seller">Seller</option>
-            <option value="buyer">Buyer</option>
-        </select>
-
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="/signup" style="color: black; font-style:italic">Sign up</a></p>
-    {% if message is defined and message %}
-    <div class="alert alert-warning mt-2">{{ message }}</div>
-    {% endif %}
+            <button type="submit">Log in</button>
+        </form>
+        <p>Don't have an account? <a href="/signup" >Sign up</a></p>
+        {% if message is defined and message %}
+        <div class="alert alert-warning mt-2">{{ message }}</div>
+        {% endif %}
+    </div>
+    <div class="container2">
+        <img src="../static/images/login-img.jpg" alt=""> <br> <br>
+    </div>
 </div>
 
 <div class="FOOTER">

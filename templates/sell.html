@@ -1,14 +1,77 @@
-
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block head%}
 <link rel="stylesheet" href="../static/style/sell.css">{% endblock %}
-{% block title %}Mail{% endblock %} 
+{% block title %}Mail{% endblock %}
 
 {% block content %}
 <div class="hero">
     <div class="centered-text">
         <!-- <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br> -->
-        <h2 class="text" id="text2">My Account</h2>
+        <h2 class="text" id="text2">Turn your unused items into cash – Sell with us today!</h2>
+        <form action="/add_product" method="post" id="form1" enctype="multipart/form-data">
+            <section class="info">
+                <div>
+                    <div class="txt_field">
+        
+                        <input type="text" name="Title" required>
+                        <span></span>
+                        <label for="Title">Product Name</label>
+                    </div>
+        
+        
+                    <div class="txt_field">
+        
+                        <input class="detailinputdesc" name="description" required></input>
+                        <span></span>
+                        <label for="description">Description</label>
+                    </div>
+        
+        
+        
+              <div class="txt categorytxt">Category</div><br>      <!-- <label for="Category"> Product Category:</label> -->
+        <div class="dropbox">
+        
+            <select id="options" name="category" class="styled-select">
+                <option value="">Select a Category</option>
+                <option value="Fashion for women">Women's Fashion</option>
+                <option value="Fashion for men">Men's Fashion</option>
+                <option value="Sports">Sports</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Books">Books</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+            </select>
+        </div>
+        
+        <div class="txt productprice">Product Price</div> 
+        <div>
+        
+            <!-- <label class="idk" for="price">Product Price:</label> -->
+            <input class="detailinput" type="number" min="0" name="price" placeholder="Enter the product price" required>
+        </div>
+        
+        
+        
+        <div class="imgup">
+        
+            <!-- <div class="detailheading" required>Upload photos</div> -->
+            <div class="allimg">
+                <label for="img1" class="img">
+                    Upload an Image
+                    <span class="file-description">(PNG, JPG, JPEG)</span>
+                </label>
+                <input id="img1" type="file" name="image" required accept=".png, .jpg, .jpeg" />
+            </div>
+            
+                
+                
+                
+            </section>
+            <div class="sellbuttons">
+                <div id="postnow">
+                    <button class="button-28" type="submit" form="form1" value="Posted">Post now</button>
+                </div>
+            </div>
+        </form>
         <!-- HTML !-->
         <!-- <button class="button-57" role="button"><span class="text">EXPLORE</span><span>SHOP NOW</span></button> -->
 
@@ -16,76 +79,10 @@
     </div>
 </div>
 
-    <form action="/add_product" method="post"id="form1" enctype="multipart/form-data">
-        <section class="info">
-            <div>
-                <div class="detailheading">
-                    <a>Add details</a>
-                </div>
-
-                    <label for="Title"></label>
-                    <input class="detailinput" type="text" name="Title" placeholder="product name" required>  
-
-                    
-        
-                    <label for="description"></label>
-                    <textarea class="detailinputdesc" rows="4" columns="50" name="description"placeholder="product description" required ></textarea>
-
-                </div>
-                <br>
-                <br>
-                <div>
-                    <label for="Category"> Product Category:</label>
-                        <select id="options" name="category">
-                            <option value="Fashion for women">Women's Fashion</option>
-                            <option value="Fashion for men">Men's Fashion</option>
-                            <option value="Sports">Sports</option>
-                            <option value="Electronics">Electronics</option>
-                            <option value="Books">Books</option>
-                            <option value="Miscelleneous">Miscelleneous</option>
-                        </select>
-                </div>        
-                <div>
-                    <div class="detailheading" >
-                        <a>Set a price </a>
-                    </div>
-
-                <label for="price"></label>
-                <input class="detailinput" type="number" min="0" name="price" placeholder="product price" required>
-
-                </div>
-                
-                <div>
-                    <div class="detailheading" required>Upload photos</div>
-                    <div class="allimg">
-                    <label for="img1" class="img"></label>
-                    <input id="img1" type="file" name="image" required accept=".png, .jpg, .jpeg"/>
-                    <!-- for simplicity only one img 
-                    <label for="img2" class="img"></label>
-                    <input id="img2" type="file" accept=".png, .jpg, .jpeg"/ >
-                    <label for="img3" class="img"></label>
-                    <input id="img3" type="file" accept=".png, .jpg, .jpeg"/ >
-                    </div>-->
-                </div>
-
-
-
-            <!--<div>
-                <div class="detailheading">Your location</div>
-                <label for="location"></label>
-                <input class="detailinput" type="text" name="location" required>
-            </div>
-        -->
-
-
-
-
-        </section>
-        <div class="sellbuttons">
-            <div id="postnow">
-                <button type="submit" form="form1" value="Posted">Post now</button>
-            </div>
-        </div>
-    </form>
+<script>// Add smooth transition for select box
+    document.querySelector('.styled-select').addEventListener('change', function () {
+        this.blur();
+    });
+</script>
 
 {% endblock %}

@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Admin - IITI Alumni</title>
+    <title>Shopaholic</title>
     <link rel="stylesheet" href="../static/style/base.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,11 @@
         
         
         <div id="loginbutton">
-            <button><a href="/">LOGIN</a></button>
+            {%if status=="NO"%}
+                <button><a href="/">LOGIN</a></button>
+            {%else%}
+                <button><a href="/logout">LOGOUT</a></button>
+            {%endif%}
         </div>
         
     </header>

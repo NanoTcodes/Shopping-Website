@@ -24,7 +24,8 @@
     font-size: 30px;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #fff; /* Set the text color to your preference */
+    color: rgba(47, 86, 77, 0.9);
+    /* color: #fff; Set the text color to your preference */
 }
 
 /* Style the container to use flex layout */
@@ -35,12 +36,14 @@
     padding-bottom: 50px;
     /* display: flex; */
     /* padding: 30px; */
-
+    
     /* display: flex; */
 }
 
 /* Style the left column (first half) */
 .profile-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
     flex: 1; 
     /* background:rgba(48, 87, 78,0.5); */
     border: 1px solid #ddd;
@@ -51,8 +54,10 @@
     width: 500px;
     /* height: 500px; */
     margin: 40px;
+    color: #333;
 
 }
+
 .addncon{
     width: 100%;
     margin-top: 20px;
@@ -71,6 +76,7 @@
     border-radius:  50%; ;
 }
 
+
 .buyer_seller{
     display: flex;
     justify-content: center;
@@ -88,10 +94,8 @@
 }
 
 
-
 small{
-    /* font-size: 20px; */
-    color: gray;
+    color: #333;
 }
 
 /* Style the right column (second half) */
@@ -105,6 +109,92 @@ small{
     /* width: 100%; */
     flex: 4;
 }
+/* .wishprod{
+    border-radius: 5px;
+    border: black;
+    border-style:double;
+    display: flex;
+    flex-direction: row;
+
+}
+.wishprod img{
+    max-width: 50%;
+}
+.wishcont{
+    align-self: center;
+    
+}
+.wishcont a{
+    margin-left: 25%;
+    margin-right: 0;
+} */
+
+/* Style the outer container */
+.wishList {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px;
+    max-width: 80%;
+    text-align: center;
+    align-self: center;
+    display: flex;
+  }
+  
+  /* Style the title */
+  .wishList h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Style the wishlist container */
+  .wishlist-container {
+    margin-top: 20px;
+    max-width: 70%;
+    align-self: center;
+  }
+  
+  /* Style each wishlist item */
+  .wishprod {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    max-width: 60%;
+    align-self: center;
+  }
+  
+  /* Style the product image */
+  .wishprod img {
+    max-width: 50%;
+    height: auto;
+    align-self: center;
+  }
+  
+  /* Style the product name */
+  .wishcont a:first-of-type {
+    font-weight: bold;
+  }
+  
+  /* Style the product price */
+  .wishcont a:last-of-type {
+    color: #666;
+  }
+  
+  /* Style the Remove button */
+  .wishprod button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  /* Add some spacing between wishlist items */
+  .wishprod + .wishprod {
+    margin-top: 10px;
+  }
+  
 .mywish{
     flex: 1;
 }
@@ -123,7 +213,7 @@ small{
     justify-content: center;
     align-items: center;
     margin-right: 50px;
-    /* margin: 20px 10% 20px 10%; */
+    
 }
 .rotate-90 {
     transform: rotate(90deg);

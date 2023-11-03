@@ -15,7 +15,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-
     password='tesla@2005',
     database="WEBSITE"
 )
@@ -24,8 +23,9 @@ conn=mysql.connector.connect(
 cursor=conn.cursor()
 @app.route('/')
 def login():
+    status="NO"
     message = session.pop('message', None)
-    return render_template('loginpage.html',message=message)
+    return render_template('loginpage.html',status=status,message=message)
 
 
 @app.route('/uploads/<path:filename>')
@@ -64,6 +64,7 @@ def cart():
 def add_to_cart():
     message=''
     if 'user_id' in session:
+        status="YES"
         if session['user_type'] == 'customer':
             user_id = session['user_id']
             
@@ -97,6 +98,7 @@ def add_to_cart():
             session['message'] = 'You need to be a customer to add products to the cart.'
             return redirect('/products')
     else:
+        status="NO"
         session['message'] = 'Please log in to add products to the cart.'
         return redirect('/')
 
@@ -134,9 +136,14 @@ def account():
             address=cursor.fetchall()
             cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from customer where CustomerId ={}".format(CustomerId))
             profile_details=cursor.fetchall()
+            print(profile_details)
 
-            cursor.execute("SELECT ProductId FROM Wishlist WHERE CustomerId = %s", (CustomerId,))
+            cursor.execute("SELECT Wishlist.ProductId,product.product_name, product.ProductImages,product.Price FROM website.Wishlist INNER JOIN website.product ON Wishlist.ProductId = product.ProductId WHERE Wishlist.CustomerId = %s order by Wishlist.ProductId",(CustomerId,))
             wishlist_items = cursor.fetchall()
+            print(wishlist_items)
+            
+
+
             return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details)
         else:
             cursor.execute("select BillingAddress from sellerretailer where SellerId={}".format(CustomerId))
@@ -176,11 +183,13 @@ def sell():
 
 @app.route('/signup')
 def signup():
-    return render_template('signup.html')
+    status="NO"
+    return render_template('signup.html',status=status)
 
 @app.route('/checkout')
 def checkout():
-    return render_template('checkout.html')
+    status="YES"
+    return render_template('checkout.html',status=status)
 
 @app.route('/thankyou')
 def thankyou():
@@ -465,6 +474,54 @@ def remove_from_wishlist(ProductId):
 
 #     return render_template('account.html', wishlist_items=wishlist_items)
 
+
+
+# ---------------------mails------------------
+# from flask import Flask, render_template, request, redirect, url_for, flash
+# from flask_mail import Mail, Message
+
+# Configure Flask-Mail to use Gmail's SMTP server
+# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+# app.config['MAIL_PORT'] = 587
+# app.config['MAIL_USE_TLS'] = True
+# app.config['MAIL_USE_SSL'] = False
+# app.config['MAIL_USERNAME'] = 'shopaholic032@gmail.com'
+# app.config['MAIL_PASSWORD'] = 'zart rjuv ygrq tqt'
+
+# mail = Mail(app)
+
+# from email.message import EmailMessage
+# import ssl
+# import smtplib
+
+
+# @app.route('/send_email', methods=['POST'])
+# def send_email():
+#     email_sender='shopaholic032@gmail.com'
+#     email_password='zartrjuvygrqtqt'  
+#     # email_password='shopaholic#123' 
+#     if request.method=='POST':
+#         email_receiver=request.form['email']
+#         subject=request.form['subject']
+#         body=request.form['message']
+#         # today=date.today()
+#         # today_string = today.strftime("%Y-%m-%d")
+
+
+#         # MAILS.insert_one({'to': email_receiver, 'subject': subject, 'body':body,'date':today_string})
+
+#         em=EmailMessage()
+#         em['From']=email_sender
+#         em['To']=email_receiver
+#         em['Subject']=subject
+#         em.set_content(body)
+
+#         context=ssl.create_default_context()
+
+#         with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+#             smtp.login(email_sender,email_password)
+#             smtp.sendmail(email_sender,email_receiver,em.as_string())
+#         return redirect(url_for('home'))
 
 
 

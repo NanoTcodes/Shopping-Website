@@ -6,100 +6,119 @@
 {% block content %}
 
 <div class="hero">
+    <br>
+    <br>
     <div class="centered-text">
         <!-- <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br> -->
         <h2 class="text" id="text2">My Account</h2>
         <!-- HTML !-->
         <!-- <button class="button-57" role="button"><span class="text">EXPLORE</span><span>SHOP NOW</span></button> -->
+        <div class="ACCOUNT">
 
 
-    </div>
-</div>
+            <div class="container">
 
-<div class="ACCOUNT">
-
-
-    <div class="container">
-
-<div class="myaccount">
+                <div class="myaccount">
 
 
+                    
+                    <div class="profile-card">
+                        <div class="profile-header"><!-- profile header section -->
+                            <div class="main-profile">
+                                <!-- <div class="profile-image"><img src="../static/images/riddhi.jpg" alt="" height="100px">
+                                </div> -->
+                                <div class="main_profile_parent">
 
-        <div class="profile-card">
-            <div class="profile-header"><!-- profile header section -->
-                <div class="main-profile">
-                    <div class="profile-image"><img src="../static/images/riddhi.jpg" alt="" height="100px"></div>
-                    <div class="main_profile_parent">
 
+                                    <div class="profile-compo">
+                                        <a class="username">{{profile_details[0][0]}} {{profile_details[0][1]}} </a>
 
-                        <div class="profile-compo">
-                            <h1 class="username">Riddhi Chandekar</h1>
+                                        <div class="buyer_seller">
 
-                            <div class="buyer_seller">
-
-                                <small class="buyer_seller_text">Buyer</small><img src="../static/images/shopping-cart.png" height="25px" alt="">
-                            </div>
-                            <br>
-                            <small class="page-title">{{profile_details[0][2]}}</small>
-                            <small class="page-title">{{profile_details[0][3]}}</small>
-                        </div>
-                        <div class="addncon">
-
-                        
-                        <div class="profile-compo">
-                            <div><img src="../static/images/contact-mail.png" height="25px" alt=""></div>
-
-                            <small class="page-title"><a
-                                    href="{{profile_details[0][4]}}">{{profile_details[0][4]}}</a></small><br>
-                            <small class="page-title">{{profile_details[0][5]}}</small>
-                        </div>
-                        <div class="profile-compo">
-                            <div class="profile_address">
-                                <div><img src="../static/images/address.png" height="25px" alt=""></div>
-                                <div class="area">
-                                    {{address[0][0]}}
-                                </div>
-                                <div class="pincodeandcity">
-                                    <div class="pincode">
-                                        {{address[0][1]}}
+                                            <small class="buyer_seller_text">Buyer</small><img
+                                                src="../static/images/shopping-cart.png" height="25px" alt="">
+                                        </div>
+                                        <br>
+                                        <small class="page-title">{{profile_details[0][2]}}</small>
+                                        <small class="page-title">{{profile_details[0][3]}}</small>
                                     </div>
-                                    <div class="city">
-                                        {{address[0][2]}}
+                                    <div class="addncon">
+
+
+                                        <div class="profile-compo">
+                                            <div><img src="../static/images/contact-mail.png" height="25px" alt="">
+                                            </div>
+
+                                            <small class="page-title"><a
+                                                    href="{{profile_details[0][4]}}">{{profile_details[0][4]}}</a></small><br>
+                                            <small class="page-title">{{profile_details[0][5]}}</small>
+                                        </div>
+                                        <div class="profile-compo">
+                                            <div class="profile_address">
+                                                <div><img src="../static/images/address.png" height="25px" alt=""></div>
+                                                <div class="area">
+                                                    {{address[0][0]}}
+                                                </div>
+                                                <div class="pincodeandcity">
+                                                    <div class="pincode">
+                                                        {{address[0][1]}}
+                                                    </div>
+                                                    <div class="city">
+                                                        {{address[0][2]}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
+
                     </div>
+                    <div class="myacc">
+                        <h1 class="rotate-90">MY ACCOUNT</h1>
                     </div>
                 </div>
+                
             </div>
-
-            
             
         </div>
-        <div class="myacc">
-            <h1 class="rotate-90">MY ACCOUNT</h1>
-        </div>
-    </div>
-    <div class="wishList">
-
-
-    <!-- <div class="mywish"><h1 class="rotate--90">MY WISHLIST</h1></div> -->
-        <div class="wishlist-container">
-            <div class="wishlist">
-            <ul>
-                {% for product in wishlist_items %}
-                <li>"{{product[0]}}"</li>
-                <form action="/remove_from_wishlist/{{ product[0]}}" method="POST">
-                    <button type="submit">Remove</button>
-                </form>
-                {% endfor %}
-            </ul>
-        </div>
-        </div>
+        
 
 
     </div>
-    </div>
+    
 </div>
+<div class="wishList">
+
+    <h1>MY WISHLIST</h1><br>
+    <!-- <div class="mywish"><h1 class="rotate--90">MY WISHLIST</h1></div> -->
+    <div class="wishlist-container">
+        <div class="wishlist">
+            
+                {% for product in wishlist_items %}
+            <div class="wishprod">
+                <img src="{{product[2]}}" alt="{{product[1]}}">
+                <div class="wishcont">
+                    <a>Product Name: <a>{{product[1]}}<br>
+                    <a>Price: </a>{{product[3]}}<br>
+                        
+
+                    <form action="/remove_from_wishlist/{{ product[0]}}" method="POST">
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+                
+            </div>
+            <br>
+                {% endfor %}
+            
+        </div>
+    </div>
+
+
+</div>
+
 {% endblock %}
