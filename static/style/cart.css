@@ -26,3 +26,115 @@
     text-align: center;
     color: #fff; /* Set the text color to your preference */
 }
+
+
+
+/* Style the headings */
+.text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    font-family: 'Museo';
+}
+
+/* Style the featured-products section */
+.featured-products {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.heading h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.prodshit {
+    margin: 20px 0;
+}
+
+/* Style the product information */
+.prodshit a {
+    font-family: 'Nunito';
+    font-weight: bold;
+}
+
+/* Style the buttons */
+.addtocart button {
+    background-color: #f1972f;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Museo';
+}
+
+.addtocart button:hover {
+    background-color: #ff4500;
+}
+
+.cartbuttons {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remall, .buy_all {
+    background-color: #f1972f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Museo';
+}
+
+.remall a, .buy_all a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remall:hover, .buy_all:hover {
+    background-color: #ff4500;
+}
+
+/* Style the images */
+img {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .hero {
+        height: 200px;
+    }
+
+    .centered-text {
+        padding: 20px;
+    }
+
+    .featured-products {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .prodshit {
+        margin: 10px 0;
+    }
+
+    img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .remall, .buy_all {
+        padding: 8px 16px;
+    }
+}
