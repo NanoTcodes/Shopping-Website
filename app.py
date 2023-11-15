@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='tesla@2005',
+    password='shauryanoob',
     database="WEBSITE"
 )
 
@@ -338,7 +338,6 @@ def add_product():
         price=request.form.get('price')
         category=request.form.get('category')
         image=request.files.get('image')
-        product_status=request.form.get('Status')
         sellerid=session['user_id']
         if image.filename != '':
             filepath=os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
@@ -349,7 +348,7 @@ def add_product():
             image.save(filepath)
             #print(filename)
         #print(category)
-        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name,status_product) VALUES (NULL,'{}','{}','{}','{}',NULL,NULL,'{}','{}','{}')".format(price,category,description,filename,sellerid,title,product_status))
+        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name) VALUES (NULL,'{}','{}','{}','{}',NULL,NULL,'{}','{}')".format(price,category,description,filename,sellerid,title))
         conn.commit()
         session['message']= 'You have successfully added product !'
         return redirect('/home')
@@ -399,11 +398,11 @@ def add_product():
 
 def products():
     # Fetch product data from the database
-    cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category,status_product FROM Product")
+    cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product")
     products = cursor.fetchall()
-    used_or_new=products[6]
     if session:
         category=session['category']
+        
     else:
         category="All"    
 
@@ -421,17 +420,18 @@ def products():
             cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
             already_added[product[0]] = cursor.fetchone()[0] > 0
 
-    return render_template('products.html', products=products, status=status, already_added=already_added,category=category,used_or_new=used_or_new)
+    return render_template('products.html', products=products, status=status, already_added=already_added,category=category)
 
 @app.route('/categories' ,methods=["POST"])
 def categories():
     category=request.form.get('category')
     if category:
-        session['category']=category    
+        session['category']=category 
+    else :
+        session['category']="All"   
     print("checkmate")
     return redirect('/products')
 
-# def used_or_new():
 
 
 @app.route('/add_to_wishlist/<int:ProductId>', methods=['POST'])
