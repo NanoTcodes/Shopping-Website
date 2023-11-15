@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/style/navbar.css">
+
+    <style>
+        
+    .checkedoutitems{
+        margin: 20px;
+        display: flex;
+
+    }
+
+    .checkedoutitem{
+        border-radius: 20px;
+        background-color: antiquewhite;
+        margin: auto;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .gridhaha{
+        margin:0px 200px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .methodofpayment{
+
+        background-color: antiquewhite;
+        width: 300px;
+
+        padding: 40px;
+        border-radius: 30px;
+    }
+    .checkoutbuttons{
+        width: 20%;
+        margin:40px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .shippingaddress{
+        
+        background-color: antiquewhite;
+        width: 300px;
+
+        padding: 40px;
+        border-radius: 30px;
+
+    }
+    .checkedoutitems{
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
+    }
+    .product {
+            display: flex;
+            margin: 20px; /* Add spacing between products */
+            padding: 20px;
+            border: 1px solid #ccc; /* Add a border for separation */
+            border-radius: 30px;
+            width: 600px; /* Limit the maximum width of each product */
+            background-color: #ebe8dd;
+        }
+        .prodshit{
+            text-align: left;
+        }
+        .addtocart{
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        .product img {
+            
+            margin-left: 50%;
+            max-width: 45%; /* Ensure images don't exceed the width of their container */
+            max-height: 150px;
+            border-radius: 30px;
+        }
+        .back button:hover,.buy button:hover{
+            transform:scale(1.15);
+            z-index:2;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div id="shopaholic">
+            <h1>SHOP-A-HOLIC</h1>
+        </div>
+        <div id="navshit">
+            <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/sell">Sell</a></li>
+
+                </ul>
+
+        </div>
+
+
+        </nav>
+        <div id="loginbutton">
+            <button><a href="/">LOGIN</a></button>
+        </div>
+
+    </header>
+
+    <div class="CHECKOUT_TAB">
+        <div class="checkedoutitems">
+            <div class="product">
+                <div class="prodshit">
+                    <a>Product Name: <a><br>
+                    <a>Quantity of product: </a><br>
+                    <a>Price: </a>
+                    <br>
+                </div>
+                <img src="https://picsum.photos/200/200?random=1" alt="Product 1">
+                
+            </div>
+            <div class="product">
+                <div class="prodshit">
+                    <a>Product Name: <a><br>
+                    <a>Quantity of product: </a><br>
+                    <a>Price: </a>
+                    <br>
+                </div>
+                <img src="https://picsum.photos/200/200?random=1" alt="Product 1">
+                
+            </div>
+            <div class="product">
+                <div class="prodshit">
+                    <a>Product Name: <a><br>
+                    <a>Quantity of product: </a><br>
+                    <a>Price: </a>
+                    <br>
+                </div>
+                <img src="https://picsum.photos/200/200?random=1" alt="Product 1">
+                
+            </div>
+            <div class="product">
+               <div class="text">Total Amount:</div>
+            </div>
+        </div>
+    </div>
+    <div class="gridhaha">
+
+  
+    <div class="methodofpayment">
+        <p>Please select your Payment Method:</p>
+        <input type="radio" id="age1" name="age" value="30">
+        <label for="age1">COD</label><br>
+        <input type="radio" id="age2" name="age" value="60">
+        <label for="age2">UPI</label><br>  
+        <input type="radio" id="age3" name="age" value="100">
+        <label for="age3">NetBanking</label><br>
+        <input type="radio" id="age2" name="age" value="60">
+        <label for="age2">Credit Card/Debit Card</label><br>  
+
+    </div>
+    <div class="shippingaddress">
+        <div class="your_address">
+            <div class="myaddress">
+               <i>your address</i>
+            </div>
+            <div class="area">
+                <b>Area:</b>255 Vijay Shankar Nagar,opposite VBA hall
+            </div>
+            <div class="pincodeandcity">
+                <div class="pincode">
+                    <b>pincode:</b>440010
+                </div>
+                <div class="city">
+                    <b>City:</b>Nagpur
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="checkoutbuttons">
+        <div class="back"><button><a href="/cart">Back</a></button></div>
+        <div class="buy"><button><a href="/thankyou">Checkout</a></button></div>
+    </div>
+
+
+</body>
+</html>

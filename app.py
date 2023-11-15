@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Shaurya3477',
+    password='tesla@2005',
     database="WEBSITE"
 )
 
@@ -199,8 +199,15 @@ def signup():
 
 @app.route('/checkout')
 def checkout():
-    status="YES"
-    return render_template('checkout.html',status=status)
+    if 'user_id' in session:
+        userid = session['user_id'];
+        status="YES"
+        cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
+        products = cursor.fetchall() 
+        return render_template('checkout.html',status=status,products=products)
+    else:
+        session['message']='please login!'
+        return redirect('/')
 
 @app.route('/thankyou')
 def thankyou():
