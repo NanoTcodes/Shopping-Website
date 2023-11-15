@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='tesla@2005',
+    password='Shaurya3477',
     database="WEBSITE"
 )
 
@@ -401,7 +401,7 @@ def products():
     # Fetch product data from the database
     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category,status_product FROM Product")
     products = cursor.fetchall()
-    used_or_new=products[6]
+    #used_or_new=products[6]
     if session:
         category=session['category']
     else:
@@ -421,7 +421,7 @@ def products():
             cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
             already_added[product[0]] = cursor.fetchone()[0] > 0
 
-    return render_template('products.html', products=products, status=status, already_added=already_added,category=category,used_or_new=used_or_new)
+    return render_template('products.html', products=products, status=status, already_added=already_added,category=category)
 
 @app.route('/categories' ,methods=["POST"])
 def categories():
