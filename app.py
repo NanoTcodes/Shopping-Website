@@ -104,15 +104,26 @@ def add_to_cart():
 
 
     
-@app.route('/rem_from_cart', methods=['POST'])
-def rem_from_cart():
+# @app.route('/rem_from_cart', methods=['POST'])
+# def rem_from_cart():
+#     session['category']="All"
+#     userid = session['user_id']
+#     prodid = request.get_json().get('product_id')
+#     print(prodid)
+#     cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
+#     conn.commit()
+#     return redirect(url_for('cart'))  
+
+
+@app.route('/rem_from_cart/<int:ProductId>', methods=['POST'])
+def rem_from_cart(ProductId):
     session['category']="All"
     userid = session['user_id']
-    prodid = request.get_json().get('product_id')
-    print(prodid)
-    cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
+    cursor.execute(
+        "DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s", (userid, ProductId))
     conn.commit()
-    return redirect(url_for('cart'))   
+    return redirect(url_for('cart'))
+ 
 
 @app.route('/remall_from_cart')
 def remall_from_cart():
