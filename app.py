@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Shaurya3477',
+    password='riddhi@2108',
     database="WEBSITE"
 )
 

@@ -46,6 +46,10 @@
     -webkit-user-select: none;
     touch-action: manipulation;
   }
+   a{
+    text-decoration: none;
+    color: white;
+  }
   
   .button-57 span:first-child {
     position: relative;
@@ -214,6 +218,15 @@
   font-size: 18px;
   line-height: 25px;
   padding-right: 40%;
+}
+
+.cu_send_button {
+  width: 71px;
+  margin: auto;
+  height: 34px;
+  color: #fff;
+  background-color: #30574E;
+  border: 1px solid white;
 }
 
 .trans{
