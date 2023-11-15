@@ -88,12 +88,12 @@ p {
 	margin-top: 10px;
 	font-family: 'Nunito', sans-serif;
 }
-a {
+.container a{
 	text-decoration: none;
 	font-style: italic;
 	font-family: 'Nunito', sans-serif;
 }
-a:hover {
+.container a:hover {
 	text-decoration: underline;
 }
 

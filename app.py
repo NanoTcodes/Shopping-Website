@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='shauryanoob',
+    password='tesla@2005',
     database="WEBSITE"
 )
 
@@ -89,18 +89,18 @@ def add_to_cart():
                     conn.commit()
                     session['message'] = 'Product added to the cart.'
                 
-                return redirect('/products',status=status)
+                return redirect('/products')
             else:
                 session['message'] = 'This product is already in your cart'
-                return redirect('/products',status=status) 
+                return redirect('/products') 
                 
         else:
             session['message'] = 'You need to be a customer to add products to the cart.'
-            return redirect('/products',status=status)
+            return redirect('/products')
     else:
         status="NO"
         session['message'] = 'Please log in to add products to the cart.'
-        return redirect('/',status=status)
+        return redirect('/')
 
 
     
