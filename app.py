@@ -144,13 +144,13 @@ def account():
             
 
 
-            return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details)
+            return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details,user_type=user_type)
         else:
             cursor.execute("select BillingAddress from sellerretailer where SellerId={}".format(CustomerId))
             address=cursor.fetchall()
             cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from sellerretailer where SellerId ={}".format(CustomerId))
             profile_details=cursor.fetchall()
-            return render_template('account.html',address=address,profile_details=profile_details)
+            return render_template('account.html',address=address,profile_details=profile_details,user_type=user_type)
     else:
         session['message']='please login!'
         return redirect('/')
@@ -261,6 +261,7 @@ def add_user():
             session['address_type']="buyer"
             session['email']=email
             session['message']= 'You have successfully registered as a buyer !'
+            session["user_type"]=role
             return render_template('buyer.html')
     else:
         cursor.execute("SELECT * FROM SellerRetailer WHERE EmailId LIKE '{}'".format(email))
@@ -281,6 +282,7 @@ def add_user():
             #redirect to addres.html of both 
             session['email']=email
             session['message']= 'You have successfully registered as a seller !'
+            session["user_type"]=role
             return render_template('seller.html')
         
 @app.route('/add_address',methods=["POST"])
@@ -336,6 +338,7 @@ def add_product():
         price=request.form.get('price')
         category=request.form.get('category')
         image=request.files.get('image')
+        product_status=request.form.get('Status')
         sellerid=session['user_id']
         if image.filename != '':
             filepath=os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
@@ -346,7 +349,7 @@ def add_product():
             image.save(filepath)
             #print(filename)
         #print(category)
-        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name) VALUES (NULL,'{}','{}','{}','{}',NULL,NULL,'{}','{}')".format(price,category,description,filename,sellerid,title))
+        cursor.execute("INSERT INTO Product( ProductId,Price,Category,Description,ProductImages,QuantityAvailable,EstimatedDeliveryTime,SellerId,product_name,status_product) VALUES (NULL,'{}','{}','{}','{}',NULL,NULL,'{}','{}','{}')".format(price,category,description,filename,sellerid,title,product_status))
         conn.commit()
         session['message']= 'You have successfully added product !'
         return redirect('/home')
@@ -396,8 +399,9 @@ def add_product():
 
 def products():
     # Fetch product data from the database
-    cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product")
+    cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category,status_product FROM Product")
     products = cursor.fetchall()
+    used_or_new=products[6]
     if session:
         category=session['category']
     else:
@@ -417,7 +421,7 @@ def products():
             cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
             already_added[product[0]] = cursor.fetchone()[0] > 0
 
-    return render_template('products.html', products=products, status=status, already_added=already_added,category=category)
+    return render_template('products.html', products=products, status=status, already_added=already_added,category=category,used_or_new=used_or_new)
 
 @app.route('/categories' ,methods=["POST"])
 def categories():
@@ -426,6 +430,8 @@ def categories():
         session['category']=category    
     print("checkmate")
     return redirect('/products')
+
+# def used_or_new():
 
 
 @app.route('/add_to_wishlist/<int:ProductId>', methods=['POST'])
