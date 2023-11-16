@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+.THANKYOU{
+    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding-top: 100px;
+}
+  .msg {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin:30px auto;
+  }
+
+  .msg h2 {
+    color: #2ecc71; /* Green color for emphasis */
+  }
+
+  .msg p {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+.white-gradient {
+	background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.slider {
+	background: white;
+	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+	height: 100px;
+	margin: auto;
+	overflow: hidden;
+    overflow-x: none;
+	position: relative;
+	width: 98vw;
+}
+.rev{
+    background: transparent;
+    height: 200px;
+    box-shadow: none;
+}
+
+
+.slider::before,
+.slider::after {
+	content: "";
+	height: 100px;
+	position: absolute;
+	width: 200px;
+	z-index: 2;
+}
+
+.slider::after {
+	right: 0;
+	top: 0;
+	transform: rotateZ(180deg);
+}
+
+.slider::before {
+	left: 0;
+	top: 0;
+}
+
+.slide-track {
+	animation: scroll 40s linear infinite;
+	display: flex;
+	width: calc(250px * 14);
+}
+
+.slide {
+	height: 100px;
+	width: 250px;
+}
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(calc(-250px * 7));
+	}
+}
+/* Add this to your existing CSS */
+/* Add this to your existing CSS */
+.slider .slide-track {
+    transition: transform 0.3s ease-in-out;
+    animation-play-state: running;
+}
+
+.slider:hover .slide-track {
+    animation-play-state: paused;
+    transition-delay: 1s;
+}
+
+.sliderev{
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin: 20px;
+    padding: 20px;
+
+}
+
+/* Add this to your existing CSS */
+
+.sliderev {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 10px; /* Adjust margin as needed */
+    max-width: 400px; /* Adjust max-width as needed */
+    text-align: left;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .sliderev:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .review {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .customer {
+    color: #555;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+.continue{
+    right: 0;
+    padding: 20px 10px;
+}
+
+.continue a{
+    padding: 10px 20px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: #333;
+}
+
+.continue a:hover{
+    color: #333;
+    background-color:white ;
+    border: 1px solid #333;
+}
+
+.title{
+    font-family: 'Montserrat', sans-serif;
+}
+.FOOTER button{
+    background:transparent;
+    color: #fff;
+    border: none;
+  }
+  
+  .FOOTER{
+    color: #fff;
+    background-color: #333;
+  }
+  
+  .FOOTER ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px 15%;
+    padding: 10px 0px;
+  
+  }
+  
+  .FOOTER ul li{
+    text-decoration: none;
+    list-style-type: none;
+  }
+  
+  .FOOTER ul a{
+    text-decoration: none;
+    color: #ffffff;
+  }
+  .FOOTER .footer_rights{
+    /* margin: 10px 0px; */
+    padding: 10px 0px;
+    text-align: center;
+  }
+  .FOOTER hr{
+    background-color: #000000;
+  }
+  
+  .overlayP {
+    display: none;
+    
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    /* padding: 30px; */
+  }
+  .overlayP .close-btn{
+    text-align: center;
+  }
+  
+  .overlayTC {
+    display: none;
+    
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    /* padding: 30px; */
+  }
+  .overlayTC .close-btn{
+    text-align: center;
+  }
+  .dialog-boxTC{
+    /* margin-top: 150px; */
+    overflow-y: scroll;
+    background-color: #fff;
+    padding: 50px;
+    height: 380px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: left; /* Adjusted for terms and conditions content */
+    max-width: 800px; /* Adjusted for terms and conditions content */
+  }
+  .dialog-boxP {
+    /* margin-top: 150px; */
+    overflow-y: scroll;
+    background-color: #fff;
+    padding: 50px;
+    height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: left; /* Adjusted for terms and conditions content */
+    max-width: 800px; /* Adjusted for terms and conditions content */
+  }
+  
+  .close-btn {
+    cursor: pointer;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }

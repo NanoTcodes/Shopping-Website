@@ -40,18 +40,88 @@
     <div class="footer_links">
 
         <ul>
-            <li><a href="">Sell</a></li>
+            <li><button onclick="openDialogP()">Privacy</button></li>
             <li class="line">|</li>
-            <li><a href="">Privacy</a></li>
+            <li><a href="/account">Account</a></li>
             <li class="line">|</li>
-            <li><a href="">Account</a></li>
-            <li class="line">|</li>
-            <li><a href="">Terms & Conditions</a></li>
+            <li><button onclick="openDialogTC()">Terms & Conditions</button></li>
+
 
         </ul>
     </div>
     <hr>
     <div class="footer_rights">@2023 | All rights reserved</div>
+
 </div>
+
+<div class="overlayP" id="overlayP">
+    <div class="dialog-boxP">
+        <h2>Privacy Policy</h2>
+        <p>Last Updated: November 16, 2023</p>
+
+        <p><strong>Shopaholic</strong> ("us", "we", or "our") operates the website www.shopaholic.com (the "Service").</p>
+
+        <p>Information Collection and Use:</p>
+        <p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to, your email address, name, phone number, postal address, and other information ("Personal Information").</p>
+
+        <div class="close-btn" onclick="closeDialogP()">Close</div>
+    </div>
+</div>
+
+<!-- The overlay and dialog box -->
+<div class="overlayTC" id="overlayTC">
+    <div class="dialog-boxTC">
+        <h2>Terms and Conditions of Use</h2>
+        <ol>
+            <li><strong>Acceptance of Terms</strong><br>By accessing or using [Your Company Name] website (the "Site"), you agree to comply with and be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the Site.</li>
+
+            <li><strong>Use of the Site</strong><br>You agree to use the Site for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the Site. Prohibited behavior includes but is not limited to:
+                <ul>
+                    <li>Violating any applicable laws or regulations.</li>
+                    <li>Interfering with or disrupting the Site or servers.</li>
+                    <li>Attempting to gain unauthorized access to any part of the Site.</li>
+                </ul>
+            </li>
+
+            <li><strong>Products and Pricing</strong><br>[Your Company Name] reserves the right to change the products and services offered on the Site and their prices at any time without notice. We make every effort to ensure that product descriptions and prices are accurate, but errors may occur. In the event of an error, we reserve the right to correct such errors and revise your order accordingly.</li>
+
+            <li><strong>Orders and Payments</strong><br>Placing an order on the Site constitutes an offer to purchase the products or services. [Your Company Name] reserves the right to refuse or cancel any order for any reason, including but not limited to product availability, errors in pricing, or suspicion of fraudulent activity. Payment must be made in full before the order is dispatched.</li>
+
+            <li><strong>Shipping and Delivery</strong><br>Shipping and delivery times are estimates and not guaranteed. [Your Company Name] is not responsible for any delays or damages caused by third-party carriers.</li>
+
+            <li><strong>Returns and Refunds</strong><br>Please refer to our [Return and Refund Policy] for information on returning products and obtaining refunds.</li>
+
+            <li><strong>Intellectual Property</strong><br>All content on the Site, including text, graphics, logos, images, and software, is the property of [Your Company Name] and is protected by intellectual property laws. You may not use, reproduce, distribute, or display any portion of the Site without prior written consent from [Your Company Name].</li>
+
+            <li><strong>Limitation of Liability</strong><br>[Your Company Name] is not liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of the Site or the products purchased through the Site.</li>
+
+            <li><strong>Governing Law</strong><br>These Terms and Conditions are governed by and construed in accordance with the laws of [Your Jurisdiction]. Any disputes arising under or in connection with these terms shall be subject to the exclusive jurisdiction of the courts in [Your Jurisdiction].</li>
+
+            <li><strong>Changes to Terms and Conditions</strong><br>[Your Company Name] reserves the right to modify or replace these Terms and Conditions at any time. It is your responsibility to check these terms periodically for changes. Your continued use of the Site following the posting of any changes constitutes acceptance of those changes.</li>
+        </ol>
+        <div class="close-btn" onclick="closeDialogTC()">Close</div>
+    </div>
+</div>
+
+<script>
+    // Function to open the dialog box
+
+    function openDialogP() {
+        document.getElementById('overlayP').style.display = 'flex';
+    }
+
+    // Function to close the dialog box
+    function closeDialogP() {
+        document.getElementById('overlayP').style.display = 'none';
+    }
+    function openDialogTC() {
+        document.getElementById('overlayTC').style.display = 'flex';
+    }
+
+    // Function to close the dialog box
+    function closeDialogTC() {
+        document.getElementById('overlayTC').style.display = 'none';
+    }
+</script>
 
 {% endblock %}
