@@ -60,6 +60,27 @@ def cart():
         session['message']='please login!'
         return redirect('/')
 
+@app.route('/checkout')
+def checkout():
+    session['category']="All"
+    if 'user_id' in session:
+        userid = session['user_id']
+        status="YES"
+        cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
+        products = cursor.fetchall()
+        cursor.execute("select sum(Amount) from cart where CustomerId=%s",(userid,))
+        sum=cursor.fetchall()
+        cursor.execute("select ShippingAddress, Pincode_Shipping, City_Shipping from customer where CustomerId =%s",(userid,))
+        user_deets=cursor.fetchall()
+        print(user_deets)
+        return render_template('checkout.html', products=products,status=status,sum=sum,user_deets=user_deets)
+    else:
+        session['message']='please login!'
+        return redirect('/')
+
+
+
+
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     message=''
@@ -196,18 +217,6 @@ def sell():
 def signup():
     status="NO"
     return render_template('signup.html',status=status)
-
-@app.route('/checkout')
-def checkout():
-    if 'user_id' in session:
-        userid = session['user_id'];
-        status="YES"
-        cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
-        products = cursor.fetchall() 
-        return render_template('checkout.html',status=status,products=products)
-    else:
-        session['message']='please login!'
-        return redirect('/')
 
 @app.route('/thankyou')
 def thankyou():
@@ -416,6 +425,8 @@ def add_product():
 
 def products():
     # Fetch product data from the database
+    # base="SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product"
+    # if session
     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product")
     products = cursor.fetchall()
     if session:
@@ -449,6 +460,7 @@ def categories():
         session['category']="All"   
     print("checkmate")
     return redirect('/products')
+
 
 
 
