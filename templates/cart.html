@@ -1,6 +1,8 @@
 
 {% extends "base.html" %} 
 {% block head%}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Museo">
 <link rel="stylesheet" href="../static/style/cart.css">{% endblock %}
 {% block title %}Mail{% endblock %} 
 
@@ -26,8 +28,10 @@
             <a>Quantity of product: </a>{{product[1]}}<br>
             <a>Price: </a>{{product[2]}}
             <br>
-            <div class="addtocart"><button onclick="remFromCart('{{ product[0] }}')">Remove</button></div>
-        </div>
+            <form action="/rem_from_cart/{{ product[0]}}" method="POST">
+                <div class="addtocart">
+                <button type="submit">Remove</button></div>
+            </form>
         <img src="{{product[4]}}" alt="{{product[0]}}">
     {% endfor %}
 </section>

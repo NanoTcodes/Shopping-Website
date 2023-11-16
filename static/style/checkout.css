@@ -1,0 +1,107 @@
+.CHECKOUT_TAB{
+	padding-top: 100px;
+}
+.checkedoutitems{
+margin: 20px;
+display: flex;
+
+}
+
+.checkedoutitem{
+border-radius: 20px;
+background-color: antiquewhite;
+margin: auto;
+display: flex;
+text-align: center;
+align-items: center;
+justify-content: center;
+}
+.gridhaha{
+margin:0px 200px;
+display: flex;
+justify-content: space-around;
+align-items: center;
+}
+.methodofpayment{
+
+background-color: antiquewhite;
+width: 300px;
+
+padding: 40px;
+border-radius: 30px;
+}
+.checkoutbuttons{
+width: 20%;
+margin:40px auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.shippingaddress{
+
+background-color: antiquewhite;
+width: 300px;
+
+padding: 40px;
+border-radius: 30px;
+
+}
+.checkedoutitems{
+flex-direction: column;
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+}
+.product {
+	display: flex;
+	margin: 20px; /* Add spacing between products */
+	padding: 20px;
+	border: 1px solid #ccc; /* Add a border for separation */
+	border-radius: 30px;
+	width: 600px; /* Limit the maximum width of each product */
+	background-color: #ebe8dd;
+}
+.prodshit{
+	text-align: left;
+}
+.addtocart{
+	margin-top: 20px;
+	text-decoration: none;
+}
+.product img {
+	
+	margin-left: 50%;
+	max-width: 45%; /* Ensure images don't exceed the width of their container */
+	max-height: 150px;
+	border-radius: 30px;
+}
+.back, .buy {
+	background-color: #f87808;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+}
+.back button, .buy button {
+    background-color: #f87808 ;
+    color: black;
+    border: blanchedalmond;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.back button a, .buy button a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: small;
+}
