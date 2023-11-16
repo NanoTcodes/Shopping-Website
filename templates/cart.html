@@ -1,4 +1,3 @@
-
 {% extends "base.html" %} 
 {% block head%}
 <link rel="stylesheet" href="../static/style/cart.css">{% endblock %}
@@ -7,39 +6,37 @@
 {% block content %}
 <div class="hero">
     <div class="centered-text">
-        <!-- <h2 class="text" id="text1">Fashion, Beauty, Home – All in One Place</h2><br> -->
         <h2 class="text" id="text2">My Account</h2>
-        <!-- HTML !-->
-        <!-- <button class="button-57" role="button"><span class="text">EXPLORE</span><span>SHOP NOW</span></button> -->
-
-
     </div>
 </div>
 
 <section class="featured-products">
-    <div class ="heading">
-        <h2>Your cart</h2>
+    <div class="heading">
+        <h2 class="text" id="text2">Your Cart</h2>
     </div>
-    {% for product in products%}
-        <div class="prodshit">
-            <a>Product Name: <a>{{product[3]}}<br>
-            <a>Quantity of product: </a>{{product[1]}}<br>
-            <a>Price: </a>{{product[2]}}
-            <br>
-            <div class="addtocart"><button onclick="remFromCart('{{ product[0] }}')">Remove</button></div>
+    {% for product in products %}
+        <div class="product-container">
+            <div class="product-details">
+                <a>Product Name: <a>{{ product[3] }}</a><br>
+                <a>Quantity of product: </a>{{ product[1] }}<br>
+                <a>Price: </a>{{ product[2] }}<br>
+                <div class="addtocart">
+                    <button class="remove-button" onclick="remFromCart('{{ product[0] }}')">Remove</button>
+                </div>
+            </div>
+            <div class="product-image-container">
+                <img class="product-image" src="{{ product[4] }}" alt="{{ product[0] }}">
+            </div>
         </div>
-        <img src="{{product[4]}}" alt="{{product[0]}}">
     {% endfor %}
 </section>
 
 <div class="cartbuttons">
-    <div id ="removeall">
+    <div id="removeall">
         <button class="remall"><a href="/remall_from_cart">Remove all</a></button>
     </div>
-    <div id ="buyall">
+    <div id="buyall">
         <button class="buy_all"><a href="/checkout">Proceed to buy</a></button>
     </div>
 </div>
 {% endblock %}
-
-
