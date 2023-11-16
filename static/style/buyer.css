@@ -1,66 +1,68 @@
+.maincontent {
+    
+	background-color: #ded5cd;
+}
+.buyer{
+    padding-top:150px ;
+    padding-bottom: 50px;
+}
 
 
-        /* Main content styles */
-        main {
-            padding: 20px;
-        }
-
-
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-			background-color: #fcedda;           
-        }
-        h2 {
-            text-align: center;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-bottom: 5px;
-        }
-        input[type="text"] {
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            font-size: 16px;
-        }
-        input[type="number"] {
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            font-size: 16px;
-        }
-		input[type="text"] {
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-		}
-        input[type="number"] {
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-		}
-        button {
-            padding: 10px;
-            background-color: #ee4e34;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #d1432d;
-        }
-        p {
-            margin-top: 10px;
-        }
-        a {
-            color: #ee4e34;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fcedda;           
+}
+h2 {
+    text-align: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    margin-bottom: 5px;
+}
+input[type="text"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+input[type="number"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+input[type="text"] {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+input[type="number"] {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+button {
+    padding: 10px;
+    background-color: #ee4e34;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #d1432d;
+}
+p {
+    margin-top: 10px;
+}
+a {
+    color: #ee4e34;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
