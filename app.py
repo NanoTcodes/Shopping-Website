@@ -15,7 +15,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
+<<<<<<< HEAD
     password='Bravia@2022',
+=======
+    password='riddhi@2108',
+>>>>>>> be1f23a6e039aa29c504c127ee17c845379acf21
     database="WEBSITE"
 )
 
@@ -104,15 +108,26 @@ def add_to_cart():
 
 
     
-@app.route('/rem_from_cart', methods=['POST'])
-def rem_from_cart():
+# @app.route('/rem_from_cart', methods=['POST'])
+# def rem_from_cart():
+#     session['category']="All"
+#     userid = session['user_id']
+#     prodid = request.get_json().get('product_id')
+#     print(prodid)
+#     cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
+#     conn.commit()
+#     return redirect(url_for('cart'))  
+
+
+@app.route('/rem_from_cart/<int:ProductId>', methods=['POST'])
+def rem_from_cart(ProductId):
     session['category']="All"
     userid = session['user_id']
-    prodid = request.get_json().get('product_id')
-    print(prodid)
-    cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
+    cursor.execute(
+        "DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s", (userid, ProductId))
     conn.commit()
-    return redirect(url_for('cart'))   
+    return redirect(url_for('cart'))
+ 
 
 @app.route('/remall_from_cart')
 def remall_from_cart():
@@ -144,13 +159,13 @@ def account():
             
 
 
-            return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details)
+            return render_template('account.html',wishlist_items=wishlist_items,address=address,profile_details=profile_details,user_type=user_type)
         else:
             cursor.execute("select BillingAddress from sellerretailer where SellerId={}".format(CustomerId))
             address=cursor.fetchall()
             cursor.execute("select FirstName,LastName,Age,Gender,EmailId,Contact from sellerretailer where SellerId ={}".format(CustomerId))
             profile_details=cursor.fetchall()
-            return render_template('account.html',address=address,profile_details=profile_details)
+            return render_template('account.html',address=address,profile_details=profile_details,user_type=user_type)
     else:
         session['message']='please login!'
         return redirect('/')
@@ -188,8 +203,15 @@ def signup():
 
 @app.route('/checkout')
 def checkout():
-    status="YES"
-    return render_template('checkout.html',status=status)
+    if 'user_id' in session:
+        userid = session['user_id'];
+        status="YES"
+        cursor.execute("SELECT cart.ProductId, cart.Quantity, cart.Amount, product.product_name, product.ProductImages FROM website.cart INNER JOIN website.product ON cart.ProductId = product.ProductId WHERE cart.CustomerId = %s order by cart.ProductId",(userid,))
+        products = cursor.fetchall() 
+        return render_template('checkout.html',status=status,products=products)
+    else:
+        session['message']='please login!'
+        return redirect('/')
 
 @app.route('/thankyou')
 def thankyou():
@@ -261,6 +283,7 @@ def add_user():
             session['address_type']="buyer"
             session['email']=email
             session['message']= 'You have successfully registered as a buyer !'
+            session["user_type"]=role
             return render_template('buyer.html')
     else:
         cursor.execute("SELECT * FROM SellerRetailer WHERE EmailId LIKE '{}'".format(email))
@@ -281,6 +304,7 @@ def add_user():
             #redirect to addres.html of both 
             session['email']=email
             session['message']= 'You have successfully registered as a seller !'
+            session["user_type"]=role
             return render_template('seller.html')
         
 @app.route('/add_address',methods=["POST"])
@@ -339,9 +363,9 @@ def add_product():
         sellerid=session['user_id']
         if image.filename != '':
             filepath=os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
-            #print(filepath)
+            print(filepath)
             filename="../uploads/"+image.filename
-            #print(filename)
+            print(filename)
             
             image.save(filepath)
             #print(filename)
@@ -400,6 +424,7 @@ def products():
     products = cursor.fetchall()
     if session:
         category=session['category']
+        
     else:
         category="All"    
 
@@ -423,9 +448,12 @@ def products():
 def categories():
     category=request.form.get('category')
     if category:
-        session['category']=category    
+        session['category']=category 
+    else :
+        session['category']="All"   
     print("checkmate")
     return redirect('/products')
+
 
 
 @app.route('/add_to_wishlist/<int:ProductId>', methods=['POST'])

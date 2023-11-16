@@ -405,3 +405,32 @@ button {
     background-attachment: fixed;
     background-color: rgba(0, 0, 0,0.6);
 }
+
+.heroused{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/used.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.heroused::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.all_contentused{
+   
+    background-image: url('../images/used.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
