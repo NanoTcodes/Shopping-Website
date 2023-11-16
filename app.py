@@ -558,7 +558,9 @@ def remove_from_wishlist(ProductId):
 #             smtp.login(email_sender,email_password)
 #             smtp.sendmail(email_sender,email_receiver,em.as_string())
 #         return redirect(url_for('home'))
-
+@app.route('/testing')
+def test():
+    return render_template('buyer.html')
 
 
 

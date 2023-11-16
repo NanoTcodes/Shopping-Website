@@ -31,7 +31,7 @@ body{
     height: 100%;
 }
 .all_contenthero{
-   
+    
     background-image: url('../images/bg3.jpg');
     background-size: cover;
     background-position: center;
@@ -39,6 +39,10 @@ body{
     background-attachment: fixed;
     /* background-color: rgba(0, 0, 0,0.6); */
 }
+/* .all_contenthero::before{
+    filter: blur(2px);
+
+} */
 
 .centered-text {
     position: absolute;
@@ -109,14 +113,14 @@ button {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
 }
-.addtocart1 button:hover, .addtocart2 button:hover, .addtocart3 button:hover,.addtocart4 button:hover, .addtocart5 button:hover, .addtocart6 button:hover, .addtocart7 button:hover, .addtocart8 button:hover, .addtocart9 button:hover {
+/* .addtocart1 button:hover, .addtocart2 button:hover, .addtocart3 button:hover,.addtocart4 button:hover, .addtocart5 button:hover, .addtocart6 button:hover, .addtocart7 button:hover, .addtocart8 button:hover, .addtocart9 button:hover {
     transform:scale(1.15);
     z-index:2;
-}
-#loginbutton:hover{
+} */
+/* #loginbutton:hover{
     transform:scale(1.15);
     z-index:2;
-}
+} */
 .cat{
     display: flex;
     justify-content: center;
@@ -164,27 +168,25 @@ button {
 
 /* Style for product cards */
 .an_product {
-    background-color: #ebe8dd;
+    background-color: #ffead7;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Center vertically, space between elements */
     align-items: center;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 20px;
     text-align: center;
     margin: 10px;
-    border: 2px solid #333;
+    /* border: 2px solid #333; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
     transition: transform 0.2s ease; /* Add a smooth hover effect */
 }
 
-.an_product:hover {
-    transform: scale(1.05); /* Enlarge the card on hover */
-}
+
 
 /* Style for product images */
 .an_product img {
-    border: 2px solid #333;
+    /* border: 2px solid #333; */
     border-radius: 20px;
     max-width: 100%; /* Ensure images do not exceed the card width */
 }
@@ -203,6 +205,19 @@ button {
     justify-content: center;
     gap: 20px; /* Add space between product cards */
     margin: 20px;
+}
+.an_product button{
+    background-color: #333;
+    color: white;
+}
+.an_product button:hover{
+    background-color: transparent;
+    color: #333;
+    border:1px solid #333;
+    /* width: 200px; */
+}
+.an_product form input{
+    margin-top: 20px;
 }
 
 .CATEGORIES{
@@ -322,6 +337,7 @@ button {
 .heromen{
     height: 100vh; /* 100% of viewport height */
     background-image: url('../images/mens.jpg');
+
     background-size: cover;
     background-position: center;
     position: relative;
@@ -433,4 +449,39 @@ button {
     position: relative;
     background-attachment: fixed;
     background-color: rgba(0, 0, 0,0.6);
+}
+
+.cat {
+    width: 30%;
+    background: rgba(255, 255, 255,0.9);
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
 }
