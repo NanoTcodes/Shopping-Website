@@ -1,7 +1,5 @@
 {% extends "base.html" %} 
 {% block head%}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,700">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Museo">
 <link rel="stylesheet" href="../static/style/cart.css">{% endblock %}
 {% block title %}Mail{% endblock %} 
 
@@ -14,7 +12,7 @@
 
 <section class="featured-products">
     <div class="heading">
-        <h2 class="text" id="text2">Your Cart</h2>
+        <h2 class="cart-heading">Your Cart</h2>
     </div>
     {% for product in products %}
         <div class="product-container">
@@ -22,9 +20,7 @@
                 <a>Product Name: <a>{{ product[3] }}</a><br>
                 <a>Quantity of product: </a>{{ product[1] }}<br>
                 <a>Price: </a>{{ product[2] }}<br>
-                <div class="addtocart">
-                    <button class="remove-button" onclick="remFromCart('{{ product[0] }}')">Remove</button>
-                </div>
+                <div class="addtocart"><button class="remove-button" onclick="remFromCart('{{ product[0] }}')">Remove</button></div>
             </div>
             <div class="product-image-container">
                 <img class="product-image" src="{{ product[4] }}" alt="{{ product[0] }}">
@@ -35,10 +31,10 @@
 
 <div class="cartbuttons">
     <div id="removeall">
-        <button class="remall"><a href="/remall_from_cart">Remove all</a></button>
+        <button class="remall"><a href="/remall_from_cart">Remove All</a></button>
     </div>
     <div id="buyall">
-        <button class="buy_all"><a href="/checkout">Proceed to buy</a></button>
+        <button class="buy_all"><a href="/checkout">Proceed to Buy</a></button>
     </div>
 </div>
 {% endblock %}

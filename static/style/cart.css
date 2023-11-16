@@ -63,7 +63,7 @@
     font-weight: bold;
 }
 
-/* Style the buttons */
+/* Style the buttons
 .addtocart button {
     background-color: #f1972f;
     color: #fff;
@@ -101,7 +101,7 @@
 
 .remall:hover, .buy_all:hover {
     background-color: #ff4500;
-}
+} */
 
 /* Style the images */
 img {
@@ -110,6 +110,87 @@ img {
     margin: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+.heading {
+    text-align: center;
+}
+
+.cart-heading {
+    font-family:'Times New Roman', Times, serif; /* Replace 'Your Font' with your desired font */
+}
+
+.featured-products {
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 0 100px rgba(254, 230, 196, 0.95);
+}
+
+
+.product-container {
+    background-color: rgba(254, 230, 196, 0.95);
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 20px auto; /* Set auto margin for center alignment */
+    display: flex;
+    justify-content: center; /* Center-align the content within each container */
+    align-items: center; /* Center-align vertically within each container */
+}
+
+.product-details {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.product-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.product-image {
+    border-radius: 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+.remove-button,
+.remall a,
+.buy_all a {
+    background-color: rgba(48, 87, 78, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+.remove-button:hover,
+.remall a:hover,
+.buy_all a:hover {
+    transform: scale(1.1); /* Increase the size on hover */
+}
+
+
+.remall,
+.buy_all {
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.cartbuttons {
+    background-color: rgba(254, 230, 196, 0.95);
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Responsive design for smaller screens */
