@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='shauryanoob',
+    password='riddhi@2108',
     database="WEBSITE"
 )
 
@@ -125,15 +125,26 @@ def add_to_cart():
 
 
     
-@app.route('/rem_from_cart', methods=['POST'])
-def rem_from_cart():
+# @app.route('/rem_from_cart', methods=['POST'])
+# def rem_from_cart():
+#     session['category']="All"
+#     userid = session['user_id']
+#     prodid = request.get_json().get('product_id')
+#     print(prodid)
+#     cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
+#     conn.commit()
+#     return redirect(url_for('cart'))  
+
+
+@app.route('/rem_from_cart/<int:ProductId>', methods=['POST'])
+def rem_from_cart(ProductId):
     session['category']="All"
     userid = session['user_id']
-    prodid = request.get_json().get('product_id')
-    print(prodid)
-    cursor.execute("DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s",(userid, prodid))
+    cursor.execute(
+        "DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s", (userid, ProductId))
     conn.commit()
-    return redirect(url_for('cart'))   
+    return redirect(url_for('cart'))
+ 
 
 @app.route('/remall_from_cart')
 def remall_from_cart():
@@ -206,7 +217,6 @@ def sell():
 def signup():
     status="NO"
     return render_template('signup.html',status=status)
-
 
 @app.route('/thankyou')
 def thankyou():
@@ -358,9 +368,9 @@ def add_product():
         sellerid=session['user_id']
         if image.filename != '':
             filepath=os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
-            #print(filepath)
+            print(filepath)
             filename="../uploads/"+image.filename
-            #print(filename)
+            print(filename)
             
             image.save(filepath)
             #print(filename)
