@@ -49,6 +49,7 @@
 .heading h2 {
     font-size: 24px;
     margin: 0;
+    text-align: center; /* Center the text */
 }
 
 .prodshit {
@@ -63,7 +64,6 @@
 
 /* Style the buttons */
 .addtocart button {
-    background-color: #f1972f;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -100,6 +100,8 @@
 .remall:hover, .buy_all:hover {
     background-color: #ff4500;
 }
+
+
 
 /* Style the images */
 img {
@@ -152,13 +154,33 @@ img {
     padding: 40px;
     border-radius: 30px;
 }
-.checkoutbuttons{
-    width: 20%;
-    margin:40px auto;
+.checkoutbuttons {
+    width: 40%;
+    margin: 40px auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
+
+.checkoutbuttons button {
+    margin: 0 390px;
+    max-width: 100px;
+    background-color: rgba(48, 87, 78, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+.checkoutbuttons button:hover {
+    transform: scale(1.1);
+}
+
+
 .shippingaddress{
 
     background-color: antiquewhite;
