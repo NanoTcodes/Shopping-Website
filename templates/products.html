@@ -53,6 +53,9 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
+
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -81,6 +84,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -152,6 +157,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -179,6 +186,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -249,6 +258,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -276,6 +287,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -346,6 +359,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -373,6 +388,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -443,6 +460,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -470,6 +489,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -541,6 +562,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -568,6 +591,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -638,6 +663,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -665,6 +692,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -735,6 +764,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -762,6 +793,8 @@
                    <div class="product_name"><h3>{{product[4]}}</h3></div>
                    <div class="product_description">{{product[2]}}</div>
                    <div class="product_price">Rs. {{product[1]}}</div>
+                   {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
+                   {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
