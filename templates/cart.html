@@ -4,23 +4,22 @@
 {% block title %}Mail{% endblock %} 
 
 {% block content %}
+{%if products%}
 <div class="hero">
     <div class="centered-text">
-        <h2 class="text" id="text2">My Account</h2>
+        <h2 class="text" id="text2">Your Cart</h2>
     </div>
 </div>
 
 <section class="featured-products">
-    <div class="heading">
-        <h2 class="cart-heading">Your Cart</h2>
-    </div>
+    
     {% for product in products %}
         <div class="product-container">
             <div class="product-details">
                 <a>Product Name: <a>{{ product[3] }}</a><br>
                 <a>Quantity of product: </a>{{ product[1] }}<br>
                 <a>Price: </a>{{ product[2] }}<br>
-                <div class="addtocart"><button class="remove-button" onclick="remFromCart('{{ product[0] }}')">Remove</button></div>
+                <div class="addtocart"><button class="remall"><a href ="{{ url_for('rem_from_cart', ProductId=product[0]) }}">Remove</a></button></div>
             </div>
             <div class="product-image-container">
                 <img class="product-image" src="{{ product[4] }}" alt="{{ product[0] }}">
@@ -37,4 +36,11 @@
         <button class="buy_all"><a href="/checkout">Proceed to Buy</a></button>
     </div>
 </div>
+{%else%}
+<div class="hero">
+    <div class="centered-text">
+        <h2 class="text" id="text2">Your Cart is empty</h2>
+    </div>
+</div>
+{%endif%}
 {% endblock %}
