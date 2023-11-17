@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Bravia@2022',
+    password='Shaurya3477',
     database="WEBSITE"
 )
 
@@ -125,6 +125,7 @@ def add_to_cart():
 
 
     
+    
 # @app.route('/rem_from_cart', methods=['POST'])
 # def rem_from_cart():
 #     session['category']="All"
@@ -136,14 +137,14 @@ def add_to_cart():
 #     return redirect(url_for('cart'))  
 
 
-@app.route('/rem_from_cart/<int:ProductId>', methods=['POST'])
+@app.route('/rem_from_cart/<int:ProductId>', methods=['POST','GET'])
 def rem_from_cart(ProductId):
     session['category']="All"
     userid = session['user_id']
     cursor.execute(
         "DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s", (userid, ProductId))
     conn.commit()
-    return redirect(url_for('cart'))
+    return redirect('/cart')
  
 
 @app.route('/remall_from_cart')
@@ -153,7 +154,7 @@ def remall_from_cart():
     cursor.execute("DELETE FROM cart WHERE CustomerId = %s",(userid,))
     conn.commit()
     session['messege']="successfully removed all"
-    return render_template('cart.html')
+    return redirect('/cart')
 
 @app.route('/account')
 def account():
@@ -220,7 +221,11 @@ def signup():
 
 @app.route('/thankyou')
 def thankyou():
-    return render_template('thankyou.html')
+    if 'user_id' in session:
+        userid = session['user_id']
+        cursor.execute("DELETE FROM cart WHERE CustomerId = %s",(userid,))
+        conn.commit()
+        return render_template('thankyou.html')
 @app.route('/login_validation',methods=['POST'])
 def login_validation():
     message = ''
@@ -310,6 +315,7 @@ def add_user():
             session['email']=email
             session['message']= 'You have successfully registered as a seller !'
             session["user_type"]=role
+            #print("here")
             return render_template('seller.html')
         
 @app.route('/add_address',methods=["POST"])
@@ -499,6 +505,23 @@ def remove_from_wishlist(ProductId):
     cursor.close()
 
     return redirect(url_for('account'))
+
+@app.route('/order',methods=['GET','POST'])
+def order():
+    if 'user_id' in session:
+        user_id=session['user_id']
+        print(user_id)
+        cursor.execute("select ProductID, Amount from cart where CustomerID = %s",(user_id,))
+        items=cursor.fetchall()
+        for item in items:
+            prodId=item[0]
+            amount=item[1]
+            cursor.execute("insert into OrderTable (ProductId, CustomerId, Amount) values (%s,%s,%s)",(prodId,user_id,amount,))
+            conn.commit()
+            
+        return redirect('/thankyou')
+    else:
+        return redirect('/') 
 
 
 

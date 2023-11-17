@@ -1,1 +1,1 @@
-select ShippingAddress, Pincode_Shipping, City_Shipping from customer where CustomerId =%s
+account
