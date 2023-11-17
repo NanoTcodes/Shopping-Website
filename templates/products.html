@@ -594,7 +594,7 @@
            
         </div>
     </div>
-    {%elif category=="Miscelleneous"%}
+    {%elif category=="Miscellaneous"%}
     <div class="heromisc">
         <div class="centered-text">
             <h2 class="text" id="text1">Find the right product for your needs</h2><br>
@@ -629,7 +629,7 @@
             
             
             {% if category=="All"%}
-            {% for product in products %}
+            {% for product in products  %}
             <div class="an_product">
                 <div class="product_image">
                        <img src="{{product[3]}}" alt="{{product[4]}}" style="height: 250px;">

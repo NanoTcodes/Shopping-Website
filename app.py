@@ -16,7 +16,6 @@ conn=mysql.connector.connect(
     host='localhost',
     user='root',
     password='Shaurya3477',
-    password='Bravia@2022',
     database="WEBSITE"
 )
 
@@ -316,6 +315,7 @@ def add_user():
             session['email']=email
             session['message']= 'You have successfully registered as a seller !'
             session["user_type"]=role
+            #print("here")
             return render_template('seller.html')
         
 @app.route('/add_address',methods=["POST"])
