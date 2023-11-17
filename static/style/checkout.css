@@ -1,0 +1,192 @@
+.hero{
+    height: 100vh; /* 100% of viewport height */
+    background-image: url('../images/cart.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0,0.6);
+}
+.hero::before {
+    content: "";
+    background:rgba(0, 0, 0,0.6);
+    background: rgba(23, 42, 38, 0.718); /* Adjust the opacity as needed */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff; /* Set the text color to your preference */
+}
+
+
+
+/* Style the headings */
+.text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    font-family: 'Museo';
+}
+
+/* Style the featured-products section */
+.featured-products {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.heading h2 {
+    font-size: 24px;
+    margin: 0;
+    text-align: center; /* Center the text */
+}
+
+.prodshit {
+    margin: 20px 0;
+}
+
+/* Style the product information */
+.prodshit a {
+    font-family: 'Nunito';
+    font-weight: bold;
+}
+
+/* Style the buttons */
+.addtocart button {
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Museo';
+}
+
+.addtocart button:hover {
+    background-color: #ff4500;
+}
+
+.cartbuttons {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remall, .buy_all {
+    background-color: #f1972f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Museo';
+}
+
+.remall a, .buy_all a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remall:hover, .buy_all:hover {
+    background-color: #ff4500;
+}
+
+
+
+/* Style the images */
+img {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .hero {
+        height: 200px;
+    }
+
+    .centered-text {
+        padding: 20px;
+    }
+
+    .featured-products {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .prodshit {
+        margin: 10px 0;
+    }
+
+    img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .remall, .buy_all {
+        padding: 8px 16px;
+    }
+}
+.gridhaha{
+    margin:0px 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.methodofpayment{
+
+    background-color: antiquewhite;
+    width: 300px;
+
+    padding: 40px;
+    border-radius: 30px;
+}
+.checkoutbuttons {
+    width: 40%;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkoutbuttons button {
+    margin: 0 390px;
+    max-width: 100px;
+    background-color: rgba(48, 87, 78, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+.checkoutbuttons button:hover {
+    transform: scale(1.1);
+}
+
+
+.shippingaddress{
+
+    background-color: antiquewhite;
+    width: 300px;
+
+    padding: 40px;
+    border-radius: 30px;
+
+}

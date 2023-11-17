@@ -54,7 +54,7 @@ def cart():
             products = cursor.fetchall()
             return render_template('cart.html', products=products)
         else:
-            message=f"you are a buyer, login as seller to sell products!"
+            message=f"you are a seller, login as buyer to sell products!"
             return render_template('home.html',message=message)
     else:
         session['message']='please login!'
@@ -109,11 +109,11 @@ def add_to_cart():
                     
                     conn.commit()
                     session['message'] = 'Product added to the cart.'
-                
+                    
                 return redirect('/products')
             else:
                 session['message'] = 'This product is already in your cart'
-                return redirect('/products') 
+                return redirect('/products' ) 
                 
         else:
             session['message'] = 'You need to be a customer to add products to the cart.'
@@ -124,6 +124,7 @@ def add_to_cart():
         return redirect('/')
 
 
+    
     
 # @app.route('/rem_from_cart', methods=['POST'])
 # def rem_from_cart():
@@ -136,14 +137,14 @@ def add_to_cart():
 #     return redirect(url_for('cart'))  
 
 
-@app.route('/rem_from_cart/<int:ProductId>', methods=['POST'])
+@app.route('/rem_from_cart/<int:ProductId>', methods=['POST','GET'])
 def rem_from_cart(ProductId):
     session['category']="All"
     userid = session['user_id']
     cursor.execute(
         "DELETE FROM cart WHERE CustomerId = %s AND ProductId = %s", (userid, ProductId))
     conn.commit()
-    return redirect(url_for('cart'))
+    return redirect('/cart')
  
 
 @app.route('/remall_from_cart')
@@ -153,7 +154,7 @@ def remall_from_cart():
     cursor.execute("DELETE FROM cart WHERE CustomerId = %s",(userid,))
     conn.commit()
     session['messege']="successfully removed all"
-    return render_template('cart.html')
+    return redirect('/cart')
 
 @app.route('/account')
 def account():
@@ -220,7 +221,11 @@ def signup():
 
 @app.route('/thankyou')
 def thankyou():
-    return render_template('thankyou.html')
+    if 'user_id' in session:
+        userid = session['user_id']
+        cursor.execute("DELETE FROM cart WHERE CustomerId = %s",(userid,))
+        conn.commit()
+        return render_template('thankyou.html')
 @app.route('/login_validation',methods=['POST'])
 def login_validation():
     message = ''
@@ -310,6 +315,7 @@ def add_user():
             session['email']=email
             session['message']= 'You have successfully registered as a seller !'
             session["user_type"]=role
+            #print("here")
             return render_template('seller.html')
         
 @app.route('/add_address',methods=["POST"])
@@ -400,43 +406,15 @@ def add_product():
 
 
 @app.route('/products')
-# def products():
-#     # Fetch product data from the database
-#     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product")
-#     products = cursor.fetchall()
-
-    
-    
-    
-    
-#     status = "NO"  # Default status is "NO" if the user is not logged in
-#     already_added = {}  # Dictionary to store already added status for each product
-
-#     if 'user_id' in session:
-#         status = "YES"
-#         CustomerId = session['user_id']
-
-#         for product in products:
-#             # Check if the product is already in the user's wishlist
-#             cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
-#             already_added[product[0]] = cursor.fetchone()[0] > 0
-
-#     return render_template('products.html', products=products, status=status, already_added=already_added,category="All")
-
 def products():
     # Fetch product data from the database
-    # base="SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product"
-    # if session
     cursor.execute("SELECT ProductId, Price, Description, ProductImages, product_name, Category FROM Product")
     products = cursor.fetchall()
     if session:
-        category=session['category']
-        
+        category = session['category']
     else:
-        category="All"    
+        category = "All"
 
-    
-    
     status = "NO"  # Default status is "NO" if the user is not logged in
     already_added = {}  # Dictionary to store already added status for each product
 
@@ -449,8 +427,7 @@ def products():
             cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
             already_added[product[0]] = cursor.fetchone()[0] > 0
 
-    return render_template('products.html', products=products, status=status, already_added=already_added,category=category)
-
+    return render_template('products.html', products=products, status=status, already_added=already_added, category=category)
 @app.route('/categories' ,methods=["POST"])
 def categories():
     category=request.form.get('category')
@@ -499,6 +476,23 @@ def remove_from_wishlist(ProductId):
     cursor.close()
 
     return redirect(url_for('account'))
+
+@app.route('/order',methods=['GET','POST'])
+def order():
+    if 'user_id' in session:
+        user_id=session['user_id']
+        print(user_id)
+        cursor.execute("select ProductID, Amount from cart where CustomerID = %s",(user_id,))
+        items=cursor.fetchall()
+        for item in items:
+            prodId=item[0]
+            amount=item[1]
+            cursor.execute("insert into OrderTable (ProductId, CustomerId, Amount) values (%s,%s,%s)",(prodId,user_id,amount,))
+            conn.commit()
+            
+        return redirect('/thankyou')
+    else:
+        return redirect('/') 
 
 
 
@@ -558,9 +552,9 @@ def remove_from_wishlist(ProductId):
 #             smtp.login(email_sender,email_password)
 #             smtp.sendmail(email_sender,email_receiver,em.as_string())
 #         return redirect(url_for('home'))
-@app.route('/testing')
-def test():
-    return render_template('buyer.html')
+# @app.route('/testing')
+# def test():
+#     return render_template('buyer.html')
 
 
 
