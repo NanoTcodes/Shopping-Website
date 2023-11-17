@@ -417,6 +417,7 @@ def products():
 
     status = "NO"  # Default status is "NO" if the user is not logged in
     already_added = {}  # Dictionary to store already added status for each product
+    already_added_cart = {}
 
     if 'user_id' in session:
         status = "YES"
@@ -426,8 +427,11 @@ def products():
             # Check if the product is already in the user's wishlist
             cursor.execute("SELECT COUNT(*) FROM wishlist WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
             already_added[product[0]] = cursor.fetchone()[0] > 0
+            
+            cursor.execute("SELECT COUNT(*) FROM cart WHERE CustomerID = %s AND ProductId = %s", (CustomerId, product[0]))
+            already_added_cart[product[0]] = cursor.fetchone()[0] > 0
 
-    return render_template('products.html', products=products, status=status, already_added=already_added, category=category)
+    return render_template('products.html', products=products, status=status, already_added=already_added,already_added_cart=already_added_cart, category=category)
 @app.route('/categories' ,methods=["POST"])
 def categories():
     category=request.form.get('category')
