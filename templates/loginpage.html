@@ -24,7 +24,7 @@
                 <option value="buyer">Buyer</option>
             </select>
 
-            <button type="submit">Log in</button>
+            <button type="submit" id="login_btn">Log in</button>
         </form>
         <p>Don't have an account? <a href="/signup" >Sign up</a></p>
         {% if message is defined and message %}
@@ -40,11 +40,11 @@
     <div class="footer_links">
 
         <ul>
-            <li><button onclick="openDialogP()">Privacy</button></li>
+            <li><button style="cursor:pointer;" onclick="openDialogP()">Privacy</button></li>
             <li class="line">|</li>
             <li><a href="/account">Account</a></li>
             <li class="line">|</li>
-            <li><button onclick="openDialogTC()">Terms & Conditions</button></li>
+            <li><button style="cursor:pointer;" onclick="openDialogTC()">Terms & Conditions</button></li>
 
 
         </ul>
