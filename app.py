@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 conn=mysql.connector.connect(
     host='localhost',
     user='root',
-    password='Shaurya3477',
+    password='riddhi@2108',
     database="WEBSITE"
 )
 
@@ -54,7 +54,7 @@ def cart():
             products = cursor.fetchall()
             return render_template('cart.html', products=products)
         else:
-            message=f"you are a buyer, login as seller to sell products!"
+            message=f"you are a seller, login as buyer to sell products!"
             return render_template('home.html',message=message)
     else:
         session['message']='please login!'
@@ -581,9 +581,9 @@ def order():
 #             smtp.login(email_sender,email_password)
 #             smtp.sendmail(email_sender,email_receiver,em.as_string())
 #         return redirect(url_for('home'))
-@app.route('/testing')
-def test():
-    return render_template('buyer.html')
+# @app.route('/testing')
+# def test():
+#     return render_template('buyer.html')
 
 
 

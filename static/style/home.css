@@ -439,3 +439,10 @@ form{
   font-weight: bold;
   margin-top: 10px;
 }
+.msg{
+  z-index: 10000;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+}
