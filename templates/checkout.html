@@ -40,15 +40,40 @@
 
     <div class="methodofpayment">
         <p>Please select your Payment Method:</p>
-        <input type="radio" id="age1" name="age" value="30">
+        <input type="radio" id="age1" name="paymentMethod" value="30">
         <label for="age1">COD</label><br>
-        <input type="radio" id="age2" name="age" value="60">
+        <input type="radio" id="age2" name="paymentMethod" value="60">
         <label for="age2">UPI</label><br>  
-        <input type="radio" id="age3" name="age" value="100">
+        <input type="radio" id="age3" name="paymentMethod" value="100">
         <label for="age3">NetBanking</label><br>
-        <input type="radio" id="age2" name="age" value="60">
-        <label for="age2">Credit Card/Debit Card</label><br>  
+        <input type="radio" id="age4" name="paymentMethod" value="60">
+        <label for="age4">Credit Card/Debit Card</label><br>  
+    
+        <p id="error-message" style="color: red; display: none;">Please select a payment method.</p>
+    
     </div>
+    
+    <script>
+        function validateForm() {
+            var paymentMethods = document.getElementsByName("paymentMethod");
+            var isValid = false;
+    
+            for (var i = 0; i < paymentMethods.length; i++) {
+                if (paymentMethods[i].checked) {
+                    isValid = true;
+                    break;
+                }
+            }
+    
+            if (!isValid) {
+                document.getElementById("error-message").style.display = "block";
+            } else {
+                document.getElementById("error-message").style.display = "none";
+                // You can submit the form or perform other actions here
+                window.location.href = "/order";
+            }
+        }
+    </script>
     <div class="shippingaddress">
         <div class="your_address">
             <div class="myaddress">
@@ -69,8 +94,9 @@
     </div>
 </div>
     <div class="checkoutbuttons">
+<<
         <div class="back"><button><a href="/cart">Back</a></button></div>
-        <div class="buy"><button><a href="/thankyou">Checkout</a></button></div>
+        <div class="buy"><button onclick="validateForm()">Checkout</button></div>
     </div>
 
 
