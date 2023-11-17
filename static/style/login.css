@@ -70,7 +70,7 @@ input[type="password"],select {
 input[type="password"]:hover, input[type="email"]:hover, select:hover {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-button {
+#login_btn {
 	background: #f1972f;
 	color: black;
 	padding: 15px 20px;
@@ -81,7 +81,7 @@ button {
 	font-family: 'Museo', sans-serif;
 	font-style: normal;
 }
-button:hover {
+#login_btn:hover {
 	background-color: #f1972f ;
 }
 p {
@@ -127,6 +127,11 @@ p {
 }
 .FOOTER hr{
   background-color: #000000;
+}
+.FOOTER button{
+  background:transparent;
+  color: #fff;
+  border: none;
 }
 .overlayP {
 	display: none;
