@@ -6,7 +6,7 @@ This is a shopping website which is buyer and seller friendly.
 - Clone this repo using.
   `git clone https://github.com/riddhi5474/Shopping-Website.git`
 
-- run `manage.py` file in the root of this directory.
+- run `manage.py` file present in the root of this directory.
 
 - Open a web browser and navigate to `http://localhost:5000` to access the administration interface.
 
