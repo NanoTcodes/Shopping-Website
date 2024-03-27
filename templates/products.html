@@ -56,6 +56,9 @@
                    {%if product[5]=="Used"%}<div class="product_name"><h4>Used</h4></div>
                    {%else%}<div class="product_name"><h4>New</h4></div>{%endif%}<br>
 
+                   {% if already_added_cart[product[0]] %}
+                    <p>Product added to your cart!</p>
+                   {% else %}
                    <form method="POST" action="/add_to_cart">
                        <input type="hidden" name="product_id" value="{{ product[0] }}"> <!-- Use the actual product ID here -->
                        <button type="submit">Add to Cart</button>
@@ -63,6 +66,7 @@
                        <br>
                        <br>
                     </form>
+                    {% endif %}
                     
                     {% if already_added[product[0]] %}
                     <p>Product added to your wishlist!</p>

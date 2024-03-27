@@ -19,7 +19,7 @@
                 <a>Product Name: <a>{{ product[3] }}</a><br>
                 <a>Quantity of product: </a>{{ product[1] }}<br>
                 <a>Price: </a>{{ product[2] }}<br>
-                <div class="addtocart"><button class="remall"><a href ="{{ url_for('rem_from_cart', ProductId=product[0]) }}">Remove</a></button></div>
+                <div class="addtocart"><button class="remove-button"><a href ="{{ url_for('rem_from_cart', ProductId=product[0]) }}">Remove</a></button></div>
             </div>
             <div class="product-image-container">
                 <img class="product-image" src="{{ product[4] }}" alt="{{ product[0] }}">

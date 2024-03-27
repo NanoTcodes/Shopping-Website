@@ -156,7 +156,32 @@ img {
     height: auto;
 }
 
-.remove-button,
+.remove-button{
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+}
+
+.remove-button:hover{
+    background-color: transparent;
+    color: #333;
+    border:1px solid #333;
+}
+
+.remove-button a {
+    color: #fff;
+    text-decoration: none;
+}
+.remove-button:hover a {
+    color: #333;
+}
+
 .remall a,
 .buy_all a {
     background-color: rgba(48, 87, 78, 0.7);
@@ -170,7 +195,6 @@ img {
     transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
 }
 
-.remove-button:hover,
 .remall a:hover,
 .buy_all a:hover {
     transform: scale(1.1); /* Increase the size on hover */
